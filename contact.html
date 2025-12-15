@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — ThreatNest</title>
+  <meta name="description" content="Request a security check or ask a question." />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header>
+    <a class="brand" href="/"><span class="name">THREATNEST</span><span class="dotcom">.com</span></a>
+    <div class="header-mid">
+      <img id="logo" src="/assets/logo/black.png" alt="ThreatNest logo" loading="lazy" decoding="async" />
+    </div>
+    <nav><ul>
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero contact-hero" style="padding-bottom:52px">
+      <h1>Contact</h1>
+      <p class="lead"><span class="dash">—</span> We aim to respond within 24 hours.</p>
+    </section>
+
+    <section class="container">
+      <div class="card form">
+        <form id="contact-form" action="https://formspree.io/f/yourFormID" method="POST" novalidate>
+          <div class="row-2">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" class="input" required placeholder="Your Name" autocomplete="name">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" class="input" required placeholder="you@email.com" autocomplete="email">
+            </div>
+          </div>
+
+          <label for="website">Website URL</label>
+          <input id="website" name="website" type="url" class="input" placeholder="https://example.com" required inputmode="url">
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" class="textarea" placeholder="Anything specific you're worried about?" required></textarea>
+
+          <!-- honeypot -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <button class="btn-primary form-submit" type="submit">Send</button>
+          <p class="help">We only use this info to respond. No spam, no sharing.</p>
+        </form>
+      </div>
+
+      <div class="quick">
+        <a href="mailto:threatnest@threatnest.com">threatnest@threatnest.com</a>
+        <a href="https://wa.me/96171837893" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/assets/logo/black.png" alt="ThreatNest" />
+
+    <div class="social">
+      <a href="mailto:info@threatnest.com" class="ico"><img class="icon" src="https://cdn.simpleicons.org/gmail/111111" alt="Email"></a>
+      <a href="https://wa.me/96181009230" class="ico"><img class="icon" src="https://cdn.simpleicons.org/whatsapp/111111" alt="WhatsApp"></a>
+      <a href="https://discord.com/users/YOUR_ID" class="ico"><img class="icon" src="https://cdn.simpleicons.org/discord/111111" alt="Discord"></a>
+      <a href="https://www.linkedin.com/in/YOUR_USERNAME" class="ico" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+       <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5 2.5 2.5 0 0 1 4.98 3.5ZM4 9h4v12H4zM14.5 9c-2.2 0-3.5 1.2-3.5 3.1V21h4v-7c0-.8.6-1.5 1.6-1.5S18 13.2 18 14v7h4v-7c0-3-1.6-5-4.5-5-1.5 0-2.6.6-3.1 1.5V9h-3.9Z"/>
+      </svg>
+      </a>
+      <a href="https://github.com/YOUR_USERNAME" class="ico"><img class="icon" src="https://cdn.simpleicons.org/github/111111" alt="GitHub"></a>
+      <a href="https://www.tiktok.com/@YOUR_USERNAME" class="ico"><img class="icon" src="https://cdn.simpleicons.org/tiktok/111111" alt="TikTok"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 ThreatNest</div>
+</footer>
+
+  <!-- Autosave draft (localStorage) -->
+  <script>
+  (function () {
+    const KEY = 'tn-contact-draft-v1';
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const ids = ['name','email','website','message'];
+
+    // restore
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+      ids.forEach(id => { if (saved[id] && form[id]) form[id].value = saved[id]; });
+    } catch (e) {}
+
+    // save (debounced)
+    let t;
+    form.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const data = {};
+        ids.forEach(id => data[id] = form[id]?.value || '');
+        localStorage.setItem(KEY, JSON.stringify(data));
+      }, 150);
+    });
+
+    // clear on submit (optimistic)
+    form.addEventListener('submit', () => localStorage.removeItem(KEY));
+  })();
+  </script>
+</body>
+</html>

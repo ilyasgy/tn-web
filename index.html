@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreatNest — Fast, affordable website security checks</title>
+  <meta name="description" content="We manually test your website for common vulnerabilities and deliver a simple report with clear, actionable fixes." />
+  <link rel="preload" as="image" href="/assets/threatnest-logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ThreatNest — Fast, affordable website security checks">
+  <meta property="og:description" content="Quick, practical security checks with a simple report and fixes.">
+  <meta property="og:image" content="/assets/og-image.png">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/"><span class="name">THREATNEST</span><span class="dotcom">.com</span></a>
+    <div class="header-mid">
+      <img id="logo" src="/assets/logo/black.png" alt="ThreatNest logo" loading="lazy" decoding="async" />
+    </div>
+    <nav><ul>
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul></nav>
+  </header>
+
+  <main id="main">
+<section class="hero">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1>Fast, affordable website security checks for small businesses.</h1>
+      <p class="lead"><span class="dash">—</span> We manually test your website for common vulnerabilities and deliver a simple report with clear, actionable fixes.</p>
+
+      <div class="btn-row">
+        <a class="btn-primary" href="/contact.html">Request a Security Check</a>
+        <a class="btn-primary2" href="/services.html">Check Services</a>
+        <a class="btn-ghost" href="#sample-report">View sample report</a>
+      </div>
+    </div>
+
+    <!-- What you receive card -->
+    <aside class="what-card card">
+      <h3>What you receive</h3>
+      <ul class="what-list">
+        <li>PDF report with screenshots & evidence</li>
+        <li>Risk ratings (Critical/High/Medium/Low)</li>
+        <li>Step-by-step fixes your developer can apply</li>
+        <li>7-day re-check after you patch</li>
+      </ul>
+
+      <div class="kpis mini">
+        <div class="kpi"><div class="num">48h</div><div>Turnaround</div></div>
+        <div class="kpi"><div class="num">30+</div><div>Checks</div></div>
+        <div class="kpi"><div class="num">9.4/10</div><div>Client satisfaction</div></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- Key areas we cover -->
+<section id="key-areas" class="container">
+  <h2 class="section-title">Key areas we cover</h2>
+  <div class="grid-2">
+    <div class="card">
+      <ul>
+        <li>HTTPS/HSTS & security headers (CSP starter, Referrer-Policy, X-Frame-Options)</li>
+        <li>Authentication & session hygiene</li>
+        <li>Access control basics & simple IDOR checks</li>
+        <li>CSRF protection on sensitive actions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <ul>
+        <li>File upload checks (type/size/path) on forms or CMS</li>
+        <li>CORS sanity & exposure sweep (.git/.env/backups)</li>
+        <li>Admin hardening & rate limits</li>
+        <li>CMS/plugin hygiene</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Sample report -->
+<section id="sample-report" class="container">
+  <h2 class="section-title">Sample report (snippet)</h2>
+  <div class="card">
+<pre class="code-sample">Risk: HIGH — Missing Content Security Policy (CSP)
+Impact: XSS from 3rd-party widgets could steal session tokens.
+Evidence: No `content-security-policy` header on /* responses.
+Fix: Start with:
+  default-src 'self';
+  img-src 'self' data:;
+  script-src 'self' 'unsafe-inline';
+Then tighten per assets.</pre>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="container">
+  <h2 class="section-title">FAQ</h2>
+  <div class="faq">
+    <details>
+      <summary>Is this the same as a penetration test?</summary>
+      <p>No. It’s a non-intrusive security health-check for small sites. If you need a formal pentest, we can refer you.</p>
+    </details>
+    <details>
+      <summary>Do you need admin access?</summary>
+      <p>Usually no. For pre-launch flow reviews we may ask for a staging login.</p>
+    </details>
+    <details>
+      <summary>What’s the guarantee?</summary>
+      <p>Money-back if we can’t demonstrate a material security improvement in your report.</p>
+    </details>
+    <details>
+      <summary>What happens after we patch?</summary>
+      <p>You get a free 7-day re-check to confirm fixes.</p>
+    </details>
+  </div>
+</section>
+
+
+  </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/assets/logo/black.png" alt="ThreatNest" />
+
+    <div class="social">
+      <a href="mailto:threatnest@threatnest.com" class="ico"><img class="icon" src="https://cdn.simpleicons.org/gmail/111111" alt="Email"></a>
+      <a href="https://wa.me/96171837893" class="ico"><img class="icon" src="https://cdn.simpleicons.org/whatsapp/111111" alt="WhatsApp"></a>
+      <a href="https://discord.gg/9PaTcqZf" class="ico" target="_blank" rel="noopener" aria-label="Discord Server">
+        <img class="icon" src="https://cdn.simpleicons.org/discord/111111" alt="Discord Server">
+      </a>
+
+      <a href="https://www.linkedin.com/in/YOUR_USERNAME" class="ico" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+       <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5 2.5 2.5 0 0 1 4.98 3.5ZM4 9h4v12H4zM14.5 9c-2.2 0-3.5 1.2-3.5 3.1V21h4v-7c0-.8.6-1.5 1.6-1.5S18 13.2 18 14v7h4v-7c0-3-1.6-5-4.5-5-1.5 0-2.6.6-3.1 1.5V9h-3.9Z"/>
+      </svg>
+      </a>
+      <a href="https://github.com/YOUR_USERNAME" class="ico"><img class="icon" src="https://cdn.simpleicons.org/github/111111" alt="GitHub"></a>
+      <a href="https://www.tiktok.com/@YOUR_USERNAME" class="ico"><img class="icon" src="https://cdn.simpleicons.org/tiktok/111111" alt="TikTok"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 ThreatNest</div>
+</footer>
+
+
+</body>
+</html>
