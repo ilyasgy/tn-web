@@ -427,12 +427,12 @@ nav a.active{
   background:rgba(0,0,0,.06);
 }
 
-.social a:nth-child(1){ transform:translateY(0) rotate(-18deg); }
-.social a:nth-child(2){ transform:translateY(0) rotate(-9deg); }
+.social a:nth-child(1){ transform:translateY(0); } /* rotate(-18deg) */
+.social a:nth-child(2){ transform:translateY(0); } /* rotate(-9deg */
 .social a:nth-child(3){ transform:translateY(0); }
 .social a:nth-child(4){ transform:translateY(0); }
-.social a:nth-child(5){ transform:translateY(0) rotate(9deg); }
-.social a:nth-child(6){ transform:translateY(0) rotate(18deg); }
+.social a:nth-child(5){ transform:translateY(0); } /* rotate(9deg) */
+.social a:nth-child(6){ transform:translateY(0); } /* rotate(18deg) */
 
 .footer-bottom{
   margin-top:30px;
@@ -515,3 +515,4 @@ nav a.active{
 @media (max-width: 720px){
   .contact-panel .row-2{ grid-template-columns:1fr; }
 }
+
