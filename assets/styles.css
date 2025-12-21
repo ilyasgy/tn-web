@@ -551,3 +551,306 @@ h1{
 
 
 
+
+/* widge */
+
+:root{
+  --hw-z: 99999;
+  --hw-radius: 14px;
+  --hw-shadow: 0 18px 50px rgba(0,0,0,.28);
+  --hw-border: 1px solid rgba(0,0,0,.08);
+
+  --hw-bg: #ffffff;
+  --hw-text: #0f172a;
+  --hw-muted: rgba(15,23,42,.64);
+  --hw-line: rgba(15,23,42,.10);
+
+  /* Tawk-like green (adjust if you want) */
+  --hw-accent: #10b981;
+  --hw-accent-2: #0ea371;
+  --hw-accent-text: #ffffff;
+
+  --hw-input-bg: #f8fafc;
+  --hw-input-border: rgba(15,23,42,.14);
+}
+
+/* Floating button */
+#help-btn{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: var(--hw-z);
+  border: 0;
+  cursor: pointer;
+  height: 54px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
+  color: var(--hw-accent-text);
+  font-weight: 800;
+  letter-spacing: .2px;
+  box-shadow: 0 14px 30px rgba(16,185,129,.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+#help-btn::before{
+  content: "";
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 6px;
+  background: rgba(255,255,255,.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+}
+
+#help-btn:hover{ transform: translateY(-1px); }
+#help-btn:active{ transform: translateY(0px) scale(.99); }
+#help-btn:focus{ outline: none; }
+#help-btn:focus-visible{
+  box-shadow: 0 14px 30px rgba(16,185,129,.25), 0 0 0 4px rgba(16,185,129,.25);
+}
+
+/* Panel */
+#help-panel{
+  position: fixed;
+  right: 18px;
+  bottom: 84px;
+  z-index: var(--hw-z);
+  width: 360px;
+  max-width: calc(100vw - 36px);
+  height: 560px;
+  max-height: calc(100vh - 120px);
+  background: var(--hw-bg);
+  color: var(--hw-text);
+  border-radius: var(--hw-radius);
+  box-shadow: var(--hw-shadow);
+  border: var(--hw-border);
+  overflow: hidden;
+  transform-origin: bottom right;
+  animation: hw-pop .14s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+#help-panel[hidden]{ display:none !important; }
+
+@keyframes hw-pop{
+  from{ transform: translateY(10px) scale(.98); opacity: 0; }
+  to{ transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Header bar */
+.help-header{
+  height: 56px;
+  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
+  color: var(--hw-accent-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px 0 14px;
+}
+.help-header > span{
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+
+#help-close{
+  border:0;
+  background: rgba(255,255,255,.16);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#help-close:hover{ background: rgba(255,255,255,.22); }
+#help-close:active{ transform: scale(.98); }
+
+/* Search */
+#help-search{
+  margin: 12px 12px 10px;
+  width: calc(100% - 24px);
+  height: 40px;
+  border-radius: 12px;
+  padding: 0 12px;
+  border: 1px solid var(--hw-input-border);
+  background: var(--hw-input-bg);
+  color: var(--hw-text);
+  outline: none;
+}
+#help-search::placeholder{ color: rgba(15,23,42,.45); }
+#help-search:focus{
+  border-color: rgba(16,185,129,.45);
+  box-shadow: 0 0 0 4px rgba(16,185,129,.12);
+}
+
+/* Content areas */
+#help-options,
+#help-answer,
+#help-ticket{
+  padding: 0 12px 12px;
+  overflow: auto;
+  flex: 1;
+}
+
+/* Options grid */
+#help-options{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+#help-options button{
+  border: 1px solid var(--hw-line);
+  background: #fff;
+  color: var(--hw-text);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12.5px;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,.04);
+}
+#help-options button:hover{
+  border-color: rgba(16,185,129,.35);
+  box-shadow: 0 10px 18px rgba(0,0,0,.06);
+  transform: translateY(-1px);
+}
+#help-options button:active{ transform: translateY(0px) scale(.99); }
+
+/* Answer */
+#help-answer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#answer-title{
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 900;
+}
+#answer-text{
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(15,23,42,.86);
+  background: #fff;
+  border: 1px solid var(--hw-line);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* Did this help row */
+.help-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 4px;
+}
+.help-row > span{
+  font-size: 12px;
+  color: var(--hw-muted);
+  font-weight: 700;
+}
+
+#help-yes,
+#help-no{
+  border: 1px solid var(--hw-line);
+  background: #fff;
+  color: var(--hw-text);
+  border-radius: 12px;
+  height: 36px;
+  padding: 0 12px;
+  cursor:pointer;
+  font-weight: 800;
+  font-size: 12px;
+}
+#help-yes:hover{
+  border-color: rgba(16,185,129,.45);
+  box-shadow: 0 0 0 4px rgba(16,185,129,.10);
+}
+#help-no:hover{ border-color: rgba(15,23,42,.18); }
+
+/* Talk to human */
+#talk-human{
+  border: 0;
+  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
+  color: var(--hw-accent-text);
+  border-radius: 12px;
+  height: 42px;
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: .2px;
+  box-shadow: 0 12px 26px rgba(16,185,129,.18);
+}
+#talk-human:hover{ transform: translateY(-1px); }
+#talk-human:active{ transform: translateY(0px) scale(.99); }
+
+/* Ticket */
+#help-ticket{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#ticket-email,
+#ticket-msg{
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--hw-input-border);
+  background: var(--hw-input-bg);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--hw-text);
+  outline: none;
+}
+#ticket-email:focus,
+#ticket-msg:focus{
+  border-color: rgba(16,185,129,.45);
+  box-shadow: 0 0 0 4px rgba(16,185,129,.12);
+}
+#ticket-msg{
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.4;
+}
+#ticket-send{
+  border: 0;
+  background: var(--hw-text);
+  color: #fff;
+  border-radius: 12px;
+  height: 42px;
+  cursor:pointer;
+  font-weight: 900;
+}
+#ticket-send:hover{ background: rgba(15,23,42,.92); }
+#ticket-send:active{ transform: scale(.99); }
+
+#ticket-status{
+  font-size: 12px;
+  color: var(--hw-muted);
+  min-height: 14px;
+}
+
+/* Mobile */
+@media (max-width: 420px){
+  #help-panel{
+    right: 12px;
+    bottom: 78px;
+    width: calc(100vw - 24px);
+    height: 72vh;
+  }
+  #help-btn{
+    right: 12px;
+    bottom: 12px;
+  }
+}
