@@ -18,4 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-import { SUPPORT_OPTIONS } from "../data/supportOptions.js";
+async function loadSupportOptions() {
+  try {
+    const res = await fetch(`${window.API_BASE}/api/support/options`);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.ok) window.SUPPORT_OPTIONS = data.options || [];
+  } catch (e) {
+    window.SUPPORT_OPTIONS = [];
+  }
+}
+
+loadSupportOptions();
