@@ -575,282 +575,155 @@ h1{
 }
 
 /* Floating button */
-#help-btn{
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: var(--hw-z);
-  border: 0;
-  cursor: pointer;
-  height: 54px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
-  color: var(--hw-accent-text);
-  font-weight: 800;
-  letter-spacing: .2px;
-  box-shadow: 0 14px 30px rgba(16,185,129,.25);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  user-select: none;
-}
-
-#help-btn::before{
-  content: "";
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  border-radius: 6px;
-  background: rgba(255,255,255,.22);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
-}
-
-#help-btn:hover{ transform: translateY(-1px); }
-#help-btn:active{ transform: translateY(0px) scale(.99); }
-#help-btn:focus{ outline: none; }
-#help-btn:focus-visible{
-  box-shadow: 0 14px 30px rgba(16,185,129,.25), 0 0 0 4px rgba(16,185,129,.25);
-}
-
-/* Panel */
+/* Panel layout: header / scroll body / footer */
 #help-panel{
-  position: fixed;
-  right: 18px;
-  bottom: 84px;
-  z-index: var(--hw-z);
-  width: 360px;
-  max-width: calc(100vw - 36px);
-  height: 560px;
-  max-height: calc(100vh - 120px);
-  background: var(--hw-bg);
-  color: var(--hw-text);
-  border-radius: var(--hw-radius);
-  box-shadow: var(--hw-shadow);
-  border: var(--hw-border);
-  overflow: hidden;
-  transform-origin: bottom right;
-  animation: hw-pop .14s ease-out;
-  display: flex;
-  flex-direction: column;
-}
-#help-panel[hidden]{ display:none !important; }
-
-@keyframes hw-pop{
-  from{ transform: translateY(10px) scale(.98); opacity: 0; }
-  to{ transform: translateY(0) scale(1); opacity: 1; }
-}
-
-/* Header bar */
-.help-header{
-  height: 56px;
-  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
-  color: var(--hw-accent-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px 0 14px;
-}
-.help-header > span{
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: .2px;
-}
-
-#help-close{
-  border:0;
-  background: rgba(255,255,255,.16);
-  color: #fff;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  cursor:pointer;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  flex-direction:column;
+  overflow:hidden;
 }
-#help-close:hover{ background: rgba(255,255,255,.22); }
-#help-close:active{ transform: scale(.98); }
+
+/* SINGLE scroll area */
+.help-body{
+  padding: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  overflow:auto;
+  flex:1;
+}
+
+/* Views */
+.help-view{ display:block; }
+.help-view[hidden]{ display:none !important; }
 
 /* Search */
 #help-search{
-  margin: 12px 12px 10px;
-  width: calc(100% - 24px);
-  height: 40px;
-  border-radius: 12px;
-  padding: 0 12px;
-  border: 1px solid var(--hw-input-border);
-  background: var(--hw-input-bg);
-  color: var(--hw-text);
-  outline: none;
-}
-#help-search::placeholder{ color: rgba(15,23,42,.45); }
-#help-search:focus{
-  border-color: rgba(16,185,129,.45);
-  box-shadow: 0 0 0 4px rgba(16,185,129,.12);
+  margin: 0;
+  width: 100%;
 }
 
-/* Content areas */
-#help-options,
-#help-answer,
-#help-ticket{
-  padding: 0 12px 12px;
-  overflow: auto;
-  flex: 1;
-}
-
-/* Options grid */
-#help-options{
-  display: grid;
+/* Options list */
+.help-list{
+  display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-#help-options button{
+.help-list button{
   border: 1px solid var(--hw-line);
   background: #fff;
   color: var(--hw-text);
   border-radius: 12px;
-  padding: 10px;
+  padding: 12px;
   text-align: left;
-  font-weight: 700;
-  font-size: 12.5px;
+  font-weight: 800;
+  font-size: 13px;
   line-height: 1.2;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0,0,0,.04);
-}
-#help-options button:hover{
-  border-color: rgba(16,185,129,.35);
-  box-shadow: 0 10px 18px rgba(0,0,0,.06);
-  transform: translateY(-1px);
-}
-#help-options button:active{ transform: translateY(0px) scale(.99); }
-
-/* Answer */
-#help-answer{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-#answer-title{
-  margin: 10px 0 0;
-  font-size: 14px;
-  font-weight: 900;
-}
-#answer-text{
-  margin: 0;
-  white-space: pre-wrap;
-  font-size: 13px;
-  line-height: 1.45;
-  color: rgba(15,23,42,.86);
-  background: #fff;
-  border: 1px solid var(--hw-line);
-  border-radius: 12px;
-  padding: 10px;
 }
 
-/* Did this help row */
-.help-row{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-top: 4px;
-}
-.help-row > span{
+/* small hint row */
+.help-hint{
+  margin-top: 4px;
   font-size: 12px;
   color: var(--hw-muted);
-  font-weight: 700;
+  display:flex;
+  gap: 6px;
+  align-items:center;
 }
 
-#help-yes,
-#help-no{
+.link-btn{
+  border:0;
+  background:transparent;
+  color: var(--hw-accent-2);
+  font-weight: 900;
+  cursor:pointer;
+  padding:0;
+}
+
+/* Article */
+.back-btn{
   border: 1px solid var(--hw-line);
+  background:#fff;
+  border-radius: 12px;
+  height: 38px;
+  padding: 0 12px;
+  font-weight: 900;
+  cursor:pointer;
+  width: fit-content;
+}
+
+.article{
+  border: 1px solid var(--hw-line);
+  border-radius: 14px;
   background: #fff;
-  color: var(--hw-text);
+  padding: 12px;
+}
+
+#answer-title{
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.article-text{
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(15,23,42,.86);
+  white-space: pre-wrap;
+}
+
+/* Footer (fixed, like tawk) */
+.help-footer{
+  border-top: 1px solid var(--hw-line);
+  background: #fff;
+  padding: 10px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+
+.help-footer span{
+  font-size: 12px;
+  color: var(--hw-muted);
+  font-weight: 800;
+}
+
+.footer-actions{
+  display:flex;
+  gap: 8px;
+}
+
+.ghost{
+  border: 1px solid var(--hw-line);
+  background:#fff;
   border-radius: 12px;
   height: 36px;
   padding: 0 12px;
-  cursor:pointer;
-  font-weight: 800;
-  font-size: 12px;
-}
-#help-yes:hover{
-  border-color: rgba(16,185,129,.45);
-  box-shadow: 0 0 0 4px rgba(16,185,129,.10);
-}
-#help-no:hover{ border-color: rgba(15,23,42,.18); }
-
-/* Talk to human */
-#talk-human{
-  border: 0;
-  background: linear-gradient(135deg, var(--hw-accent), var(--hw-accent-2));
-  color: var(--hw-accent-text);
-  border-radius: 12px;
-  height: 42px;
-  padding: 0 14px;
-  cursor: pointer;
   font-weight: 900;
-  letter-spacing: .2px;
-  box-shadow: 0 12px 26px rgba(16,185,129,.18);
+  cursor:pointer;
 }
-#talk-human:hover{ transform: translateY(-1px); }
-#talk-human:active{ transform: translateY(0px) scale(.99); }
 
-/* Ticket */
-#help-ticket{
-  display: flex;
-  flex-direction: column;
+/* Contact */
+.contact{
+  border: 1px solid var(--hw-line);
+  border-radius: 14px;
+  background:#fff;
+  padding: 12px;
+  display:flex;
+  flex-direction:column;
   gap: 10px;
 }
-#ticket-email,
-#ticket-msg{
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid var(--hw-input-border);
-  background: var(--hw-input-bg);
-  padding: 10px 12px;
-  font-size: 13px;
-  color: var(--hw-text);
-  outline: none;
-}
-#ticket-email:focus,
-#ticket-msg:focus{
-  border-color: rgba(16,185,129,.45);
-  box-shadow: 0 0 0 4px rgba(16,185,129,.12);
-}
-#ticket-msg{
-  min-height: 110px;
-  resize: vertical;
-  line-height: 1.4;
-}
-#ticket-send{
-  border: 0;
-  background: var(--hw-text);
-  color: #fff;
-  border-radius: 12px;
-  height: 42px;
-  cursor:pointer;
-  font-weight: 900;
-}
-#ticket-send:hover{ background: rgba(15,23,42,.92); }
-#ticket-send:active{ transform: scale(.99); }
 
-#ticket-status{
-  font-size: 12px;
-  color: var(--hw-muted);
-  min-height: 14px;
+.contact-title{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
 }
 
-/* Mobile */
+#ticket-msg{ min-height: 120px; }
+
+/* Mobile: one column options */
 @media (max-width: 420px){
-  #help-panel{
-    right: 12px;
-    bottom: 78px;
-    width: calc(100vw - 24px);
-    height: 72vh;
-  }
-  #help-btn{
-    right: 12px;
-    bottom: 12px;
-  }
+  .help-list{ grid-template-columns: 1fr; }
 }
