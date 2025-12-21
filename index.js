@@ -13,4 +13,10 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve("index.html"));
 });
 
+import supportRoutes from "./routes/support.js";
+
+app.use(express.json());
+app.use("/api", supportRoutes);
+
+
 app.listen(process.env.PORT || 3000);
