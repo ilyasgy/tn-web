@@ -94,8 +94,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     panel.hidden = true;
   }
 
-  btn.onclick = openWidget;
-  close.onclick = closeWidget;
+function toggleWidget(){
+  const isOpen = !panel.hidden;
+
+  if (isOpen) {
+    panel.hidden = true;
+    btn.classList.remove("open");
+  } else {
+    panel.hidden = false;
+    btn.classList.add("open");
+    setView("categories");
+    search.value = "";
+    search.focus();
+  }
+}
+
+btn.onclick = toggleWidget;
+close.onclick = toggleWidget;
+
 
   function renderCategories(list = CATEGORIES) {
     categoryList.innerHTML = "";
