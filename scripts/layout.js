@@ -7,6 +7,7 @@ async function loadPartial(targetId, file) {
 
 loadPartial("header", "/partials/header.html");
 loadPartial("footer", "/partials/footer.html");
+loadPartial("help-widget", "/partials/help-widget.html");
 
 const current = location.pathname;
 
