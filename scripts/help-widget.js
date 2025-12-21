@@ -7,21 +7,28 @@ async function waitForSupportOptions() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const SUPPORT_OPTIONS = await waitForSupportOptions();
+  const CATEGORIES = await waitForSupportOptions(); // [{id,title,items:[{id,title,answer}]}]
 
   const btn = document.getElementById("help-btn");
   const panel = document.getElementById("help-panel");
   const close = document.getElementById("help-close");
 
+  const headerTitle = document.getElementById("help-header-title");
   const search = document.getElementById("help-search");
-  const optionsDiv = document.getElementById("help-options");
 
-  const viewHome = document.getElementById("view-home");
+  const viewCategories = document.getElementById("view-categories");
+  const viewCategory = document.getElementById("view-category");
   const viewArticle = document.getElementById("view-article");
   const viewContact = document.getElementById("view-contact");
 
-  const backHome = document.getElementById("back-home");
-  const backArticle = document.getElementById("back-article");
+  const categoryList = document.getElementById("category-list");
+  const questionList = document.getElementById("question-list");
+
+  const categoryTitle = document.getElementById("category-title");
+
+  const backCategories = document.getElementById("back-categories");
+  const backCategory = document.getElementById("back-category");
+  const backFromContact = document.getElementById("back-from-contact");
 
   const answerTitle = document.getElementById("answer-title");
   const answerText = document.getElementById("answer-text");
@@ -30,43 +37,56 @@ document.addEventListener("DOMContentLoaded", async () => {
   const yesBtn = document.getElementById("help-yes");
   const noBtn = document.getElementById("help-no");
 
-  const openContact = document.getElementById("open-contact");
   const ticketEmail = document.getElementById("ticket-email");
   const ticketMsg = document.getElementById("ticket-msg");
   const ticketSend = document.getElementById("ticket-send");
   const ticketStatus = document.getElementById("ticket-status");
 
-  if (!btn || !panel) return;
+  if (!btn || !panel || !close) return;
+
+  // Flatten for search
+  const ALL_Q = CATEGORIES.flatMap(c =>
+    (c.items || []).map(q => ({ ...q, categoryId: c.id, categoryTitle: c.title }))
+  );
 
   const state = {
-    current: "home", // home | article | contact
-    currentOption: null,
-    filtered: SUPPORT_OPTIONS
+    view: "categories",            // categories | category | article | contact
+    selectedCategory: null,        // category object
+    selectedQuestion: null,        // question object
+    lastNonContactView: "categories" // for back button logic
   };
 
-  function setView(name) {
-    state.current = name;
+  function setView(v) {
+    state.view = v;
 
-    viewHome.hidden = name !== "home";
-    viewArticle.hidden = name !== "article";
-    viewContact.hidden = name !== "contact";
+    viewCategories.hidden = v !== "categories";
+    viewCategory.hidden = v !== "category";
+    viewArticle.hidden = v !== "article";
+    viewContact.hidden = v !== "contact";
 
-    // footer only on article
-    footer.hidden = name !== "article";
+    // Search only on categories + category
+    search.hidden = !(v === "categories" || v === "category");
 
-    // back button in contact only when coming from article
-    backArticle.hidden = !(name === "contact" && state.currentOption);
+    // Footer only on article
+    footer.hidden = v !== "article";
 
-    // reset scroll to top for cleanliness
+    // Header title
+    headerTitle.textContent =
+      v === "categories" ? "Support" :
+      v === "category" ? (state.selectedCategory?.title || "Support") :
+      v === "article" ? "Support" :
+      "Contact";
+
+    // reset scroll
     const body = panel.querySelector(".help-body");
     if (body) body.scrollTop = 0;
   }
 
   function openWidget() {
     panel.hidden = false;
-    setView("home");
-    renderOptions(state.filtered);
     search.value = "";
+    renderCategories();
+    setView("categories");
     search.focus();
   }
 
@@ -77,60 +97,129 @@ document.addEventListener("DOMContentLoaded", async () => {
   btn.onclick = openWidget;
   close.onclick = closeWidget;
 
-  function renderOptions(list) {
-    optionsDiv.innerHTML = "";
-
-    list.forEach(o => {
+  function renderCategories(list = CATEGORIES) {
+    categoryList.innerHTML = "";
+    list.forEach(c => {
       const b = document.createElement("button");
       b.type = "button";
-      b.textContent = o.title;
-      b.onclick = () => showAnswer(o);
-      optionsDiv.appendChild(b);
+      b.textContent = c.title;
+      b.onclick = () => openCategory(c);
+      categoryList.appendChild(b);
     });
 
-    // if no results
     if (!list.length) {
       const empty = document.createElement("div");
-      empty.className = "help-hint";
-      empty.textContent = "No results. Try another search.";
-      optionsDiv.appendChild(empty);
+      empty.className = "help-subtitle";
+      empty.textContent = "No results.";
+      categoryList.appendChild(empty);
     }
   }
 
-  function showAnswer(o) {
-    state.currentOption = o;
+  function openCategory(category) {
+    state.selectedCategory = category;
+    state.selectedQuestion = null;
 
-    answerTitle.textContent = o.title;
-    answerText.textContent = o.answer;
+    categoryTitle.textContent = category.title;
 
+    renderQuestions(category.items || []);
+    state.lastNonContactView = "category";
+    setView("category");
+  }
+
+  function renderQuestions(items) {
+    questionList.innerHTML = "";
+    items.forEach(q => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = q.title;
+      b.onclick = () => openArticle(q);
+      questionList.appendChild(b);
+    });
+
+    if (!items.length) {
+      const empty = document.createElement("div");
+      empty.className = "help-subtitle";
+      empty.textContent = "No results in this category.";
+      questionList.appendChild(empty);
+    }
+  }
+
+  function openArticle(q) {
+    state.selectedQuestion = q;
+
+    answerTitle.textContent = q.title;
+    answerText.textContent = q.answer;
+
+    state.lastNonContactView = "article";
     setView("article");
   }
 
-  backHome.onclick = () => setView("home");
-
-  openContact.onclick = () => {
-    state.currentOption = null;
+  function openContact(from = "categories") {
+    // remember where we came from for the back button
+    state.lastNonContactView = from;
     setView("contact");
+  }
+
+  // Back buttons
+  backCategories.onclick = () => {
+    search.value = "";
+    renderCategories();
+    setView("categories");
   };
 
-  noBtn.onclick = () => setView("contact");
+  backCategory.onclick = () => {
+    // back to questions list
+    setView("category");
+  };
+
+  backFromContact.onclick = () => {
+    // go back to where you were (article or categories/category)
+    setView(state.lastNonContactView || "categories");
+  };
+
+  // Footer actions
   yesBtn.onclick = closeWidget;
+  noBtn.onclick = () => openContact("article");
 
-  backArticle.onclick = () => setView("article");
-
+  // Search behavior:
+  // - if on categories: search matches categories + questions, shows matching categories
+  // - if on category: search filters only questions inside that category
   search.addEventListener("input", () => {
     const q = search.value.trim().toLowerCase();
-    state.filtered = !q
-      ? SUPPORT_OPTIONS
-      : SUPPORT_OPTIONS.filter(o =>
-          (o.title || "").toLowerCase().includes(q) ||
-          (o.answer || "").toLowerCase().includes(q)
-        );
-    renderOptions(state.filtered);
 
-    if (state.current !== "home") setView("home");
+    if (state.view === "category" && state.selectedCategory) {
+      const items = (state.selectedCategory.items || []).filter(it =>
+        (it.title || "").toLowerCase().includes(q) ||
+        (it.answer || "").toLowerCase().includes(q)
+      );
+      renderQuestions(q ? items : (state.selectedCategory.items || []));
+      return;
+    }
+
+    // categories view: match categories by title OR by having matching questions
+    if (!q) {
+      renderCategories(CATEGORIES);
+      setView("categories");
+      return;
+    }
+
+    const matchedCategoryIds = new Set(
+      ALL_Q.filter(it =>
+        (it.title || "").toLowerCase().includes(q) ||
+        (it.answer || "").toLowerCase().includes(q) ||
+        (it.categoryTitle || "").toLowerCase().includes(q)
+      ).map(it => it.categoryId)
+    );
+
+    const filteredCats = CATEGORIES.filter(c =>
+      (c.title || "").toLowerCase().includes(q) || matchedCategoryIds.has(c.id)
+    );
+
+    renderCategories(filteredCats);
+    setView("categories");
   });
 
+  // Ticket send
   ticketSend.onclick = async () => {
     const email = ticketEmail.value.trim();
     const message = ticketMsg.value.trim();
@@ -150,7 +239,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           email,
           message,
           pageUrl: location.href,
-          relatedTopic: state.currentOption ? state.currentOption.title : null
+          relatedTopic: state.selectedQuestion ? state.selectedQuestion.title : null,
+          relatedCategory: state.selectedCategory ? state.selectedCategory.title : null
         })
       });
 
@@ -166,6 +256,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // initial render (in case you open without search)
-  renderOptions(SUPPORT_OPTIONS);
+  // initial render (in case)
+  renderCategories();
 });
