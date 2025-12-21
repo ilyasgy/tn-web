@@ -17,3 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+import { SUPPORT_OPTIONS } from "../data/supportOptions.js";
