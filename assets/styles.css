@@ -440,6 +440,26 @@ nav a.active{
   font-size:.95rem;
 }
 
+.footer-links{
+  display:flex;
+  gap:18px;
+  margin:16px 0 10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.footer-links a{
+  font-size:.95rem;
+  color:var(--muted);
+  font-weight:600;
+  transition:color .2s ease;
+}
+
+.footer-links a:hover{
+  color:var(--text);
+  text-decoration:underline;
+}
+
 /* services */
 .services-hero{
   text-align:center;
@@ -515,4 +535,5 @@ nav a.active{
 @media (max-width: 720px){
   .contact-panel .row-2{ grid-template-columns:1fr; }
 }
+
 
