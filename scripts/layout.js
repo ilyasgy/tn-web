@@ -20,11 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadSupportOptions() {
   try {
-    const res = await fetch(`${window.API_BASE}/api/support/options`);
-    if (!res.ok) return;
+    const res = await fetch(
+      `${window.__CONFIG.API_BASE_URL}/api/support/options`
+    );
+    if (!res.ok) throw new Error("Failed to load support options");
     const data = await res.json();
-    if (data.ok) window.SUPPORT_OPTIONS = data.options || [];
-  } catch (e) {
+    if (data.ok) {
+      window.SUPPORT_OPTIONS = data.options;
+    } else {
+      window.SUPPORT_OPTIONS = [];
+    }
+  } catch (err) {
+    console.error("Support options load failed:", err);
     window.SUPPORT_OPTIONS = [];
   }
 }
