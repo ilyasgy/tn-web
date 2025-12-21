@@ -7,3 +7,13 @@ async function loadPartial(targetId, file) {
 
 loadPartial("header", "/partials/header.html");
 loadPartial("footer", "/partials/footer.html");
+
+const current = location.pathname;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("nav a").forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+  });
+});
