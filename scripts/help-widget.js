@@ -45,23 +45,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tip = document.getElementById("help-tip");
   const btnTextEl = btn?.querySelector(".help-btn-text");
 
-  // Safety: if widget isn't on this page, don't crash
   if (!btn || !panel || !close) return;
 
-  // Flatten for search across all categories/items
+  // Flatten for search
   const ALL_Q = (CATEGORIES || []).flatMap(c =>
-    (c.items || []).map(q => ({
-      ...q,
-      categoryId: c.id,
-      categoryTitle: c.title
-    }))
+    (c.items || []).map(q => ({ ...q, categoryId: c.id, categoryTitle: c.title }))
   );
 
   const state = {
-    view: "categories",              // categories | category | article | contact
-    selectedCategory: null,          // category object
-    selectedQuestion: null,          // question object
-    lastNonContactView: "categories" // where to go back from contact
+    view: "categories",
+    selectedCategory: null,
+    selectedQuestion: null,
+    lastNonContactView: "categories"
   };
 
   /* ---------------------------
@@ -86,42 +81,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 4000);
   }
 
-  // show after 2 seconds
   setTimeout(showTipOnce, 2000);
 
   /* ---------------------------
-     View switching
-  ---------------------------- */
-  function setView(v) {
-    state.view = v;
-
-    if (viewCategories) viewCategories.hidden = v !== "categories";
-    if (viewCategory) viewCategory.hidden = v !== "category";
-    if (viewArticle) viewArticle.hidden = v !== "article";
-    if (viewContact) viewContact.hidden = v !== "contact";
-
-    // Search only on categories + category
-    if (search) search.hidden = !(v === "categories" || v === "category");
-
-    // Footer only on article
-    if (footer) footer.hidden = v !== "article";
-
-    // Header title
-    if (headerTitle) {
-      headerTitle.textContent =
-        v === "categories" ? "Support" :
-        v === "category" ? (state.selectedCategory?.title || "Support") :
-        v === "article" ? "Support" :
-        "Contact";
-    }
-
-    // reset scroll inside panel body
-    const body = panel.querySelector(".help-body");
-    if (body) body.scrollTop = 0;
-  }
-
-  /* ---------------------------
-     Render helpers
+     Rendering
   ---------------------------- */
   function renderCategories(list = CATEGORIES) {
     if (!categoryList) return;
@@ -164,17 +127,60 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   /* ---------------------------
+     Safe view switching (NO BLANK SCREENS)
+  ---------------------------- */
+  function safeSetView(v) {
+    // Guard: don't allow invalid states
+    if (v === "category" && !state.selectedCategory) v = "categories";
+    if (v === "article" && !state.selectedQuestion) v = "categories";
+
+    state.view = v;
+
+    if (viewCategories) viewCategories.hidden = v !== "categories";
+    if (viewCategory) viewCategory.hidden = v !== "category";
+    if (viewArticle) viewArticle.hidden = v !== "article";
+    if (viewContact) viewContact.hidden = v !== "contact";
+
+    // Search only on categories + category
+    if (search) search.hidden = !(v === "categories" || v === "category");
+
+    // Footer only on article
+    if (footer) footer.hidden = v !== "article";
+
+    // Header title
+    if (headerTitle) {
+      headerTitle.textContent =
+        v === "categories" ? "Support" :
+        v === "category" ? (state.selectedCategory?.title || "Support") :
+        v === "article" ? "Support" :
+        "Contact";
+    }
+
+    // reset scroll
+    const body = panel.querySelector(".help-body");
+    if (body) body.scrollTop = 0;
+  }
+
+  /* ---------------------------
      Navigation actions
   ---------------------------- */
+  function openHome() {
+    state.selectedCategory = null;
+    state.selectedQuestion = null;
+    if (search) search.value = "";
+    renderCategories(CATEGORIES);
+    safeSetView("categories");
+  }
+
   function openCategory(category) {
     state.selectedCategory = category;
     state.selectedQuestion = null;
 
     if (categoryTitle) categoryTitle.textContent = category.title;
-
     renderQuestions(category.items || []);
+
     state.lastNonContactView = "category";
-    setView("category");
+    safeSetView("category");
   }
 
   function openArticle(q) {
@@ -184,12 +190,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (answerText) answerText.textContent = q.answer;
 
     state.lastNonContactView = "article";
-    setView("article");
+    safeSetView("article");
   }
 
   function openContact(from = "categories") {
+    // IMPORTANT: for "No" we want back to go HOME
     state.lastNonContactView = from;
-    setView("contact");
+    safeSetView("contact");
   }
 
   /* ---------------------------
@@ -206,15 +213,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       panel.hidden = false;
       btn.classList.add("open");
       hideTip();
-
-      renderCategories();
-      setView("categories");
-
-      if (search) {
-        search.value = "";
-        search.focus();
-      }
-
+      openHome();
+      if (search) search.focus();
       if (btnTextEl) btnTextEl.textContent = "Close";
     }
   }
@@ -225,29 +225,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   /* ---------------------------
      Back buttons
   ---------------------------- */
-  if (backCategories) {
-    backCategories.onclick = () => {
-      if (search) search.value = "";
-      renderCategories();
-      setView("categories");
-    };
-  }
+  if (backCategories) backCategories.onclick = openHome;
 
   if (backCategory) {
-    backCategory.onclick = () => setView("category");
+    backCategory.onclick = () => {
+      // back to category questions list
+      safeSetView("category");
+    };
   }
 
   if (backFromContact) {
     backFromContact.onclick = () => {
-      setView(state.lastNonContactView || "categories");
+      // If contact was opened from "No", go straight HOME
+      if (state.lastNonContactView === "categories") return openHome();
+      safeSetView(state.lastNonContactView || "categories");
     };
   }
 
   /* ---------------------------
      Footer actions
   ---------------------------- */
-  if (yesBtn) yesBtn.onclick = toggleWidget;         // yes closes widget
-  if (noBtn) noBtn.onclick = () => openContact("article");
+  if (yesBtn) yesBtn.onclick = toggleWidget;
+
+  if (noBtn) {
+    // "No" should go to contact and BACK should go HOME (one click)
+    noBtn.onclick = () => openContact("categories");
+  }
 
   /* ---------------------------
      Search
@@ -256,7 +259,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     search.addEventListener("input", () => {
       const q = search.value.trim().toLowerCase();
 
-      // If inside a category, filter questions within that category
+      // If inside category, filter only that category items
       if (state.view === "category" && state.selectedCategory) {
         const items = (state.selectedCategory.items || []).filter(it =>
           (it.title || "").toLowerCase().includes(q) ||
@@ -266,10 +269,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      // Categories view: match categories by title OR by having matching questions
+      // categories view filter
       if (!q) {
         renderCategories(CATEGORIES);
-        setView("categories");
+        safeSetView("categories");
         return;
       }
 
@@ -286,7 +289,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
 
       renderCategories(filteredCats);
-      setView("categories");
+      safeSetView("categories");
     });
   }
 
@@ -332,7 +335,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
   }
 
-  // initial render (in case something opens it programmatically later)
-  renderCategories();
-  setView("categories");
+  // initial state
+  renderCategories(CATEGORIES);
+  safeSetView("categories");
 });
