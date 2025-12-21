@@ -1,46 +1,53 @@
 <div id="help-widget">
-  <button id="help-btn" aria-label="Open support">Help</button>
+  <button id="help-btn" aria-label="Open support">Support</button>
 
   <div id="help-panel" hidden>
     <div class="help-header">
-      <span>Support</span>
+      <span id="help-header-title">Support</span>
       <button id="help-close" aria-label="Close">✕</button>
     </div>
 
     <div class="help-body">
+      <!-- SEARCH (hidden on contact view) -->
       <input id="help-search" placeholder="Search..." autocomplete="off" />
 
-      <!-- HOME (list) -->
-      <div id="view-home" class="help-view">
-        <div id="help-options" class="help-list"></div>
-        <div class="help-hint">Can’t find it? <button id="open-contact" class="link-btn" type="button">Contact us</button></div>
+      <!-- HOME: Categories -->
+      <div id="view-categories" class="help-view">
+        <div class="help-subtitle">What do you need help with?</div>
+        <div id="category-list" class="help-list"></div>
       </div>
 
-      <!-- ARTICLE (answer) -->
-      <div id="view-article" class="help-view" hidden>
-        <button id="back-home" class="back-btn" type="button">← Back</button>
+      <!-- CATEGORY: Questions in a category -->
+      <div id="view-category" class="help-view" hidden>
+        <button id="back-categories" class="back-btn" type="button">← Back</button>
+        <div class="help-subtitle" id="category-title"></div>
+        <div id="question-list" class="help-list"></div>
+      </div>
 
+      <!-- ARTICLE: Answer -->
+      <div id="view-article" class="help-view" hidden>
+        <button id="back-category" class="back-btn" type="button">← Back</button>
         <div class="article">
           <h4 id="answer-title"></h4>
           <div id="answer-text" class="article-text"></div>
         </div>
       </div>
 
-      <!-- CONTACT (ticket) -->
+      <!-- CONTACT -->
       <div id="view-contact" class="help-view" hidden>
-        <button id="back-article" class="back-btn" type="button" hidden>← Back</button>
+        <button id="back-from-contact" class="back-btn" type="button">← Back</button>
 
         <div class="contact">
-          <h4 class="contact-title">Send us a message</h4>
+          <h4 class="contact-title">Contact us</h4>
           <input id="ticket-email" placeholder="Your email" />
-          <textarea id="ticket-msg" placeholder="What do you need help with?"></textarea>
+          <textarea id="ticket-msg" placeholder="Tell us what you need..."></textarea>
           <button id="ticket-send">Send</button>
           <div id="ticket-status"></div>
         </div>
       </div>
     </div>
 
-    <!-- FOOTER (only visible on article screen) -->
+    <!-- FOOTER: only on article -->
     <div id="help-footer" class="help-footer" hidden>
       <span>Did this help?</span>
       <div class="footer-actions">
@@ -51,7 +58,4 @@
   </div>
 </div>
 
-<script>
-  window.SUPPORT_OPTIONS = /api/support/options;
-</script>
 <script src="/scripts/help-widget.js"></script>
