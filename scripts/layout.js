@@ -18,18 +18,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function waitForConfig() {
+  return new Promise((resolve) => {
+    const start = Date.now();
+
+    const timer = setInterval(() => {
+      if (window.__CONFIG && window.__CONFIG.API_BASE_URL) {
+        clearInterval(timer);
+        resolve(window.__CONFIG);
+      }
+
+      // stop waiting after 3 seconds
+      if (Date.now() - start > 3000) {
+        clearInterval(timer);
+        resolve(null);
+      }
+    }, 50);
+  });
+}
+
 async function loadSupportOptions() {
   try {
-    const res = await fetch(
-      `${window.__CONFIG.API_BASE_URL}/api/support/options`
-    );
+    const cfg = await waitForConfig();
+    if (!cfg) throw new Error("Config not loaded before layout.js");
+
+    const res = await fetch(`${cfg.API_BASE_URL}/api/support/options`);
     if (!res.ok) throw new Error("Failed to load support options");
+
     const data = await res.json();
-    if (data.ok) {
-      window.SUPPORT_OPTIONS = data.options;
-    } else {
-      window.SUPPORT_OPTIONS = [];
-    }
+    window.SUPPORT_OPTIONS = data.ok ? (data.options || []) : [];
   } catch (err) {
     console.error("Support options load failed:", err);
     window.SUPPORT_OPTIONS = [];
