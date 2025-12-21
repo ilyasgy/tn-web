@@ -1,35 +1,52 @@
 <div id="help-widget">
-  <button id="help-btn">Help</button>
+  <button id="help-btn" aria-label="Open support">Help</button>
 
   <div id="help-panel" hidden>
     <div class="help-header">
       <span>Support</span>
-      <button id="help-close">✕</button>
+      <button id="help-close" aria-label="Close">✕</button>
     </div>
 
-    <input id="help-search" placeholder="Search a question..." />
+    <div class="help-body">
+      <input id="help-search" placeholder="Search..." autocomplete="off" />
 
-    <div id="help-options"></div>
-
-    <div id="help-answer" hidden>
-      <h4 id="answer-title"></h4>
-      <pre id="answer-text"></pre>
-
-      <div>
-        <span>Did this help?</span>
-        <button id="help-yes">Yes</button>
-        <button id="help-no">No</button>
+      <!-- HOME (list) -->
+      <div id="view-home" class="help-view">
+        <div id="help-options" class="help-list"></div>
+        <div class="help-hint">Can’t find it? <button id="open-contact" class="link-btn" type="button">Contact us</button></div>
       </div>
 
-      <div id="help-suggestions" hidden></div>
-      <button id="talk-human" hidden>Talk to a human</button>
+      <!-- ARTICLE (answer) -->
+      <div id="view-article" class="help-view" hidden>
+        <button id="back-home" class="back-btn" type="button">← Back</button>
+
+        <div class="article">
+          <h4 id="answer-title"></h4>
+          <div id="answer-text" class="article-text"></div>
+        </div>
+      </div>
+
+      <!-- CONTACT (ticket) -->
+      <div id="view-contact" class="help-view" hidden>
+        <button id="back-article" class="back-btn" type="button" hidden>← Back</button>
+
+        <div class="contact">
+          <h4 class="contact-title">Send us a message</h4>
+          <input id="ticket-email" placeholder="Your email" />
+          <textarea id="ticket-msg" placeholder="What do you need help with?"></textarea>
+          <button id="ticket-send">Send</button>
+          <div id="ticket-status"></div>
+        </div>
+      </div>
     </div>
 
-    <div id="help-ticket" hidden>
-      <input id="ticket-email" placeholder="Your email" />
-      <textarea id="ticket-msg" placeholder="Your message"></textarea>
-      <button id="ticket-send">Send</button>
-      <div id="ticket-status"></div>
+    <!-- FOOTER (only visible on article screen) -->
+    <div id="help-footer" class="help-footer" hidden>
+      <span>Did this help?</span>
+      <div class="footer-actions">
+        <button id="help-yes" class="ghost">Yes</button>
+        <button id="help-no" class="ghost">No</button>
+      </div>
     </div>
   </div>
 </div>
@@ -38,4 +55,3 @@
   window.SUPPORT_OPTIONS = /api/support/options;
 </script>
 <script src="/scripts/help-widget.js"></script>
-
