@@ -154,6 +154,13 @@ nav a.active{
   margin:0 auto 16px;
 }
 
+.lead{
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto 16px;
+  color: var(--muted);
+}
+
 .lead .dash{ color:var(--brand); margin:0 8px; }
 
 /* buttons */
@@ -535,5 +542,6 @@ nav a.active{
 @media (max-width: 720px){
   .contact-panel .row-2{ grid-template-columns:1fr; }
 }
+
 
 
