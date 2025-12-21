@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function toggleWidget(){
   const isOpen = !panel.hidden;
-
+  
   if (isOpen) {
     panel.hidden = true;
     btn.classList.remove("open");
@@ -107,6 +107,7 @@ function toggleWidget(){
     search.value = "";
     search.focus();
   }
+  btn.querySelector(".help-btn-text").textContent = isOpen ? "Help" : "Close";
 }
 
 btn.onclick = toggleWidget;
