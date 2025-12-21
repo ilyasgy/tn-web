@@ -24,7 +24,7 @@ function waitForConfig() {
     const start = Date.now();
 
     const timer = setInterval(() => {
-      if (window.__CONFIG && window.__CONFIG.API_BASE_URL) {
+      if (window.__CONFIG__ && window.__CONFIG__.API_BASE_URL) {
         clearInterval(timer);
         resolve(window.__CONFIG);
       }
