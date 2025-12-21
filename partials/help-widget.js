@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       const res = await fetch(
-        `${window.__CONFIG.API_BASE_URL}/api/support/ticket`,
+        `${window.__CONFIG__.API_BASE_URL}/api/support/ticket`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
