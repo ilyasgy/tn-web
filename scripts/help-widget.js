@@ -1,5 +1,5 @@
 async function waitForSupportOptions() {
-  for (let i = 0; i < 40; i++) { // ~4s
+  for (let i = 0; i < 40; i++) {
     if (Array.isArray(window.SUPPORT_OPTIONS)) return window.SUPPORT_OPTIONS;
     await new Promise(r => setTimeout(r, 100));
   }
@@ -13,82 +13,159 @@ document.addEventListener("DOMContentLoaded", async () => {
   const panel = document.getElementById("help-panel");
   const close = document.getElementById("help-close");
 
+  const search = document.getElementById("help-search");
   const optionsDiv = document.getElementById("help-options");
-  const answerBox = document.getElementById("help-answer");
+
+  const viewHome = document.getElementById("view-home");
+  const viewArticle = document.getElementById("view-article");
+  const viewContact = document.getElementById("view-contact");
+
+  const backHome = document.getElementById("back-home");
+  const backArticle = document.getElementById("back-article");
+
   const answerTitle = document.getElementById("answer-title");
   const answerText = document.getElementById("answer-text");
 
+  const footer = document.getElementById("help-footer");
   const yesBtn = document.getElementById("help-yes");
   const noBtn = document.getElementById("help-no");
 
-  const ticketBox = document.getElementById("help-ticket");
-  const talkHuman = document.getElementById("talk-human");
+  const openContact = document.getElementById("open-contact");
+  const ticketEmail = document.getElementById("ticket-email");
+  const ticketMsg = document.getElementById("ticket-msg");
+  const ticketSend = document.getElementById("ticket-send");
+  const ticketStatus = document.getElementById("ticket-status");
 
-  // Safety: if widget isn't on this page, don't crash
-  if (!btn || !panel || !close || !optionsDiv) return;
+  if (!btn || !panel) return;
 
-  btn.onclick = () => (panel.hidden = false);
-  close.onclick = () => (panel.hidden = true);
+  const state = {
+    current: "home", // home | article | contact
+    currentOption: null,
+    filtered: SUPPORT_OPTIONS
+  };
 
-  // render options
-  optionsDiv.innerHTML = "";
-  SUPPORT_OPTIONS.forEach(o => {
-    const b = document.createElement("button");
-    b.textContent = o.title;
-    b.onclick = () => showAnswer(o);
-    optionsDiv.appendChild(b);
-  });
+  function setView(name) {
+    state.current = name;
 
-  function showAnswer(o) {
-    answerTitle.textContent = o.title;
-    answerText.textContent = o.answer;
-    answerBox.hidden = false;
-    ticketBox.hidden = true;
-    talkHuman.hidden = true; // reset
+    viewHome.hidden = name !== "home";
+    viewArticle.hidden = name !== "article";
+    viewContact.hidden = name !== "contact";
+
+    // footer only on article
+    footer.hidden = name !== "article";
+
+    // back button in contact only when coming from article
+    backArticle.hidden = !(name === "contact" && state.currentOption);
+
+    // reset scroll to top for cleanliness
+    const body = panel.querySelector(".help-body");
+    if (body) body.scrollTop = 0;
   }
 
-  yesBtn.onclick = () => (panel.hidden = true);
+  function openWidget() {
+    panel.hidden = false;
+    setView("home");
+    renderOptions(state.filtered);
+    search.value = "";
+    search.focus();
+  }
 
-  noBtn.onclick = () => {
-    talkHuman.hidden = false;
+  function closeWidget() {
+    panel.hidden = true;
+  }
+
+  btn.onclick = openWidget;
+  close.onclick = closeWidget;
+
+  function renderOptions(list) {
+    optionsDiv.innerHTML = "";
+
+    list.forEach(o => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = o.title;
+      b.onclick = () => showAnswer(o);
+      optionsDiv.appendChild(b);
+    });
+
+    // if no results
+    if (!list.length) {
+      const empty = document.createElement("div");
+      empty.className = "help-hint";
+      empty.textContent = "No results. Try another search.";
+      optionsDiv.appendChild(empty);
+    }
+  }
+
+  function showAnswer(o) {
+    state.currentOption = o;
+
+    answerTitle.textContent = o.title;
+    answerText.textContent = o.answer;
+
+    setView("article");
+  }
+
+  backHome.onclick = () => setView("home");
+
+  openContact.onclick = () => {
+    state.currentOption = null;
+    setView("contact");
   };
 
-  talkHuman.onclick = () => {
-    ticketBox.hidden = false;
-  };
+  noBtn.onclick = () => setView("contact");
+  yesBtn.onclick = closeWidget;
 
-  document.getElementById("ticket-send").onclick = async () => {
-    const email = document.getElementById("ticket-email").value.trim();
-    const message = document.getElementById("ticket-msg").value.trim();
-    const status = document.getElementById("ticket-status");
+  backArticle.onclick = () => setView("article");
+
+  search.addEventListener("input", () => {
+    const q = search.value.trim().toLowerCase();
+    state.filtered = !q
+      ? SUPPORT_OPTIONS
+      : SUPPORT_OPTIONS.filter(o =>
+          (o.title || "").toLowerCase().includes(q) ||
+          (o.answer || "").toLowerCase().includes(q)
+        );
+    renderOptions(state.filtered);
+
+    if (state.current !== "home") setView("home");
+  });
+
+  ticketSend.onclick = async () => {
+    const email = ticketEmail.value.trim();
+    const message = ticketMsg.value.trim();
 
     if (!email || !message) {
-      status.textContent = "Email + message are required.";
+      ticketStatus.textContent = "Email + message are required.";
       return;
     }
 
-    status.textContent = "Sending...";
+    ticketStatus.textContent = "Sending...";
 
     try {
-      const res = await fetch(
-        `${window.__CONFIG__.API_BASE_URL}/api/support/ticket`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            message,
-            pageUrl: location.href
-          })
-        }
-      );
+      const res = await fetch(`${window.__CONFIG__.API_BASE_URL}/api/support/ticket`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          message,
+          pageUrl: location.href,
+          relatedTopic: state.currentOption ? state.currentOption.title : null
+        })
+      });
 
       const data = await res.json().catch(() => ({}));
-      status.textContent = res.ok && data.ok
-        ? "Sent. We'll reply by email."
-        : (data.error || "Error sending.");
+      if (res.ok && data.ok) {
+        ticketStatus.textContent = "Sent. We'll reply by email.";
+        ticketMsg.value = "";
+      } else {
+        ticketStatus.textContent = data.error || "Error sending.";
+      }
     } catch (e) {
-      status.textContent = "Network error. Try again.";
+      ticketStatus.textContent = "Network error. Try again.";
     }
   };
+
+  // initial render (in case you open without search)
+  renderOptions(SUPPORT_OPTIONS);
 });
