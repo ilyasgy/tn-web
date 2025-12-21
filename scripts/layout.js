@@ -26,7 +26,7 @@ function waitForConfig() {
     const timer = setInterval(() => {
       if (window.__CONFIG__ && window.__CONFIG__.API_BASE_URL) {
         clearInterval(timer);
-        resolve(window.__CONFIG);
+        resolve(window.__CONFIG__);
       }
 
       // stop waiting after 3 seconds
