@@ -113,6 +113,32 @@ function toggleWidget(){
 btn.onclick = toggleWidget;
 close.onclick = toggleWidget;
 
+  const tip = document.getElementById("help-tip");
+
+function showTipOnce(){
+  if (!tip) return;
+  if (localStorage.getItem("help_tip_seen") === "1") return;
+  if (!panel.hidden) return;
+
+  tip.hidden = false;
+
+  // auto hide after 4s
+  setTimeout(() => {
+    tip.hidden = true;
+    localStorage.setItem("help_tip_seen", "1");
+  }, 4000);
+}
+
+// show after 2 seconds (only once)
+setTimeout(showTipOnce, 2000);
+
+function hideTip(){
+  if (!tip) return;
+  tip.hidden = true;
+  localStorage.setItem("help_tip_seen", "1");
+}
+
+
 
   function renderCategories(list = CATEGORIES) {
     categoryList.innerHTML = "";
