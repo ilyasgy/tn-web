@@ -1,1 +1,41 @@
+<div id="help-widget">
+  <button id="help-btn">Help</button>
+
+  <div id="help-panel" hidden>
+    <div class="help-header">
+      <span>Support</span>
+      <button id="help-close">✕</button>
+    </div>
+
+    <input id="help-search" placeholder="Search a question..." />
+
+    <div id="help-options"></div>
+
+    <div id="help-answer" hidden>
+      <h4 id="answer-title"></h4>
+      <pre id="answer-text"></pre>
+
+      <div>
+        <span>Did this help?</span>
+        <button id="help-yes">Yes</button>
+        <button id="help-no">No</button>
+      </div>
+
+      <div id="help-suggestions" hidden></div>
+      <button id="talk-human" hidden>Talk to a human</button>
+    </div>
+
+    <div id="help-ticket" hidden>
+      <input id="ticket-email" placeholder="Your email" />
+      <textarea id="ticket-msg" placeholder="Your message"></textarea>
+      <button id="ticket-send">Send</button>
+      <div id="ticket-status"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.SUPPORT_OPTIONS = <%- JSON.stringify(SUPPORT_OPTIONS) %>;
+</script>
+<script src="/scripts/help-widget.js"></script>
 
