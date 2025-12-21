@@ -996,6 +996,17 @@ h1{
   min-height: 14px;
 }
 
+#view-contact{
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* space between back button and form */
+}
+
+/* Extra breathing room for the form card */
+#view-contact .contact{
+  margin-top: 6px;
+}
+
 /* Mobile */
 @media (max-width: 420px){
   #help-panel{
@@ -1022,6 +1033,7 @@ h1{
 @media (max-width: 420px){
   #help-tip{ right: 12px; bottom: 72px; }
 }
+
 
 
 
