@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   description:
     "High-performance websites built properly. Web development with optional security checks after launch.",
 
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("https://threatnest.com"),
 
   openGraph: {
     title: "ThreatNest — Web Development & Website Security",
     description:
       "High-performance websites built properly. Optional security checks after launch.",
-    url: "https://yourdomain.com",
+    url: "https://threatnest.com",
     siteName: "ThreatNest",
     images: [
       {
