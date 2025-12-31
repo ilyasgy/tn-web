@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* optional: nicer text rendering */
+* {
+  text-rendering:geometricPrecision;
+}
+
+/* Hide Next dev indicator if it annoys you */
+nextjs-portal {
+  display: none !important;
+}

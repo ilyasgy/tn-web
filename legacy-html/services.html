@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — ThreatNest</title>
+  <meta name="description" content="Website Security & Flow Health-Check — $299. 48-hour non-intrusive audit with a clear PDF report and fixes." />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+ <div id="header"></div>
+
+  <main id="main">
+    <!-- HERO (centered) -->
+    <section class="hero services-hero">
+      <h1>Our Service</h1>
+      <p class="lead"><span class="dash">—</span> 48-hour non-intrusive audit for security + key flows.</p>
+      <!-- <a class="btn-primary" href="/contact.html">Book Now</a> -->
+    </section>
+
+    <!-- ONE SERVICE -->
+<section id="services" class="container">
+  <div style="display:grid; grid-template-columns: 1.15fr 1fr; gap: 22px; align-items:start;">
+
+    <!-- Service -->
+    <article class="card price-card">
+      <h3>Website Security & Flow Health-Check</h3>
+      <div class="amt">$299</div>
+
+      <!-- short, scannable -->
+      <p class="muted" style="max-width: 62ch;">
+        48-hour non-intrusive audit + PDF report with prioritized fixes.
+      </p>
+
+      <!-- split content (reduces mess) -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
+        <div>
+          <p class="muted" style="margin:0 0 8px 0; font-weight:600;">Security checks</p>
+          <ul class="list" style="margin:0;">
+            <li>HTTPS + security headers</li>
+            <li>Auth/session hygiene</li>
+            <li>CSRF basics</li>
+            <li>Exposure sweep (.env/.git)</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="muted" style="margin:0 0 8px 0; font-weight:600;">Key flow checks</p>
+          <ul class="list" style="margin:0;">
+            <li>Login / reset sanity</li>
+            <li>Access control / IDOR</li>
+            <li>File upload checks</li>
+            <li>Re-test after patches</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- small guarantee line -->
+      <p class="muted" style="margin-top: 12px;">
+        Includes a <strong>7-day re-check</strong>. Money-back if no material improvement.
+      </p>
+
+      <a class="btn-primary" href="/contact.html">Book the $299 check</a>
+    </article>
+
+    <!-- Sample report -->
+    <section id="sample-report" class="card">
+      <h3 style="margin-top:0;">Sample report (snippet)</h3>
+      <p class="muted" style="margin-top:6px;">
+        Risk → impact → evidence → fix.
+      </p>
+
+      <pre class="code-sample" style="
+        margin: 12px 0 0 0;
+        font-size: 12px;
+        line-height: 1.45;
+        max-height: 180px;
+        overflow: auto;
+      ">Risk: HIGH — Missing CSP
+Impact: XSS could steal session tokens.
+Evidence: No `content-security-policy` header.
+Fix:
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  img-src 'self' data:;</pre>
+    </section>
+
+  </div>
+
+  <style>
+    @media (max-width: 900px) {
+      #services > div { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</section>
+
+
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="container">
+      <h2 class="section-title">How it works</h2>
+      <div class="grid-2 three">
+        <div class="card step">
+          <h4>1) Quick intake (5–10 min)</h4>
+          <p class="muted">Tell us your domain, tech stack, and what to avoid. We confirm authorization and scope.</p>
+        </div>
+        <div class="card step">
+          <h4>2) Human testing (24–48h)</h4>
+          <p class="muted">Safe, non-intrusive checks across authentication, access control, headers, CORS, file uploads, exposure, and key flows.</p>
+        </div>
+        <div class="card step">
+          <h4>3) Clear report & re-check</h4>
+          <p class="muted">Receive a prioritized PDF with fixes. Patch what you want, then we re-check within 7 days.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  
+  <script src="/scripts/layout.js"></script>
+  
+</body>
+</html>
+
+
