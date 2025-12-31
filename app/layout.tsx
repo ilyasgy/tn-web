@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ThreatNest — Web Development & Website Security",
+    default: "ThreatNest — Modern Web Development",
     template: "%s — ThreatNest",
   },
   description:
-    "High-performance websites built properly. Web development with optional security checks after launch.",
+    "We design, build, and deploy modern websites, from planning to launch.",
 
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("https://threatnest.com"),
 
   openGraph: {
-    title: "ThreatNest — Web Development & Website Security",
+    title: "ThreatNest — Modern Web Development",
     description:
-      "High-performance websites built properly. Optional security checks after launch.",
-    url: "https://yourdomain.com",
+      "We design, build, and deploy modern websites, from planning to launch.",
+    url: "https://threatnest.com",
     siteName: "ThreatNest",
     images: [
       {
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "ThreatNest — Web Development & Website Security",
+    title: "ThreatNest — Modern Web Development",
     description:
-      "High-performance websites built properly. Optional security checks after launch.",
+      "We design, build, and deploy modern websites, from planning to launch.",
     images: ["/og.png"],
   },
 
