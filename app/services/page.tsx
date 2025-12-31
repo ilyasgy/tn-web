@@ -1,6 +1,11 @@
-// app/services/page.tsx
+import ServiceCard from "@/app/components/ServiceCard";
 import Link from "next/link";
 
+import StatCounter from "@/app/components/StatCounter";
+import MinuteCounter from "@/app/components/MinuteCounter";
+
+const ATTACKS_PER_DAY = 600_000_000; // Microsoft says 600M/day
+const ATTACKS_PER_MIN = Math.round(ATTACKS_PER_DAY / 1440);
 
 
 const SERVICES: [string, string, string][] = [

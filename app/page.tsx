@@ -1,6 +1,3 @@
-
-import ServiceCard from "@/app/components/ServiceCard";
-
 // app/page.tsx (or pages/index.tsx)
 // Full home page — continued to the end, cleaned up, and upgraded.
 // Notes: removed unused ServiceCard import, fixed invalid Tailwind class (w-145),

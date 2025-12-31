@@ -1,9 +1,7 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import HelpWidget from "@/app/components/HelpWidget";
-import "./globals.css";
-import "./help-widget.css";
 
 
 const geistSans = Geist({
@@ -24,13 +22,13 @@ export const metadata: Metadata = {
   description:
     "High-performance websites built properly. Web development with optional security checks after launch.",
 
-  metadataBase: new URL("https://threatnest.com"),
+  metadataBase: new URL("https://yourdomain.com"),
 
   openGraph: {
     title: "ThreatNest — Web Development & Website Security",
     description:
       "High-performance websites built properly. Optional security checks after launch.",
-    url: "https://threatnest.com",
+    url: "https://yourdomain.com",
     siteName: "ThreatNest",
     images: [
       {
@@ -72,7 +70,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <HelpWidget />
       </body>
     </html>
   );
