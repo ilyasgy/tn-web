@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ContactForm from "./ContactForm";
+
 
 export default function ContactPage() {
   return (
@@ -75,42 +77,7 @@ export default function ContactPage() {
                   PROJECT DETAILS
                 </p>
 
-                <form className="mt-8 space-y-5">
-                <input
-                    type="text"
-                    placeholder="Your name *"
-                    required
-                    className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
-                />
-
-                <input
-                    type="email"
-                    placeholder="Email *"
-                    required
-                    className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
-                />
-
-                <input
-                    type="url"
-                    placeholder="Website URL (optional)"
-                    className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
-                />
-
-                <textarea
-                    rows={5}
-                    placeholder="What do you want to build? *"
-                    required
-                    className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
-                />
-
-                <button
-                    type="submit"
-                    className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-3 text-sm font-bold text-black transition hover:bg-white/90"
-                >
-                    Send request
-                </button>
-                </form>
-
+                <ContactForm />
 
                 <p className="mt-6 text-xs text-white/45">
                   We usually reply within 24–48 hours.
