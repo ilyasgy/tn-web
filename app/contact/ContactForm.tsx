@@ -21,6 +21,21 @@ export default function ContactForm() {
     company: "",
   });
 
+  function normalizeWebsite(input: string) {
+  if (!input) return "—";
+
+  const trimmed = input.trim();
+
+  // Already has protocol
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+
+  // Looks like a domain → assume https
+  return `https://${trimmed}`;
+}
+
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
@@ -28,7 +43,7 @@ export default function ContactForm() {
 
     if (!API_BASE) {
       setStatus("error");
-      setError("API base URL missing. Set NEXT_PUBLIC_API_BASE.");
+      setError("error 1667");
       return;
     }
 
@@ -39,7 +54,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           email: form.email,
           message: `Name: ${form.name}\n\n${form.message}`,
-          website: form.website || "—",
+          website: normalizeWebsite(form.website),
           topic: "Contact Form",
           pageUrl: typeof window !== "undefined" ? window.location.href : "—",
           company: form.company, // honeypot
@@ -93,12 +108,13 @@ export default function ContactForm() {
       />
 
       <input
-        type="url"
-        placeholder="Website URL (optional)"
-        value={form.website}
-        onChange={(e) => setForm({ ...form, website: e.target.value })}
-        className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
+      type="text"
+      placeholder="Website URL (optional)"
+      value={form.website}
+      onChange={(e) => setForm({ ...form, website: e.target.value })}
+      className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
       />
+
 
       <textarea
         rows={5}
@@ -119,7 +135,7 @@ export default function ContactForm() {
 
       {status === "success" && (
         <p className="text-sm text-white/70">
-          Sent. Check your inbox — you should get an auto-reply.
+          Sent. Check your inbox.
         </p>
       )}
 
