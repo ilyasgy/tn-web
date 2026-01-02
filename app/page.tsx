@@ -1,3 +1,4 @@
+import React from "react"; // <--- Added this import to fix the JSX error
 import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
