@@ -2,13 +2,57 @@ import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
 
-const SERVICES: [string, string, string][] = [
-  ["Maintenance & Support", "Updates, fixes, monitoring.", "/service-maintenance.png"],
-  ["Performance & Optimization", "Core Web Vitals + speed tuning.", "/service-performance.png"],
-  ["Quality Assurance & Reviews", "Bug hunts + pre-launch checks.", "/service-qa.png"],
-  ["Consulting", "Architecture + roadmap planning.", "/service-consulting.png"],
-  ["Analytics & Tracking", "Events, funnels, reporting.", "/service-analytics.png"],
-  ["Integrations", "Payments, CRMs, automations.", "/service-integrations.png"],
+// --- ICONS ---
+const Icons = {
+  WebDev: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-16 h-16">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 19.5" />
+    </svg>
+  ),
+  Security: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+    </svg>
+  ),
+  Maintenance: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+    </svg>
+  ),
+  Performance: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+    </svg>
+  ),
+  QA: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+    </svg>
+  ),
+  Consulting: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+    </svg>
+  ),
+  Analytics: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+    </svg>
+  ),
+  Integrations: (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+    </svg>
+  ),
+};
+
+const SERVICES = [
+  { title: "Maintenance & Support", desc: "Updates, fixes, monitoring.", icon: Icons.Maintenance },
+  { title: "Performance & Optimization", desc: "Core Web Vitals + speed tuning.", icon: Icons.Performance },
+  { title: "Quality Assurance & Reviews", desc: "Bug hunts + pre-launch checks.", icon: Icons.QA },
+  { title: "Consulting", desc: "Architecture + roadmap planning.", icon: Icons.Consulting },
+  { title: "Analytics & Tracking", desc: "Events, funnels, reporting.", icon: Icons.Analytics },
+  { title: "Integrations", desc: "Payments, CRMs, automations.", icon: Icons.Integrations },
 ];
 
 const SERVICE_ROUTES: Record<string, string> = {
@@ -33,7 +77,7 @@ const DOCK_ITEMS = [
 type ServiceItem = {
   title: string;
   desc: string;
-  img: string;
+  icon: JSX.Element;
   href: string;
   isNew?: boolean;
 };
@@ -43,28 +87,35 @@ function ServicesSystemSection() {
     {
       title: "Website Security",
       desc: "Quick security check + clear fixes, included or add-on.",
-      img: "/service-sec.png",
+      icon: Icons.Security,
       href: SERVICE_ROUTES["Website Security"],
       isNew: true,
     },
-    ...SERVICES.map(([title, desc, img]) => ({
-      title,
-      desc,
-      img,
-      href: SERVICE_ROUTES[title] || "/services",
+    ...SERVICES.map((s) => ({
+      ...s,
+      href: SERVICE_ROUTES[s.title] || "/services",
       isNew: false,
     })),
   ];
 
   const cardBase =
-    "group relative rounded-[18px] overflow-hidden border transition " +
-    "border-neutral-200 bg-white/50 hover:border-neutral-400 " +
-    "dark:border-white/10 dark:bg-black/70 dark:hover:border-white/20";
+    "group relative flex flex-col justify-between rounded-[18px] border transition-all duration-300 " +
+    "border-neutral-200 bg-white dark:border-white/10 dark:bg-[#080808] " +
+    "hover:border-neutral-400 dark:hover:border-white/25 hover:-translate-y-1 shadow-sm";
 
-  const ringHover =
-    "pointer-events-none absolute inset-0 rounded-[18px] ring-0 ring-transparent transition duration-300 " +
-    "group-hover:ring-2 group-hover:ring-black/5 dark:group-hover:ring-white/15";
+  // Grid background pattern
+  const CardGrid = () => (
+    <div
+      className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08] pointer-events-none"
+      style={{
+        backgroundImage:
+          "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+        backgroundSize: "20px 20px",
+      }}
+    />
+  );
 
+  // Using inline style for content-visibility
   const sectionStyle = {
     contentVisibility: "auto" as const,
     containIntrinsicSize: "1px 1100px",
@@ -149,25 +200,17 @@ function ServicesSystemSection() {
                   </div>
                 </div>
 
-                {/* RIGHT */}
+                {/* RIGHT - WEB DEV CARD (With Logo) */}
                 <Link
                   href={SERVICE_ROUTES["Web Development"]}
-                  className="group relative rounded-[22px] border border-neutral-200 bg-white dark:border-white/12 dark:bg-black/70 overflow-hidden shadow-lg dark:shadow-none"
+                  className="group relative flex flex-col justify-between rounded-[22px] border border-neutral-200 bg-white dark:border-white/12 dark:bg-black/70 overflow-hidden shadow-lg dark:shadow-none min-h-[300px]"
                 >
-                  <div className="relative min-h-[260px] overflow-hidden">
-                    <img
-                      src="/service-dev.png"
-                      alt="Web Development"
-                      className="absolute inset-0 h-full w-full object-cover
-                                 transform-gpu transition duration-700
-                                 group-hover:scale-[1.04]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-black/10 dark:bg-black/35" />
+                  <CardGrid />
+                  <div className="relative h-48 flex items-center justify-center text-neutral-800 dark:text-white group-hover:scale-110 transition-transform duration-500">
+                    {Icons.WebDev}
                   </div>
 
-                  <div className="px-6 py-5">
+                  <div className="px-6 py-5 relative z-10">
                     <p className="text-black dark:text-white font-semibold text-lg">Web Development</p>
                     <p className="mt-1 text-sm text-neutral-600 dark:text-white/55">
                       Landing pages, business websites, and custom builds — fast and clean.
@@ -186,37 +229,34 @@ function ServicesSystemSection() {
             <p className="mt-3 text-center text-sm text-neutral-500 dark:text-white/60">Enhancements & ongoing services</p>
           </div>
 
-          {/* Enhancements grid */}
+          {/* Enhancements grid (LOGOS) */}
           <div className="relative px-8 pb-12 pt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {ALL_SERVICES.map(({ title, desc, img, href, isNew }) => {
+              {ALL_SERVICES.map(({ title, desc, icon, href, isNew }) => {
                 const newBorder = isNew 
                   ? "border-[#2cff68]/50 dark:border-[#2cff68]/35 hover:border-[#2cff68]" 
                   : "";
                 
                 const newBadge = isNew ? (
-                  <span className="absolute top-3 right-4 text-[#2cff68] text-sm font-bold">
-                    new!
+                  <span className="absolute top-4 right-4 text-[#2cff68] text-[10px] font-bold tracking-widest border border-[#2cff68]/30 px-2 py-0.5 rounded-full">
+                    NEW
                   </span>
                 ) : null;
 
                 return (
                   <Link key={title} href={href} className={`${cardBase} ${newBorder}`}>
-                    <div className="relative min-h-[200px] overflow-hidden">
-                      <img
-                        src={img}
-                        alt={title}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full
-                                   transform-gpu transition duration-700 ease-out
-                                   group-hover:scale-[1.04]"
-                      />
-                      <div className="absolute inset-0 bg-black/20 dark:bg-black/30" />
-                      {newBadge}
+                    <CardGrid />
+                    
+                    {newBadge}
+
+                    <div className="relative h-32 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:scale-110 transition-all duration-500">
+                      {/* Special color for security icon if needed */}
+                      <span className={title === "Website Security" ? "text-[#2cff68]" : ""}>
+                        {icon}
+                      </span>
                     </div>
 
-                    <div className="px-5 py-4">
+                    <div className="px-6 pb-6 relative z-10">
                       <p className="font-semibold text-black dark:text-white">{title}</p>
                       <p className="mt-1 text-sm text-neutral-600 dark:text-white/55">{desc}</p>
                       {isNew ? (
@@ -225,8 +265,6 @@ function ServicesSystemSection() {
                         </p>
                       ) : null}
                     </div>
-
-                    <div className={ringHover} />
                   </Link>
                 );
               })}
@@ -250,6 +288,15 @@ function ServicesSystemSection() {
 function ProcessSection() {
   return (
     <section id="process" className="relative px-6 py-24 bg-white dark:bg-black overflow-hidden transition-colors">
+      <div
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.40]"
+        style={{
+          backgroundImage:
+            "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center">
           <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">PROCESS</p>
@@ -368,6 +415,16 @@ function FAQSection() {
 function ContactSection() {
   return (
     <section id="contact" className="relative px-6 py-24 bg-white dark:bg-black overflow-hidden transition-colors">
+      <div
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.40]"
+        style={{
+          backgroundImage:
+            "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_65%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.10),transparent_65%)]" />
+
       <div className="relative mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
           {/* Left big CTA */}
@@ -479,7 +536,7 @@ function Footer() {
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/white.png"
-            alt="ThreatNest logo"
+            alt="Logo"
             className="h-10 w-10 invert dark:invert-0 transition"
             loading="lazy"
             decoding="async"
@@ -524,6 +581,14 @@ export default function Home() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-white dark:bg-black/65" />
+        <div
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.15]"
+          style={{
+            backgroundImage:
+              "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
       </div>
 
@@ -603,6 +668,15 @@ export default function Home() {
 
         {/* Divider title block */}
         <div className="relative bg-neutral-100 dark:bg-black h-64 flex items-center justify-center mx-auto overflow-hidden transition-colors">
+          <div
+            className="absolute inset-0 opacity-[0.05] dark:opacity-[0.15]"
+            style={{
+              backgroundImage:
+                "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+              backgroundSize: "80px 80px",
+            }}
+          />
+
           <div className="relative text-center flex items-center justify-center bg-white/90 dark:bg-black/80 h-32 w-full max-w-3xl border border-neutral-200 dark:border-white/10 px-6 backdrop-blur">
             <h2 className="text-3xl md:text-4xl font-bold leading-[1.15] text-black dark:text-white">
               Everything your website needs.

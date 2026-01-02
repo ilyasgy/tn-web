@@ -77,11 +77,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Default to dark mode on server-side to prevent flash
-    <html lang="en" className="dark">
+    // CHANGED: Removed className="dark" so it defaults to Light Mode
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <ThemeToggle /> {/* Add the button here */}
+        <ThemeToggle />
       </body>
     </html>
   );
