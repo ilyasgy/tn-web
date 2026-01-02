@@ -1,4 +1,4 @@
-import React from "react"; // <--- Added this import to fix the JSX error
+import React from "react";
 import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
@@ -78,7 +78,7 @@ const DOCK_ITEMS = [
 type ServiceItem = {
   title: string;
   desc: string;
-  icon: JSX.Element;
+  icon: React.ReactNode; // <--- Changed from JSX.Element
   href: string;
   isNew?: boolean;
 };
@@ -537,7 +537,7 @@ function Footer() {
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/white.png"
-            alt="Logo"
+            alt="ThreatNest logo"
             className="h-10 w-10 invert dark:invert-0 transition"
             loading="lazy"
             decoding="async"
