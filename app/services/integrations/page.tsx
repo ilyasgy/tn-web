@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Integrations",
-        subtitle:
-          "Payments, CRMs, automations — the stuff that connects your site to real business.",
+        subtitle: "Payments, CRMs, automations — the stuff that connects your site to real business.",
         image: "/service-integrations.png",
         primaryCtaText: "Request integration",
         primaryCtaHref: "/contact",
+        price: "From $600", // Added price
         sections: {
           what: [
             { title: "Payments", desc: "Stripe/checkout flows and basic purchase setup." },

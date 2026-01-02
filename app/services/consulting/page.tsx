@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Consulting",
-        subtitle:
-          "Architecture, direction, and decisions — when you want clarity before building.",
+        subtitle: "Architecture, direction, and decisions — when you want clarity before building.",
         image: "/service-consulting.png",
         primaryCtaText: "Book a consult",
         primaryCtaHref: "/contact",
+        price: "$150 / hour", // Added price
         sections: {
           what: [
             { title: "Direction", desc: "What to build first, what to skip, what matters." },

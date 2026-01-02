@@ -8,14 +8,9 @@ import MinuteCounter from "@/app/components/MinuteCounter";
 const ATTACKS_PER_DAY = 600_000_000;
 const ATTACKS_PER_MIN = Math.round(ATTACKS_PER_DAY / 1440);
 
-/**
- * Triggers once when the section is entering view (not after it fully fits).
- * - offset: header height
- * - bottomMargin: how early to trigger before it's centered (bigger negative = earlier)
- */
 function useInViewOnce({
   offset = 110,
-  bottomMarginPercent = 55, // trigger when it enters, not when it fills screen
+  bottomMarginPercent = 55,
 }: {
   offset?: number;
   bottomMarginPercent?: number;
@@ -25,20 +20,13 @@ function useInViewOnce({
 
   useEffect(() => {
     if (!ref.current || seen) return;
-
     const rootMargin = `-${offset}px 0px -${bottomMarginPercent}% 0px`;
-
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setSeen(true);
       },
-      {
-        root: null,
-        threshold: 0.12,
-        rootMargin,
-      }
+      { root: null, threshold: 0.12, rootMargin }
     );
-
     obs.observe(ref.current);
     return () => obs.disconnect();
   }, [seen, offset, bottomMarginPercent]);
@@ -47,31 +35,21 @@ function useInViewOnce({
 }
 
 export default function SecurityImpactSection() {
-  // Start animations only when this block enters view
   const { ref, seen } = useInViewOnce({ offset: 110, bottomMarginPercent: 60 });
 
   return (
-    <section className="relative px-6 py-16 md:py-24 bg-black overflow-hidden">
-      {/* grid bg */}
-      <div
-        className="absolute inset-0 opacity-[0.40]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
+    <section className="relative px-6 py-16 md:py-24 bg-neutral-900 dark:bg-black overflow-hidden transition-colors">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,255,104,0.10),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-6xl">
-        {/* header */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">
               WEBSITE SECURITY <span className="ml-2 text-[#2cff68] font-bold">new</span>
             </p>
 
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.12]">
+            <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.12] text-white">
               Your site gets hit even if nobody knows you.
             </h2>
 
@@ -98,7 +76,7 @@ export default function SecurityImpactSection() {
           </div>
         </div>
 
-        {/* stats (wrap in ref so observer triggers as soon as this enters view) */}
+        {/* Stats */}
         <div ref={ref} className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-[22px] border border-white/10 bg-black/70 p-6 overflow-hidden">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">ATTACKS / DAY</p>
@@ -119,14 +97,13 @@ export default function SecurityImpactSection() {
           <div className="rounded-[22px] border border-[#2cff68]/20 bg-black/70 p-6 overflow-hidden">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">THIS MINUTE</p>
             <div className="mt-3 text-3xl md:text-4xl font-bold text-white tabular-nums">
-              {/* If your MinuteCounter supports enabled, pass it. If not, it will just render when seen. */}
               {seen ? <MinuteCounter perMinute={ATTACKS_PER_MIN} /> : "—"}
             </div>
             <p className="mt-3 text-sm text-white/55">Live counter. Resets every 60 seconds.</p>
           </div>
         </div>
 
-        {/* why it matters + how it helps */}
+        {/* Why it matters */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-6">
           <div className="rounded-[28px] border border-white/10 bg-black/70 p-7 md:p-8">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">WHY THIS MATTERS</p>
@@ -179,7 +156,6 @@ export default function SecurityImpactSection() {
           </div>
         </div>
 
-        {/* footnote */}
         <p className="mt-6 text-xs text-white/40">
           Figures shown use Microsoft’s reported “600 million cyberattacks per day”, converted to a per-minute estimate.
         </p>

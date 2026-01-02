@@ -22,19 +22,13 @@ export default function ContactForm() {
   });
 
   function normalizeWebsite(input: string) {
-  if (!input) return "—";
-
-  const trimmed = input.trim();
-
-  // Already has protocol
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed;
+    if (!input) return "—";
+    const trimmed = input.trim();
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed;
+    }
+    return `https://${trimmed}`;
   }
-
-  // Looks like a domain → assume https
-  return `https://${trimmed}`;
-}
-
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -43,7 +37,7 @@ export default function ContactForm() {
 
     if (!API_BASE) {
       setStatus("error");
-      setError("error 1667");
+      setError("API not configured");
       return;
     }
 
@@ -95,7 +89,7 @@ export default function ContactForm() {
         required
         value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
-        className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
+        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
       />
 
       <input
@@ -104,17 +98,16 @@ export default function ContactForm() {
         required
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
-        className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
+        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
       />
 
       <input
-      type="text"
-      placeholder="Website URL (optional)"
-      value={form.website}
-      onChange={(e) => setForm({ ...form, website: e.target.value })}
-      className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
+        type="text"
+        placeholder="Website URL (optional)"
+        value={form.website}
+        onChange={(e) => setForm({ ...form, website: e.target.value })}
+        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
       />
-
 
       <textarea
         rows={5}
@@ -122,25 +115,25 @@ export default function ContactForm() {
         required
         value={form.message}
         onChange={(e) => setForm({ ...form, message: e.target.value })}
-        className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30"
+        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
       />
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-3 text-sm font-bold text-black transition hover:bg-white/90 disabled:opacity-60"
+        className="inline-flex items-center justify-center rounded-xl bg-black px-7 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-white/90"
       >
         {status === "loading" ? "Sending..." : "Send request"}
       </button>
 
       {status === "success" && (
-        <p className="text-sm text-white/70">
+        <p className="text-sm text-green-600 dark:text-white/70">
           Sent. Check your inbox.
         </p>
       )}
 
       {status === "error" && (
-        <p className="text-sm text-red-300">
+        <p className="text-sm text-red-500 dark:text-red-300">
           {error}
         </p>
       )}

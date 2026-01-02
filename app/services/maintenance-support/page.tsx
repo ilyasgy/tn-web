@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Maintenance & Support",
-        subtitle:
-          "Updates, fixes, and small changes — so your site stays stable after launch.",
+        subtitle: "Updates, fixes, and small changes — so your site stays stable after launch.",
         image: "/service-maintenance.png",
         primaryCtaText: "Request support",
         primaryCtaHref: "/contact",
+        price: "$299 / month", // Added price
         sections: {
           what: [
             { title: "Small changes", desc: "Text edits, sections, new pages, quick tweaks." },

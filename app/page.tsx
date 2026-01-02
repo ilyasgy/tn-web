@@ -1,10 +1,4 @@
-// app/page.tsx (or pages/index.tsx)
-// Full home page — continued to the end, cleaned up, and upgraded.
-// Notes: removed unused ServiceCard import, fixed invalid Tailwind class (w-145),
-// added Contact + Process + FAQ + Footer, and made anchor links real.
-
 import Link from "next/link";
-
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
 
@@ -63,59 +57,50 @@ function ServicesSystemSection() {
   ];
 
   const cardBase =
-    "group relative rounded-[18px] overflow-hidden border bg-black/70 transition " +
-    "border-white/10 hover:border-white/20";
+    "group relative rounded-[18px] overflow-hidden border transition " +
+    "border-neutral-200 bg-white/50 hover:border-neutral-400 " +
+    "dark:border-white/10 dark:bg-black/70 dark:hover:border-white/20";
 
   const ringHover =
-    "pointer-events-none absolute inset-0 rounded-[18px] ring-0 ring-transparent transition duration-300 group-hover:ring-2 group-hover:ring-white/15";
+    "pointer-events-none absolute inset-0 rounded-[18px] ring-0 ring-transparent transition duration-300 " +
+    "group-hover:ring-2 group-hover:ring-black/5 dark:group-hover:ring-white/15";
 
-  // TS-safe style with contentVisibility
-  const perfStyle = {
-    contentVisibility: "auto",
+  const sectionStyle = {
+    contentVisibility: "auto" as const,
     containIntrinsicSize: "1px 1100px",
-  } as any;
+  };
 
   return (
     <section
       id="services"
-      className="relative px-6 py-10 bg-black overflow-hidden"
-      style={perfStyle}
+      className="relative px-6 py-10 bg-neutral-50 dark:bg-black overflow-hidden transition-colors"
+      style={sectionStyle as any}
     >
-      {/* grid background */}
-      <div
-        className="absolute inset-0 opacity-[0.55]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
-
       <div className="relative mx-auto max-w-screen-2xl">
         {/* Top CTA box */}
-        <div className="mx-auto flex h-20 w-full max-w-sm items-center justify-center border border-white/10 bg-black">
+        <div className="mx-auto flex h-20 w-full max-w-sm items-center justify-center border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
           <Link
             href="/contact"
-            className="text-white/70 hover:text-white transition text-2xl font-semibold"
+            className="text-neutral-600 hover:text-black dark:text-white/70 dark:hover:text-white transition text-2xl font-semibold"
           >
             Start your project
           </Link>
         </div>
 
         {/* Main container */}
-        <div className="mt-10 relative rounded-[32px] border border-white/10 bg-black/70 shadow-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-black/35" />
+        <div className="mt-10 relative rounded-[32px] border border-neutral-200 bg-white/80 dark:border-white/10 dark:bg-black/70 shadow-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.5] via-transparent to-neutral-100/50 dark:from-white/[0.02] dark:to-black/35 pointer-events-none" />
 
           {/* Top guide */}
           <div className="relative px-8 pt-8">
-            <p className="text-sm text-white/45">security can be added after launch</p>
+            <p className="text-sm text-neutral-500 dark:text-white/45">security can be added after launch</p>
 
             <div className="mt-2 flex items-center gap-4">
-              <span className="text-lg font-semibold text-white/55">Start your project</span>
+              <span className="text-lg font-semibold text-neutral-400 dark:text-white/55">Start your project</span>
 
               <div className="relative flex-1">
-                <div className="h-[2px] w-full bg-white/20" />
-                <div className="absolute right-0 top-0 h-[2px] w-[145px] bg-white/35" />
+                <div className="h-[2px] w-full bg-neutral-200 dark:bg-white/20" />
+                <div className="absolute right-0 top-0 h-[2px] w-[145px] bg-neutral-300 dark:bg-white/35" />
               </div>
             </div>
           </div>
@@ -126,27 +111,27 @@ function ServicesSystemSection() {
               <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-10 items-center">
                 {/* LEFT */}
                 <div>
-                  <p className="text-[1.475rem] leading-tight font-bold text-white">
+                  <p className="text-[1.475rem] leading-tight font-bold text-black dark:text-white">
                     Build the foundation first,
                     <br />
                     Everything else scales from there.
                   </p>
 
-                  <ul className="mt-6 space-y-3 text-white/70">
+                  <ul className="mt-6 space-y-3 text-neutral-600 dark:text-white/70">
                     <li className="flex items-start gap-3">
-                      <span className="mt-1 text-white/40">▸</span>
+                      <span className="mt-1 text-neutral-400 dark:text-white/40">▸</span>
                       <span>Clean, production-ready codebase</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="mt-1 text-white/40">▸</span>
+                      <span className="mt-1 text-neutral-400 dark:text-white/40">▸</span>
                       <span>Optimized for Core Web Vitals</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="mt-1 text-white/40">▸</span>
+                      <span className="mt-1 text-neutral-400 dark:text-white/40">▸</span>
                       <span>SEO, analytics, and tracking included</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="mt-1 text-white/40">▸</span>
+                      <span className="mt-1 text-neutral-400 dark:text-white/40">▸</span>
                       <span>Optional security review after launch</span>
                     </li>
                   </ul>
@@ -154,10 +139,10 @@ function ServicesSystemSection() {
                   <div className="mt-8">
                     <a
                       href="#services"
-                      className="group inline-flex items-center gap-4 rounded-full border border-white/15 bg-black px-16 py-3 transition hover:border-white/30 hover:bg-white/5"
+                      className="group inline-flex items-center gap-4 rounded-full border border-neutral-200 bg-white px-16 py-3 transition hover:border-neutral-300 hover:bg-neutral-50 dark:border-white/15 dark:bg-black dark:hover:bg-white/5"
                     >
-                      <span className="text-2xl font-semibold text-white">Start Here</span>
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-transform duration-200 group-hover:translate-x-1">
+                      <span className="text-2xl font-semibold text-black dark:text-white">Start Here</span>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black transition-transform duration-200 group-hover:translate-x-1">
                         →
                       </span>
                     </a>
@@ -167,7 +152,7 @@ function ServicesSystemSection() {
                 {/* RIGHT */}
                 <Link
                   href={SERVICE_ROUTES["Web Development"]}
-                  className="group relative rounded-[22px] border border-white/12 bg-black/70 overflow-hidden"
+                  className="group relative rounded-[22px] border border-neutral-200 bg-white dark:border-white/12 dark:bg-black/70 overflow-hidden shadow-lg dark:shadow-none"
                 >
                   <div className="relative min-h-[260px] overflow-hidden">
                     <img
@@ -175,17 +160,16 @@ function ServicesSystemSection() {
                       alt="Web Development"
                       className="absolute inset-0 h-full w-full object-cover
                                  transform-gpu transition duration-700
-                                group-hover:scale-[1.04]"
+                                 group-hover:scale-[1.04]"
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 bg-black/35" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-black/10 dark:bg-black/35" />
                   </div>
 
                   <div className="px-6 py-5">
-                    <p className="text-white font-semibold text-lg">Web Development</p>
-                    <p className="mt-1 text-sm text-white/55">
+                    <p className="text-black dark:text-white font-semibold text-lg">Web Development</p>
+                    <p className="mt-1 text-sm text-neutral-600 dark:text-white/55">
                       Landing pages, business websites, and custom builds — fast and clean.
                     </p>
                   </div>
@@ -196,17 +180,20 @@ function ServicesSystemSection() {
 
           {/* Enhancements header */}
           <div className="relative mt-8">
-            <div className="w-full bg-black/70 border-y border-white/10 py-4">
-              <p className="text-center text-lg font-semibold text-white">Enhancements</p>
+            <div className="w-full bg-neutral-100 dark:bg-black/70 border-y border-neutral-200 dark:border-white/10 py-4">
+              <p className="text-center text-lg font-semibold text-black dark:text-white">Enhancements</p>
             </div>
-            <p className="mt-3 text-center text-sm text-white/60">Enhancements & ongoing services</p>
+            <p className="mt-3 text-center text-sm text-neutral-500 dark:text-white/60">Enhancements & ongoing services</p>
           </div>
 
           {/* Enhancements grid */}
           <div className="relative px-8 pb-12 pt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {ALL_SERVICES.map(({ title, desc, img, href, isNew }) => {
-                const newBorder = isNew ? "border-[#2cff68]/35 hover:border-[#2cff68]/55" : "";
+                const newBorder = isNew 
+                  ? "border-[#2cff68]/50 dark:border-[#2cff68]/35 hover:border-[#2cff68]" 
+                  : "";
+                
                 const newBadge = isNew ? (
                   <span className="absolute top-3 right-4 text-[#2cff68] text-sm font-bold">
                     new!
@@ -225,22 +212,15 @@ function ServicesSystemSection() {
                                    transform-gpu transition duration-700 ease-out
                                    group-hover:scale-[1.04]"
                       />
-                      <div className="absolute inset-0 bg-black/30" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
+                      <div className="absolute inset-0 bg-black/20 dark:bg-black/30" />
                       {newBadge}
-
-                      <div className="absolute bottom-4 right-5 flex items-center gap-2 opacity-0 translate-y-1 transition duration-200 group-hover:opacity-100 group-hover:translate-y-0">
-                        <span className="text-sm text-white/75">Learn more</span>
-                        <span className="text-white/75">→</span>
-                      </div>
                     </div>
 
                     <div className="px-5 py-4">
-                      <p className="font-semibold text-white">{title}</p>
-                      <p className="mt-1 text-sm text-white/55">{desc}</p>
+                      <p className="font-semibold text-black dark:text-white">{title}</p>
+                      <p className="mt-1 text-sm text-neutral-600 dark:text-white/55">{desc}</p>
                       {isNew ? (
-                        <p className="mt-3 text-sm text-white/70 group-hover:text-white transition">
+                        <p className="mt-3 text-sm text-neutral-900 dark:text-white/70 group-hover:text-black dark:group-hover:text-white transition">
                           see how it works →
                         </p>
                       ) : null}
@@ -255,7 +235,7 @@ function ServicesSystemSection() {
             <div className="mt-12 text-center">
               <Link
                 href="/contact"
-                className="text-white/70 hover:text-white transition text-2xl font-semibold tracking-tight"
+                className="text-neutral-600 hover:text-black dark:text-white/70 dark:hover:text-white transition text-2xl font-semibold tracking-tight"
               >
                 start your project
               </Link>
@@ -269,23 +249,14 @@ function ServicesSystemSection() {
 
 function ProcessSection() {
   return (
-    <section id="process" className="relative px-6 py-24 bg-black overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.40]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
-
+    <section id="process" className="relative px-6 py-24 bg-white dark:bg-black overflow-hidden transition-colors">
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center">
-          <p className="text-xs font-semibold tracking-[0.22em] text-white/55">PROCESS</p>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.15]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">PROCESS</p>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.15] text-black dark:text-white">
             Simple process.
           </h2>
-          <p className="mt-5 max-w-2xl text-white/55">
+          <p className="mt-5 max-w-2xl text-neutral-600 dark:text-white/55">
             We build it properly, get it live, and hand everything over. Security checks are optional after launch.
           </p>
         </div>
@@ -299,27 +270,27 @@ function ProcessSection() {
           ].map(([n, title, desc]) => (
             <div
               key={n}
-              className="relative rounded-2xl border border-white/10 bg-black/70 p-6 overflow-hidden"
+              className="relative rounded-2xl border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 p-6 overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-transparent dark:from-white/[0.03]" />
               <div className="relative">
-                <p className="text-xs font-semibold tracking-[0.22em] text-white/50">{n}</p>
-                <p className="mt-3 text-lg font-semibold text-white">{title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-white/55">{desc}</p>
+                <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/50">{n}</p>
+                <p className="mt-3 text-lg font-semibold text-black dark:text-white">{title}</p>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-white/55">{desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/70 p-6">
-          <p className="text-white/70">
+        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 p-6">
+          <p className="text-neutral-600 dark:text-white/70">
             Want the security scan bundled as a second step after launch?
           </p>
           <Link
             href={SERVICE_ROUTES["Website Security"]}
-            className="inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:border-white/25"
+            className="inline-flex items-center gap-3 rounded-xl border border-neutral-300 bg-white dark:border-white/15 dark:bg-white/5 px-6 py-3 text-sm font-semibold text-black dark:text-white transition hover:bg-neutral-100 dark:hover:bg-white/10"
           >
-            See Website Security <span className="text-white/70">→</span>
+            See Website Security <span className="text-neutral-400 dark:text-white/70">→</span>
           </Link>
         </div>
       </div>
@@ -329,14 +300,14 @@ function ProcessSection() {
 
 function FAQSection() {
   return (
-    <section id="faq" className="relative px-6 py-24 bg-black overflow-hidden">
+    <section id="faq" className="relative px-6 py-24 bg-neutral-50 dark:bg-black overflow-hidden transition-colors">
       <div className="relative mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="text-xs font-semibold tracking-[0.22em] text-white/55">FAQ</p>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.15]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">FAQ</p>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.15] text-black dark:text-white">
             Quick answers
           </h2>
-          <p className="mt-5 text-white/55">
+          <p className="mt-5 text-neutral-600 dark:text-white/55">
             What to know before starting.
           </p>
         </div>
@@ -379,13 +350,13 @@ function FAQSection() {
           ].map((item) => (
             <details
               key={item.q}
-              className="group rounded-2xl border border-white/10 bg-black/70 p-6 open:border-white/20 transition"
+              className="group rounded-2xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-black/70 p-6 open:border-neutral-300 dark:open:border-white/20 transition shadow-sm dark:shadow-none"
             >
               <summary className="cursor-pointer list-none flex items-center justify-between gap-6">
-                <span className="text-white font-semibold">{item.q}</span>
-                <span className="text-white/50 transition group-open:rotate-45">+</span>
+                <span className="text-black dark:text-white font-semibold">{item.q}</span>
+                <span className="text-neutral-400 dark:text-white/50 transition group-open:rotate-45">+</span>
               </summary>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">{item.a}</p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-white/60">{item.a}</p>
             </details>
           ))}
         </div>
@@ -396,44 +367,34 @@ function FAQSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" className="relative px-6 py-24 bg-black overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.40]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.10),transparent_65%)]" />
-
+    <section id="contact" className="relative px-6 py-24 bg-white dark:bg-black overflow-hidden transition-colors">
       <div className="relative mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
           {/* Left big CTA */}
-          <div className="rounded-[28px] border border-white/10 bg-black/70 overflow-hidden">
+          <div className="rounded-[28px] border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 overflow-hidden">
             <div className="p-8 md:p-10">
-              <p className="text-xs font-semibold tracking-[0.22em] text-white/55">
+              <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">
                 LETS START BUILDING
               </p>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.12]">
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold leading-[1.12] text-black dark:text-white">
                 Ready to build?
                 <br />
                 We’ll take it live.
               </h2>
-              <p className="mt-5 max-w-xl text-white/55">
+              <p className="mt-5 max-w-xl text-neutral-600 dark:text-white/55">
                 Tell us what you want to build.<br /> We’ll handle the rest.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-3 text-sm font-bold text-black transition hover:bg-white/90"
+                  className="inline-flex items-center justify-center rounded-xl bg-black px-7 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
                 >
                   Start project
                 </Link>
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:border-white/25"
+                  className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-neutral-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:border-white/25"
                 >
                   View services
                 </a>
@@ -447,10 +408,10 @@ function ContactSection() {
                 ].map(([t, d]) => (
                   <div
                     key={t}
-                    className="rounded-2xl border border-white/10 bg-black/60 p-4"
+                    className="rounded-2xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-black/60 p-4"
                   >
-                    <p className="text-sm font-semibold text-white">{t}</p>
-                    <p className="mt-1 text-xs text-white/55">{d}</p>
+                    <p className="text-sm font-semibold text-black dark:text-white">{t}</p>
+                    <p className="mt-1 text-xs text-neutral-500 dark:text-white/55">{d}</p>
                   </div>
                 ))}
               </div>
@@ -458,50 +419,50 @@ function ContactSection() {
           </div>
 
           {/* Right quick links */}
-          <div className="rounded-[28px] border border-white/10 bg-black/70 p-8 md:p-10">
-            <p className="text-xs font-semibold tracking-[0.22em] text-white/55">QUICK LINKS</p>
+          <div className="rounded-[28px] border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 p-8 md:p-10">
+            <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">QUICK LINKS</p>
 
             <div className="mt-6 space-y-3">
               <Link
                 href="/services"
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-white/75 transition hover:text-white hover:border-white/20"
+                className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-700 transition hover:border-neutral-300 dark:border-white/10 dark:bg-black/60 dark:text-white/75 dark:hover:text-white dark:hover:border-white/20"
               >
                 <span className="text-sm font-semibold">Services</span>
-                <span className="text-white/50">→</span>
+                <span className="text-neutral-400 dark:text-white/50">→</span>
               </Link>
               <Link
                 href={SERVICE_ROUTES["Web Development"]}
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-white/75 transition hover:text-white hover:border-white/20"
+                className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-700 transition hover:border-neutral-300 dark:border-white/10 dark:bg-black/60 dark:text-white/75 dark:hover:text-white dark:hover:border-white/20"
               >
                 <span className="text-sm font-semibold">Web Development</span>
-                <span className="text-white/50">→</span>
+                <span className="text-neutral-400 dark:text-white/50">→</span>
               </Link>
               <Link
                 href={SERVICE_ROUTES["Website Security"]}
-                className="flex items-center justify-between rounded-xl border border-[#2cff68]/20 bg-black/60 px-4 py-3 text-white/75 transition hover:text-white hover:border-[#2cff68]/35"
+                className="flex items-center justify-between rounded-xl border border-[#2cff68]/30 bg-white px-4 py-3 text-neutral-700 transition hover:border-[#2cff68]/50 dark:border-[#2cff68]/20 dark:bg-black/60 dark:text-white/75 dark:hover:text-white dark:hover:border-[#2cff68]/35"
               >
                 <span className="text-sm font-semibold">Website Security</span>
                 <span className="text-[#2cff68] text-xs font-bold">new</span>
               </Link>
               <Link
                 href="/about"
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-white/75 transition hover:text-white hover:border-white/20"
+                className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-700 transition hover:border-neutral-300 dark:border-white/10 dark:bg-black/60 dark:text-white/75 dark:hover:text-white dark:hover:border-white/20"
               >
                 <span className="text-sm font-semibold">About</span>
-                <span className="text-white/50">→</span>
+                <span className="text-neutral-400 dark:text-white/50">→</span>
               </Link>
             </div>
 
-            <div className="mt-10 border-t border-white/10 pt-6">
-              <p className="text-sm font-semibold text-white">Tell us what you need.</p>
-              <p className="mt-2 text-sm text-white/55">
+            <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
+              <p className="text-sm font-semibold text-black dark:text-white">Tell us what you need.</p>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
                 Use the contact page to share details and we’ll reply with next steps.
               </p>
               <Link
                 href="/contact"
-                className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-white/80 hover:text-white transition"
+                className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
               >
-                Go to contact <span className="text-white/50">→</span>
+                Go to contact <span className="text-neutral-400 dark:text-white/50">→</span>
               </Link>
             </div>
           </div>
@@ -513,43 +474,43 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="relative px-6 py-14 bg-black border-t border-white/10">
+    <footer className="relative px-6 py-14 border-t border-neutral-200 bg-neutral-50 dark:bg-black dark:border-white/10 transition-colors">
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/white.png"
             alt="ThreatNest logo"
-            className="h-10 w-10"
+            className="h-10 w-10 invert dark:invert-0 transition"
             loading="lazy"
             decoding="async"
           />
-          <span className="text-sm font-semibold tracking-[0.22em] text-white/80">
+          <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">
             THREATNEST
           </span>
         </Link>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-white/60">
-          <Link href="/services" className="hover:text-white transition">
+        <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
+          <Link href="/services" className="hover:text-black dark:hover:text-white transition">
             SERVICES
           </Link>
-          <Link href="/about" className="hover:text-white transition">
+          <Link href="/about" className="hover:text-black dark:hover:text-white transition">
             ABOUT
           </Link>
-          <Link href="/contact" className="hover:text-white transition">
+          <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
             CONTACT
           </Link>
-                    <Link href="/terms" className="hover:text-white transition">
+          <Link href="/terms" className="hover:text-black dark:hover:text-white transition">
             TERMS
           </Link>
-          <Link href="/privacy" className="hover:text-white transition">
+          <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">
             PRIVACY
           </Link>
-          <a href="#faq" className="hover:text-white transition">
+          <a href="#faq" className="hover:text-black dark:hover:text-white transition">
             FAQ
           </a>
         </div>
 
-        <p className="text-xs text-white/45">
+        <p className="text-xs text-neutral-400 dark:text-white/45">
           © {new Date().getFullYear()} ThreatNest. All rights reserved.
         </p>
       </div>
@@ -559,19 +520,11 @@ function Footer() {
 
 export default function Home() {
   return (
-    <main id="home" className="relative min-h-screen text-white overflow-hidden bg-black">
+    <main id="home" className="relative min-h-screen text-neutral-900 dark:text-white overflow-hidden bg-white dark:bg-black transition-colors">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/65" />
-        <div
-          className="absolute inset-0 opacity-[0.55]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
+        <div className="absolute inset-0 bg-white dark:bg-black/65" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
       </div>
 
       {/* Content */}
@@ -583,31 +536,31 @@ export default function Home() {
               <img
                 src="/white.png"
                 alt="ThreatNest logo"
-                className="h-10 w-10"
+                className="h-10 w-10 invert dark:invert-0 transition"
                 loading="eager"
                 decoding="async"
               />
               <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-white/70">
-              <Link href="/services" className="hover:text-white transition">
+            <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
+              <Link href="/services" className="hover:text-black dark:hover:text-white transition">
                 SERVICES
               </Link>
-              <a href="#process" className="hover:text-white transition">
+              <a href="#process" className="hover:text-black dark:hover:text-white transition">
                 PROCESS
               </a>
-              <a href="#faq" className="hover:text-white transition">
+              <a href="#faq" className="hover:text-black dark:hover:text-white transition">
                 FAQ
               </a>
-              <Link href="/contact" className="hover:text-white transition">
+              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
                 CONTACT
               </Link>
             </nav>
 
             <a
               href="#contact"
-              className="rounded-lg bg-white px-5 py-2 text-xs font-bold tracking-wide text-black transition hover:bg-white/90"
+              className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold tracking-wide text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition"
             >
               START PROJECT
             </a>
@@ -615,31 +568,31 @@ export default function Home() {
         </header>
 
         {/* Hero */}
-        <section className="px-6 pt-67 pb-67">
+        <section className="px-6 pt-32 pb-24 md:pt-40 md:pb-32">
           <div className="mx-auto max-w-6xl flex flex-col items-center text-center">
-            <h1 className="text-5xl font-bold leading-[1.05] md:text-5xl">
+            <h1 className="text-5xl font-bold leading-[1.05] md:text-7xl text-black dark:text-white">
               High-performance websites
               <br />
               built for growing businesses
             </h1>
 
-            <p className="mt-10 max-w-lg text-base text-white/55 md:text-lg">
+            <p className="mt-10 max-w-lg text-base text-neutral-600 dark:text-white/55 md:text-lg">
               We design and build fast, modern websites with optional security checks so you can
               scale with confidence.
             </p>
 
             <div className="mt-12">
-              <div className="relative inline-flex rounded-xl border border-white/15 bg-white/5 p-1">
+              <div className="relative inline-flex rounded-xl border border-neutral-300 bg-neutral-100 p-1 dark:border-white/15 dark:bg-white/5">
                 <a
                   href="#contact"
-                  className="relative z-10 rounded-lg bg-white px-9 py-3 text-sm font-bold text-black transition hover:bg-white/90"
+                  className="relative z-10 rounded-lg bg-black px-9 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
                 >
                   Start project
                 </a>
 
                 <a
                   href="#services"
-                  className="ml-[-6px] rounded-lg px-6 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                  className="ml-[-6px] rounded-lg px-6 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-200 dark:text-white/90 dark:hover:bg-white/10 transition"
                 >
                   Learn more
                 </a>
@@ -649,21 +602,12 @@ export default function Home() {
         </section>
 
         {/* Divider title block */}
-        <div className="relative bg-black h-64 flex items-center justify-center mx-auto overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.55]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
-              backgroundSize: "80px 80px",
-            }}
-          />
-
-          <div className="relative text-center flex items-center justify-center bg-black/80 h-32 w-full max-w-3xl border border-white/10 px-6">
-            <h2 className="text-3xl md:text-4xl font-bold leading-[1.15]">
+        <div className="relative bg-neutral-100 dark:bg-black h-64 flex items-center justify-center mx-auto overflow-hidden transition-colors">
+          <div className="relative text-center flex items-center justify-center bg-white/90 dark:bg-black/80 h-32 w-full max-w-3xl border border-neutral-200 dark:border-white/10 px-6 backdrop-blur">
+            <h2 className="text-3xl md:text-4xl font-bold leading-[1.15] text-black dark:text-white">
               Everything your website needs.
               <br />
-              <span className="block mt-2 text-sm md:text-base font-semibold opacity-55">
+              <span className="block mt-2 text-sm md:text-base font-semibold text-neutral-500 dark:text-white/55">
                 performance, security, and structure — done right.
               </span>
             </h2>

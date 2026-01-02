@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Analytics & Tracking",
-        subtitle:
-          "Events, funnels, and tracking that tells you what’s working — and what isn’t.",
+        subtitle: "Events, funnels, and tracking that tells you what’s working — and what isn’t.",
         image: "/service-analytics.png",
         primaryCtaText: "Set up tracking",
         primaryCtaHref: "/contact",
+        price: "$400 / one-time", // Added price
         sections: {
           what: [
             { title: "Analytics setup", desc: "Basic analytics done correctly." },

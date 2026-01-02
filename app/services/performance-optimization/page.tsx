@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Performance & Optimization",
-        subtitle:
-          "Speed work that actually shows up in real usage — not just screenshots.",
+        subtitle: "Speed work that actually shows up in real usage — not just screenshots.",
         image: "/service-performance.png",
         primaryCtaText: "Improve speed",
         primaryCtaHref: "/contact",
+        price: "$750 / one-time", // Added price
         sections: {
           what: [
             { title: "Core Web Vitals", desc: "Make the site feel fast, not heavy." },

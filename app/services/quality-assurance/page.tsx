@@ -5,11 +5,11 @@ export default function Page() {
     <ServiceDetailPage
       cfg={{
         title: "Quality Assurance & Reviews",
-        subtitle:
-          "Bug hunts + pre-launch checks so you don’t launch with avoidable issues.",
+        subtitle: "Bug hunts + pre-launch checks so you don’t launch with avoidable issues.",
         image: "/service-qa.png",
         primaryCtaText: "Request QA review",
         primaryCtaHref: "/contact",
+        price: "$500 / one-time", // Added price
         sections: {
           what: [
             { title: "Bug hunt", desc: "We click everything like a real user would." },
