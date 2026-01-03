@@ -47,7 +47,15 @@ const Icons = {
   ),
 };
 
-const SERVICE_LIST = [
+type ServiceListItem = {
+  title: string;
+  desc: string;
+  price: string;
+  icon: React.ReactNode; // This tells TS to use React's type, not the global JSX one
+  href: string;
+};
+
+const SERVICE_LIST: ServiceListItem[] = [
   {
     title: "Maintenance & Support",
     desc: "Updates, fixes, monitoring.",
