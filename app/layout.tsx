@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "ThreatNest",
     capable: true,
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.json",
 
   openGraph: {
     type: "website",
