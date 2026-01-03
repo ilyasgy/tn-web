@@ -31,17 +31,16 @@ export default function TermsPage() {
           </p>
 
           <div className="mt-12 space-y-10 text-neutral-700 dark:text-white/70 leading-relaxed">
-            {/* Content omitted for brevity, logic applies to all text blocks */}
+
             <div>
               <h2 className="text-xl font-semibold text-black dark:text-white">1. Services</h2>
               <p className="mt-3">ThreatNest provides non-intrusive website security and application flow assessments.</p>
             </div>
-            {/* ... other sections ... */}
+
           </div>
         </div>
       </section>
-      
-      {/* Footer code is standard across pages */}
+
     </main>
   );
 }

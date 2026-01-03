@@ -9,7 +9,7 @@ export default function Page() {
         image: "/service-consulting.png",
         primaryCtaText: "Book a consult",
         primaryCtaHref: "/contact",
-        price: "$150 / hour", // Added price
+        price: "$150 / hour",
         sections: {
           what: [
             { title: "Direction", desc: "What to build first, what to skip, what matters." },

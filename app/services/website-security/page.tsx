@@ -13,7 +13,7 @@ const CHECKS = [
 export default function WebsiteSecurityDetailPage() {
   return (
     <main className="relative overflow-hidden bg-white text-neutral-900 transition-colors dark:bg-black dark:text-white">
-      {/* Background */}
+      
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white/90 dark:bg-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
@@ -45,7 +45,6 @@ export default function WebsiteSecurityDetailPage() {
                 A focused review that catches common risks. Not "enterprise pentesting", just real safety.
               </p>
 
-              {/* PRICE TAG */}
               <div className="mt-8 flex items-baseline gap-3">
                 <span className="text-4xl font-extrabold text-[#2cff68]">$300</span>
                 <span className="text-sm font-semibold opacity-60">/ one-time check</span>

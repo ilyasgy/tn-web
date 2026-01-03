@@ -9,7 +9,7 @@ export default function Page() {
         image: "/service-integrations.png",
         primaryCtaText: "Request integration",
         primaryCtaHref: "/contact",
-        price: "From $600", // Added price
+        price: "From $600",
         sections: {
           what: [
             { title: "Payments", desc: "Stripe/checkout flows and basic purchase setup." },

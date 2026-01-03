@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* 1. Define the dark variant to listen to the "dark" class */
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -8,13 +7,11 @@
   --color-foreground: #000000;
 }
 
-/* 2. Set variables for Dark Mode */
 :root.dark {
   --color-background: #000000;
   --color-foreground: #ffffff;
 }
 
-/* 3. Set variables for Light Mode (Explicit) */
 :root.light {
   --color-background: #ffffff;
   --color-foreground: #000000;

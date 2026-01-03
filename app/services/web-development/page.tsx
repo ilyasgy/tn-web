@@ -49,13 +49,12 @@ const PROCESS = [
 export default function WebDevelopmentDetailPage() {
   return (
     <main className="relative overflow-hidden bg-white text-neutral-900 transition-colors dark:bg-black dark:text-white">
-      {/* Background */}
+  
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white/90 dark:bg-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
       </div>
 
-      {/* Header */}
       <header className="px-6 pt-5">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
@@ -69,7 +68,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </header>
 
-      {/* Hero */}
       <section className="px-6 pt-20 pb-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-end">
@@ -84,7 +82,7 @@ export default function WebDevelopmentDetailPage() {
                 <Link href="/services" className="ml-[-6px] rounded-lg px-6 py-3 text-sm font-semibold opacity-90 transition hover:bg-neutral-200 dark:hover:bg-white/10">Back to services</Link>
               </div>
             </div>
-            {/* Visual card */}
+    
             <div className="group relative rounded-[22px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-[#050505] overflow-hidden shadow-lg dark:shadow-none">
               <div className="relative min-h-[250px] overflow-hidden">
                 <img src="/service-dev.png" alt="Web Dev" className="absolute inset-0 h-full w-full object-cover transform-gpu transition duration-700 group-hover:scale-[1.04]" />
@@ -99,7 +97,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
-      {/* PRICING SECTION - DARKENED */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
@@ -133,7 +130,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
-      {/* What we build */}
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl rounded-[32px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-[#050505] overflow-hidden">
           <div className="border-b border-neutral-200 dark:border-white/10 px-8 py-5">
@@ -150,7 +146,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
-      {/* What you get */}
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl rounded-[32px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-[#050505] overflow-hidden">
           <div className="border-b border-neutral-200 dark:border-white/10 px-8 py-5">
@@ -167,7 +162,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
-      {/* How it goes */}
       <section className="px-6 pb-16">
         <div className="mx-auto max-w-6xl rounded-[32px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-[#050505] overflow-hidden">
           <div className="border-b border-neutral-200 dark:border-white/10 px-8 py-5">
@@ -185,7 +179,6 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10">
         <div className="mx-auto max-w-6xl flex flex-col md:flex-row justify-between gap-10">
           <Link href="/" className="flex items-center gap-2">

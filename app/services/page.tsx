@@ -6,13 +6,13 @@ import SectionDock from "@/app/components/SectionDock";
 // --- ICONS ---
 const Icons = {
   WebDev: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-16 h-16">
       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 19.5" />
     </svg>
   ),
   Security: (
     <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
     </svg>
   ),
   Maintenance: (
@@ -51,7 +51,7 @@ type ServiceListItem = {
   title: string;
   desc: string;
   price: string;
-  icon: React.ReactNode; // This tells TS to use React's type, not the global JSX one
+  icon: React.ReactNode;
   href: string;
 };
 
@@ -103,7 +103,6 @@ const SERVICE_LIST: ServiceListItem[] = [
 const SERVICE_ROUTES: Record<string, string> = {
   "Web Development": "/services/web-development",
   "Website Security": "/services/website-security",
-  // Map others if needed, but we used direct hrefs above
 };
 
 export default function ServicesPage() {
@@ -122,7 +121,6 @@ export default function ServicesPage() {
     <main className="relative min-h-screen bg-white text-neutral-900 dark:bg-black dark:text-white overflow-hidden transition-colors">
       <div className="absolute inset-0 -z-10 bg-white/90 dark:bg-black/80" />
       
-      {/* Header */}
       <header className="px-6 pt-5">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
@@ -133,17 +131,14 @@ export default function ServicesPage() {
         </div>
       </header>
 
-      {/* Hero */}
       <section className="px-6 pt-16 pb-12 text-center">
         <h1 className="mt-5 text-4xl md:text-5xl font-bold">Services & Pricing</h1>
         <p className="mt-4 opacity-60">Transparent pricing. No hidden fees.</p>
       </section>
 
-      {/* Primary Grid (Large cards on top) */}
       <section className="px-6 pb-6">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          {/* 1. Web Dev (Large) */}
           <Link
             href="/services/web-development"
             className="group relative flex flex-col justify-between rounded-[24px] border border-neutral-200 bg-white dark:bg-[#080808] dark:border-white/10 overflow-hidden transition-all duration-300 hover:border-neutral-400 dark:hover:border-white/25 hover:-translate-y-1 shadow-sm md:min-h-[280px]"
@@ -165,13 +160,12 @@ export default function ServicesPage() {
             </div>
           </Link>
 
-          {/* 2. Security (Large) */}
           <Link
             href="/services/website-security"
             className="group relative flex flex-col justify-between rounded-[24px] border border-[#2cff68]/30 dark:border-[#2cff68]/20 bg-white dark:bg-[#080808] overflow-hidden transition-all duration-300 hover:border-[#2cff68]/60 dark:hover:border-[#2cff68]/40 hover:-translate-y-1 shadow-sm md:min-h-[280px]"
           >
             <CardGrid />
-            {/* "NEW" badge moved to absolute top-right */}
+
             <div className="absolute top-6 right-6 z-20">
               <span className="text-[#2cff68] text-[10px] font-bold tracking-widest border border-[#2cff68]/30 px-2 py-1 rounded-full bg-[#2cff68]/5">NEW</span>
             </div>
@@ -195,7 +189,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Secondary Grid (Smaller cards below) */}
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {SERVICE_LIST.map((s) => (
@@ -222,7 +215,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative px-6 py-14 border-t border-neutral-200 bg-neutral-50 dark:bg-black dark:border-white/10 transition-colors">
         <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
           <Link href="/" className="flex items-center gap-2">

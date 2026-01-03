@@ -3,7 +3,6 @@ import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
 
-// --- ICONS ---
 const Icons = {
   WebDev: (
     <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-16 h-16">
@@ -78,7 +77,7 @@ const DOCK_ITEMS = [
 type ServiceItem = {
   title: string;
   desc: string;
-  icon: React.ReactNode; // <--- CHANGED FROM JSX.Element to React.ReactNode
+  icon: React.ReactNode;
   href: string;
   isNew?: boolean;
 };
@@ -417,7 +416,7 @@ function ContactSection() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
-          {/* Left big CTA */}
+
           <div className="rounded-[28px] border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 overflow-hidden">
             <div className="p-8 md:p-10">
               <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">
@@ -465,7 +464,6 @@ function ContactSection() {
             </div>
           </div>
 
-          {/* Right quick links */}
           <div className="rounded-[28px] border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/70 p-8 md:p-10">
             <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">QUICK LINKS</p>
 
@@ -568,7 +566,7 @@ function Footer() {
 export default function Home() {
   return (
     <main id="home" className="relative min-h-screen text-neutral-900 dark:text-white overflow-hidden bg-white dark:bg-black transition-colors">
-      {/* Background */}
+
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-white dark:bg-black/65" />
         <div
@@ -582,9 +580,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10">
-        {/* Header */}
+
         <header className="px-6 pt-5">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
@@ -622,7 +619,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Hero */}
         <section className="px-6 pt-32 pb-24 md:pt-40 md:pb-32">
           <div className="mx-auto max-w-6xl flex flex-col items-center text-center">
             <h1 className="text-5xl font-bold leading-[1.05] md:text-7xl text-black dark:text-white">
@@ -656,7 +652,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Divider title block */}
         <div className="relative bg-neutral-100 dark:bg-black h-64 flex items-center justify-center mx-auto overflow-hidden transition-colors">
           <div
             className="absolute inset-0 opacity-[0.05] dark:opacity-[0.15]"
@@ -678,12 +673,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Services */}
         <section id="services">
           <ServicesSystemSection />
         </section>
 
-        {/* Security impact */}
         <section id="security">
           <SecurityImpactSection />
         </section>
@@ -700,7 +693,6 @@ export default function Home() {
           <ContactSection />
         </section>
 
-        {/* Footer */}
         <Footer />
       </div>
       <SectionDock items={DOCK_ITEMS} offset={110} showAfter={220} />

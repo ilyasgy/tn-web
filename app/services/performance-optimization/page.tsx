@@ -9,7 +9,7 @@ export default function Page() {
         image: "/service-performance.png",
         primaryCtaText: "Improve speed",
         primaryCtaHref: "/contact",
-        price: "$750 / one-time", // Added price
+        price: "$750 / one-time", 
         sections: {
           what: [
             { title: "Core Web Vitals", desc: "Make the site feel fast, not heavy." },

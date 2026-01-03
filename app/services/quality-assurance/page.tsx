@@ -9,7 +9,7 @@ export default function Page() {
         image: "/service-qa.png",
         primaryCtaText: "Request QA review",
         primaryCtaHref: "/contact",
-        price: "$500 / one-time", // Added price
+        price: "$500 / one-time",
         sections: {
           what: [
             { title: "Bug hunt", desc: "We click everything like a real user would." },

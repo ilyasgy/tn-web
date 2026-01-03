@@ -9,7 +9,7 @@ export default function Page() {
         image: "/service-maintenance.png",
         primaryCtaText: "Request support",
         primaryCtaHref: "/contact",
-        price: "$299 / month", // Added price
+        price: "$299 / month",
         sections: {
           what: [
             { title: "Small changes", desc: "Text edits, sections, new pages, quick tweaks." },
