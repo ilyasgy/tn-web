@@ -78,7 +78,7 @@ const DOCK_ITEMS = [
 type ServiceItem = {
   title: string;
   desc: string;
-  icon: React.ReactNode; // <--- Changed from JSX.Element
+  icon: React.ReactNode; // <--- CHANGED FROM JSX.Element to React.ReactNode
   href: string;
   isNew?: boolean;
 };
@@ -104,7 +104,6 @@ function ServicesSystemSection() {
     "border-neutral-200 bg-white dark:border-white/10 dark:bg-[#080808] " +
     "hover:border-neutral-400 dark:hover:border-white/25 hover:-translate-y-1 shadow-sm";
 
-  // Grid background pattern
   const CardGrid = () => (
     <div
       className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08] pointer-events-none"
@@ -116,7 +115,6 @@ function ServicesSystemSection() {
     />
   );
 
-  // Using inline style for content-visibility
   const sectionStyle = {
     contentVisibility: "auto" as const,
     containIntrinsicSize: "1px 1100px",
@@ -129,7 +127,6 @@ function ServicesSystemSection() {
       style={sectionStyle as any}
     >
       <div className="relative mx-auto max-w-screen-2xl">
-        {/* Top CTA box */}
         <div className="mx-auto flex h-20 w-full max-w-sm items-center justify-center border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
           <Link
             href="/contact"
@@ -139,11 +136,9 @@ function ServicesSystemSection() {
           </Link>
         </div>
 
-        {/* Main container */}
         <div className="mt-10 relative rounded-[32px] border border-neutral-200 bg-white/80 dark:border-white/10 dark:bg-black/70 shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.5] via-transparent to-neutral-100/50 dark:from-white/[0.02] dark:to-black/35 pointer-events-none" />
 
-          {/* Top guide */}
           <div className="relative px-8 pt-8">
             <p className="text-sm text-neutral-500 dark:text-white/45">security can be added after launch</p>
 
@@ -157,11 +152,9 @@ function ServicesSystemSection() {
             </div>
           </div>
 
-          {/* Start here row */}
           <div className="relative px-8 pt-10 pb-12">
             <div className="mx-auto max-w-5xl">
               <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-10 items-center">
-                {/* LEFT */}
                 <div>
                   <p className="text-[1.475rem] leading-tight font-bold text-black dark:text-white">
                     Build the foundation first,
@@ -201,7 +194,6 @@ function ServicesSystemSection() {
                   </div>
                 </div>
 
-                {/* RIGHT - WEB DEV CARD (With Logo) */}
                 <Link
                   href={SERVICE_ROUTES["Web Development"]}
                   className="group relative flex flex-col justify-between rounded-[22px] border border-neutral-200 bg-white dark:border-white/12 dark:bg-black/70 overflow-hidden shadow-lg dark:shadow-none min-h-[300px]"
@@ -222,7 +214,6 @@ function ServicesSystemSection() {
             </div>
           </div>
 
-          {/* Enhancements header */}
           <div className="relative mt-8">
             <div className="w-full bg-neutral-100 dark:bg-black/70 border-y border-neutral-200 dark:border-white/10 py-4">
               <p className="text-center text-lg font-semibold text-black dark:text-white">Enhancements</p>
@@ -230,7 +221,6 @@ function ServicesSystemSection() {
             <p className="mt-3 text-center text-sm text-neutral-500 dark:text-white/60">Enhancements & ongoing services</p>
           </div>
 
-          {/* Enhancements grid (LOGOS) */}
           <div className="relative px-8 pb-12 pt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {ALL_SERVICES.map(({ title, desc, icon, href, isNew }) => {
@@ -251,7 +241,6 @@ function ServicesSystemSection() {
                     {newBadge}
 
                     <div className="relative h-32 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                      {/* Special color for security icon if needed */}
                       <span className={title === "Website Security" ? "text-[#2cff68]" : ""}>
                         {icon}
                       </span>
@@ -537,7 +526,7 @@ function Footer() {
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/white.png"
-            alt="ThreatNest logo"
+            alt="Logo"
             className="h-10 w-10 invert dark:invert-0 transition"
             loading="lazy"
             decoding="async"
