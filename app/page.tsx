@@ -439,7 +439,7 @@ function ContactSection() {
                   Start project
                 </Link>
                 <a
-                  href="#services"
+                  href="/services"
                   className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-neutral-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:border-white/25"
                 >
                   View services

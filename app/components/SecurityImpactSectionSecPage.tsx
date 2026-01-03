@@ -42,7 +42,7 @@ export default function SecurityImpactSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,255,104,0.10),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-6xl">
-        {/* Header */}
+
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">
@@ -62,13 +62,6 @@ export default function SecurityImpactSection() {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
-              href="/services/website-security"
-              className="inline-flex items-center justify-center rounded-xl border border-[#2cff68]/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:border-[#2cff68]/40"
-            >
-              See Security <span className="ml-2 text-[#2cff68]">→</span>
-            </Link>
-
-            <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-white/90"
             >
@@ -77,7 +70,6 @@ export default function SecurityImpactSection() {
           </div>
         </div>
 
-        {/* Stats */}
         <div ref={ref} className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-[22px] border border-white/10 bg-black/70 p-6 overflow-hidden">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">ATTACKS / DAY</p>
@@ -104,7 +96,6 @@ export default function SecurityImpactSection() {
           </div>
         </div>
 
-        {/* Why it matters */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-6">
           <div className="rounded-[28px] border border-white/10 bg-black/70 p-7 md:p-8">
             <p className="text-xs font-semibold tracking-[0.22em] text-white/55">UNDERSTANDING THE RISK PROFILE</p>
@@ -148,12 +139,6 @@ export default function SecurityImpactSection() {
               ))}
             </div>
 
-            <Link
-              href="/services/website-security"
-              className="mt-6 inline-flex items-center gap-3 text-sm font-semibold text-white/80 hover:text-white transition"
-            >
-              See the full security page <span className="text-white/50">→</span>
-            </Link>
           </div>
         </div>
 

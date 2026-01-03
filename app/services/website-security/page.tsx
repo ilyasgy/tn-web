@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SecurityImpactSection from "@/app/components/SecurityImpactSection";
+import SecurityImpactSection from "@/app/components/SecurityImpactSectionSecPage";
 
 const CHECKS = [
   ["Exposure", "We look for obvious leaks: public files, backups, misconfigs."],
@@ -13,7 +13,7 @@ const CHECKS = [
 export default function WebsiteSecurityDetailPage() {
   return (
     <main className="relative overflow-hidden bg-white text-neutral-900 transition-colors dark:bg-black dark:text-white">
-      
+
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white/90 dark:bg-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
@@ -42,7 +42,7 @@ export default function WebsiteSecurityDetailPage() {
                 <span className="ml-3 align-middle text-[#2cff68] text-xs font-bold tracking-[0.22em]">NEW</span>
               </h1>
               <p className="mt-6 opacity-60 md:text-lg leading-relaxed max-w-2xl">
-                A focused review that catches common risks. Not "enterprise pentesting", just real safety.
+                A specialized audit targeting high-impact vulnerabilities. We skip the enterprise bloat to focus on the security essentials that actually protect your business.
               </p>
 
               <div className="mt-8 flex items-baseline gap-3">
@@ -70,7 +70,7 @@ export default function WebsiteSecurityDetailPage() {
               </div>
               <div className="px-6 py-5">
                 <p className="font-semibold text-lg">Detailed Report</p>
-                <p className="mt-1 text-sm opacity-55">Findings + fixes, no drama.</p>
+                <p className="mt-1 text-sm opacity-55">Findings + fixes.</p>
               </div>
             </div>
           </div>

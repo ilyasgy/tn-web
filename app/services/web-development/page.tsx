@@ -31,9 +31,9 @@ const WE_BUILD = [
 ];
 
 const WHAT_YOU_GET = [
-  ["Design + build", "A modern site that looks expensive and feels clear."],
-  ["Speed", "Fast loading by default. No bloated pages."],
-  ["Mobile-first", "Looks right on phones. Not “desktop shrunk down”."],
+  ["Design + build", "Premium digital presence. Clean aesthetics backed by a high-performance foundation."],
+  ["Speed", "Fast loading by default."],
+  ["Mobile-first", "Looks right on phones."],
   ["SEO basics", "Good structure so Google can understand your site."],
   ["Tracking (optional)", "Analytics + events if you want them."],
   ["Handoff", "You own the site. You can move it anytime."],
@@ -75,7 +75,7 @@ export default function WebDevelopmentDetailPage() {
               <p className="text-xs font-semibold tracking-[0.22em] opacity-55">SERVICE</p>
               <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Web Development</h1>
               <p className="mt-6 opacity-60 md:text-lg leading-relaxed max-w-2xl">
-                We build fast, modern websites for businesses that want something clean and serious.
+                High-performance digital products for businesses that value speed, security, and a clean codebase.
               </p>
               <div className="mt-10 inline-flex rounded-xl border border-neutral-200 bg-neutral-50 p-1 dark:border-white/15 dark:bg-white/5">
                 <Link href="/contact" className="rounded-lg bg-neutral-900 px-8 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90">Start project</Link>
