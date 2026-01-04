@@ -2,12 +2,14 @@ import Link from "next/link";
 
 const PRICING = [
   {
+    slug: "small-frontend",
     title: "Small Frontend",
     price: "$700",
     desc: "Perfect for landing pages or simple portfolios.",
     features: ["1–3 Pages", "Mobile Responsive", "Contact Form", "Fast Loading"],
   },
   {
+    slug: "full-stack",
     title: "Full Stack (Small)",
     price: "$1,400",
     desc: "Frontend + Database/API for dynamic content.",
@@ -15,6 +17,7 @@ const PRICING = [
     highlight: true,
   },
   {
+    slug: "custom",
     title: "Complex / Custom",
     price: "From $2,200",
     desc: "Big frontend + backend systems.",
@@ -73,12 +76,12 @@ export default function WebDevelopmentDetailPage() {
           <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-end">
             <div>
               <p className="text-xs font-semibold tracking-[0.22em] opacity-55">SERVICE</p>
-              <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Web Development</h1>
+              <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Website Development</h1>
               <p className="mt-6 opacity-60 md:text-lg leading-relaxed max-w-2xl">
                 High-performance digital products for businesses that value speed, security, and a clean codebase.
               </p>
               <div className="mt-10 inline-flex rounded-xl border border-neutral-200 bg-neutral-50 p-1 dark:border-white/15 dark:bg-white/5">
-                <Link href="/contact" className="rounded-lg bg-neutral-900 px-8 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90">Start project</Link>
+                <Link href="/contact?service=web-dev" className="rounded-lg bg-neutral-900 px-8 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90">Start project</Link>
                 <Link href="/services" className="ml-[-6px] rounded-lg px-6 py-3 text-sm font-semibold opacity-90 transition hover:bg-neutral-200 dark:hover:bg-white/10">Back to services</Link>
               </div>
             </div>
@@ -97,6 +100,7 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
+      {/* Pricing Section with Dynamic Links */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
@@ -121,12 +125,30 @@ export default function WebDevelopmentDetailPage() {
                     <li key={f} className="flex items-center gap-3 text-sm font-medium opacity-80"><span className={`h-1.5 w-1.5 rounded-full ${plan.highlight ? "bg-[#2cff68]" : "bg-current"}`} />{f}</li>
                   ))}
                 </ul>
-                <Link href="/contact" className={`mt-8 inline-flex w-full items-center justify-center rounded-xl py-3 text-sm font-bold transition ${plan.highlight ? "bg-[#2cff68] text-black hover:bg-[#2cff68]/90" : "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"}`}>
+                {/* Updated Link to include URL parameters */}
+                <Link 
+                  href={`/contact?service=web-dev&bundle=${plan.slug}`} 
+                  className={`mt-8 inline-flex w-full items-center justify-center rounded-xl py-3 text-sm font-bold transition ${plan.highlight ? "bg-[#2cff68] text-black hover:bg-[#2cff68]/90" : "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"}`}
+                >
                   Choose {plan.title}
                 </Link>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* New Custom Website Section */}
+      <section className="px-6 py-20 border-t border-neutral-100 dark:border-white/5">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-bold">Have a custom vision?</h2>
+          <p className="mt-4 opacity-60">For enterprise-scale apps or unique systems, we offer custom quotes tailored to your requirements.</p>
+          <Link 
+            href="/contact?service=web-dev&bundle=custom" 
+            className="mt-8 inline-block rounded-xl bg-[#2cff68] px-10 py-4 text-sm font-bold text-black hover:bg-[#2cff68]/90 transition"
+          >
+            Start Custom Project →
+          </Link>
         </div>
       </section>
 
@@ -146,6 +168,7 @@ export default function WebDevelopmentDetailPage() {
         </div>
       </section>
 
+      {/* Other sections (WHAT_YOU_GET, PROCESS, Footer) remain as they are... */}
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl rounded-[32px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-[#050505] overflow-hidden">
           <div className="border-b border-neutral-200 dark:border-white/10 px-8 py-5">

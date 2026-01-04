@@ -1,14 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
-  const API_BASE = useMemo(
-    () => process.env.NEXT_PUBLIC_API_BASE || "",
-    []
-  );
+function ContactFormInner() {
+  const searchParams = useSearchParams();
+  const API_BASE = useMemo(() => process.env.NEXT_PUBLIC_API_BASE || "", []);
 
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
@@ -16,30 +15,35 @@ export default function ContactForm() {
     name: "",
     email: "",
     website: "",
+    github: "",
+    service: "web-dev", // Default: Website Development
+    bundle: "",
+    budget: "",
     message: "",
-    // honeypot (must exist, stay hidden)
     company: "",
   });
 
-  function normalizeWebsite(input: string) {
-    if (!input) return "—";
-    const trimmed = input.trim();
-    if (/^https?:\/\//i.test(trimmed)) {
-      return trimmed;
+  // Auto-fill form based on URL parameters (e.g., ?service=web-dev&bundle=small-frontend)
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    const bundleParam = searchParams.get("bundle");
+    
+    if (serviceParam) {
+      setForm(prev => ({ 
+        ...prev, 
+        service: serviceParam,
+        bundle: bundleParam || "" 
+      }));
     }
-    return `https://${trimmed}`;
-  }
+  }, [searchParams]);
+
+  const inputClasses = "w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-4 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#2cff68]/50 focus:border-[#2cff68] dark:bg-[#0A0A0A] dark:border-white/10 dark:text-white dark:placeholder:text-white/30 transition-all appearance-none cursor-pointer";
+  const labelClasses = "block text-[10px] font-bold mb-2 opacity-40 ml-1 uppercase tracking-[0.2em]";
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
     setError("");
-
-    if (!API_BASE) {
-      setStatus("error");
-      setError("API not configured");
-      return;
-    }
 
     try {
       const res = await fetch(`${API_BASE}/api/support/ticket`, {
@@ -47,96 +51,116 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: form.email,
-          message: `Name: ${form.name}\n\n${form.message}`,
-          website: normalizeWebsite(form.website),
-          topic: "Contact Form",
-          pageUrl: typeof window !== "undefined" ? window.location.href : "—",
+          message: `Service: ${form.service}\nPlan: ${form.bundle || "N/A"}\nBudget: ${form.budget || "N/A"}\nGitHub: ${form.github || "Not provided"}\nName: ${form.name}\n\n${form.message}`,
+          website: form.website || "—",
+          topic: `Inquiry: ${form.service}`,
           company: form.company, // honeypot
         }),
       });
 
-      const data = await res.json().catch(() => null);
-
-      if (!res.ok || !data?.ok) {
-        setStatus("error");
-        setError(data?.error || "Failed to send. Try again.");
-        return;
-      }
-
+      if (!res.ok) throw new Error("Failed to send");
       setStatus("success");
-      setForm({ name: "", email: "", website: "", message: "", company: "" });
-    } catch {
+      setForm({ name: "", email: "", website: "", github: "", service: "web-dev", bundle: "", budget: "", message: "", company: "" });
+    } catch (err) {
       setStatus("error");
-      setError("Network error. Try again.");
+      setError("Network error. Please try again.");
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-8 space-y-5">
-      {/* Honeypot (keep hidden) */}
-      <input
-        type="text"
-        tabIndex={-1}
-        autoComplete="off"
-        value={form.company}
-        onChange={(e) => setForm({ ...form, company: e.target.value })}
-        className="hidden"
-      />
+    <form onSubmit={onSubmit} className="mt-8 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label className={labelClasses}>Full Name</label>
+          <input type="text" placeholder="John Doe" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClasses} />
+        </div>
+        <div>
+          <label className={labelClasses}>Email Address</label>
+          <input type="email" placeholder="john@example.com" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClasses} />
+        </div>
+      </div>
 
-      <input
-        type="text"
-        placeholder="Your name *"
-        required
-        value={form.name}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label className={labelClasses}>Website (optional)</label>
+          <input type="text" placeholder="https://yoursite.com" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} className={inputClasses} />
+        </div>
+        <div>
+          <label className={labelClasses}>GitHub Username (optional)</label>
+          <input type="text" placeholder="@username" value={form.github} onChange={(e) => setForm({ ...form, github: e.target.value })} className={inputClasses} />
+        </div>
+      </div>
 
-      <input
-        type="email"
-        placeholder="Email *"
-        required
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
-      />
+      <div className="space-y-5">
+        <div className="relative">
+          <label className={labelClasses}>1. Select Service</label>
+          <select 
+            value={form.service} 
+            onChange={(e) => setForm({ ...form, service: e.target.value, bundle: "", budget: "" })} 
+            className={inputClasses}
+          >
+            <option value="web-dev" className="dark:bg-[#0A0A0A]">Website Development</option>
+            <option value="security" className="dark:bg-[#0A0A0A]">Website Security Audit</option>
+            <option disabled className="text-[10px] opacity-30">———— Ongoing & Fixes ————</option>
+            <option value="emergency" className="dark:bg-[#0A0A0A]">Emergency Fix — $150</option>
+            <option value="site-care" className="dark:bg-[#0A0A0A]">Site Care & Support — $299/mo</option>
+            <option value="pro-plan" className="dark:bg-[#0A0A0A]">Design & Maintenance Pro — $599/mo</option>
+            <option value="other" className="dark:bg-[#0A0A0A]">General Inquiry / Something Else</option>
+          </select>
+          <div className="absolute right-5 bottom-[18px] pointer-events-none opacity-40">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </div>
+        </div>
 
-      <input
-        type="text"
-        placeholder="Website URL (optional)"
-        value={form.website}
-        onChange={(e) => setForm({ ...form, website: e.target.value })}
-        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
-      />
+        {form.service === "web-dev" && (
+          <div className="relative animate-in fade-in slide-in-from-top-2 duration-300">
+            <label className={labelClasses}>2. Choose Plan</label>
+            <select value={form.bundle} required onChange={(e) => setForm({ ...form, bundle: e.target.value, budget: "" })} className={inputClasses}>
+              <option value="" disabled>Select a plan...</option>
+              <option value="small-frontend" className="dark:bg-[#0A0A0A]">Small Frontend ($700)</option>
+              <option value="full-stack" className="dark:bg-[#0A0A0A]">Full Stack Small ($1,400)</option>
+              <option value="custom" className="dark:bg-[#0A0A0A]">Custom Build (Request Quote)</option>
+            </select>
+          </div>
+        )}
 
-      <textarea
-        rows={5}
-        placeholder="What do you want to build? *"
-        required
-        value={form.message}
-        onChange={(e) => setForm({ ...form, message: e.target.value })}
-        className="w-full rounded-xl bg-neutral-100 border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-white/30 transition-colors"
-      />
+        {form.bundle === "custom" && (
+          <div className="relative animate-in fade-in slide-in-from-top-2 duration-300">
+            <label className={labelClasses}>3. Estimated Budget</label>
+            <select value={form.budget} required onChange={(e) => setForm({ ...form, budget: e.target.value })} className={inputClasses}>
+              <option value="" disabled>Select range...</option>
+              <option value="1k-2k" className="dark:bg-[#0A0A0A]">$1,000 — $2,000</option>
+              <option value="2k-5k" className="dark:bg-[#0A0A0A]">$2,000 — $5,000</option>
+              <option value="5k+" className="dark:bg-[#0A0A0A]">$5,000+</option>
+            </select>
+          </div>
+        )}
+      </div>
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="inline-flex items-center justify-center rounded-xl bg-black px-7 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-white/90"
-      >
-        {status === "loading" ? "Sending..." : "Send request"}
-      </button>
+      <div>
+        <label className={labelClasses}>Message</label>
+        <textarea rows={4} placeholder="How can we help?" required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClasses} />
+      </div>
 
-      {status === "success" && (
-        <p className="text-sm text-green-600 dark:text-white/70">
-          Sent. Check your inbox.
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-2">
+        <button type="submit" disabled={status === "loading"} className="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black px-10 py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-xl shadow-green-500/5">
+          {status === "loading" ? "Processing..." : "Send Request →"}
+        </button>
+        <p className="text-[10px] text-neutral-400 dark:text-white/30 uppercase tracking-widest text-center sm:text-left">
+          Whish or Payoneer links sent <br /> after scope confirmation.
         </p>
-      )}
+      </div>
 
-      {status === "error" && (
-        <p className="text-sm text-red-500 dark:text-red-300">
-          {error}
-        </p>
-      )}
+      {status === "success" && <p className="text-sm font-medium text-[#2cff68]">Request sent. We'll reply within 24 hours.</p>}
+      {status === "error" && <p className="text-sm font-medium text-red-500">{error}</p>}
     </form>
+  );
+}
+
+export default function ContactForm() {
+  return (
+    <Suspense fallback={<div className="h-96 w-full bg-neutral-100 dark:bg-white/5 animate-pulse rounded-2xl" />}>
+      <ContactFormInner />
+    </Suspense>
   );
 }

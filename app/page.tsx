@@ -47,23 +47,17 @@ const Icons = {
 };
 
 const SERVICES = [
-  { title: "Maintenance & Support", desc: "Updates, fixes, monitoring.", icon: Icons.Maintenance },
-  { title: "Performance & Optimization", desc: "Core Web Vitals + speed tuning.", icon: Icons.Performance },
-  { title: "Quality Assurance & Reviews", desc: "Bug hunts + pre-launch checks.", icon: Icons.QA },
-  { title: "Consulting", desc: "Architecture + roadmap planning.", icon: Icons.Consulting },
-  { title: "Analytics & Tracking", desc: "Events, funnels, reporting.", icon: Icons.Analytics },
-  { title: "Integrations", desc: "Payments, CRMs, automations.", icon: Icons.Integrations },
+  { title: "Emergency Fix", desc: "Technical or design bug fixes.", icon: Icons.QA },
+  { title: "Site Care & Support", desc: "Updates, monitoring, & small changes.", icon: Icons.Maintenance },
+  { title: "Design & Maintenance Pro", desc: "UI updates & ongoing growth.", icon: Icons.Performance },
 ];
 
 const SERVICE_ROUTES: Record<string, string> = {
   "Web Development": "/services/web-development",
   "Website Security": "/services/website-security",
-  "Maintenance & Support": "/services/maintenance-support",
-  "Performance & Optimization": "/services/performance-optimization",
-  "Quality Assurance & Reviews": "/services/quality-assurance",
-  "Consulting": "/services/consulting",
-  "Analytics & Tracking": "/services/analytics-tracking",
-  "Integrations": "/services/integrations",
+  "Emergency Fix": "/services/emergency-fix",
+  "Site Care & Support": "/services/site-care",
+  "Design & Maintenance Pro": "/services/design-maintenance-pro",
 };
 
 const DOCK_ITEMS = [
@@ -181,15 +175,15 @@ function ServicesSystemSection() {
                   </ul>
 
                   <div className="mt-8">
-                    <a
-                      href="#services"
+                    <Link
+                      href={SERVICE_ROUTES["Web Development"]}
                       className="group inline-flex items-center gap-4 rounded-full border border-neutral-200 bg-white px-16 py-3 transition hover:border-neutral-300 hover:bg-neutral-50 dark:border-white/15 dark:bg-black dark:hover:bg-white/5"
                     >
                       <span className="text-2xl font-semibold text-black dark:text-white">Start Here</span>
                       <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black transition-transform duration-200 group-hover:translate-x-1">
                         →
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
 

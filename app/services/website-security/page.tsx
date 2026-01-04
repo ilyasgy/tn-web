@@ -51,7 +51,7 @@ export default function WebsiteSecurityDetailPage() {
               </div>
 
               <div className="mt-8 inline-flex rounded-xl border border-neutral-200 bg-neutral-50 p-1 dark:border-white/15 dark:bg-white/5">
-                <Link href="/contact" className="rounded-lg bg-neutral-900 px-8 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90">
+                <Link href="/contact?service=security" className="rounded-lg bg-neutral-900 px-8 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90">
                   Get secured
                 </Link>
                 <Link

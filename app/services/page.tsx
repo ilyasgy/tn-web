@@ -57,46 +57,25 @@ type ServiceListItem = {
 
 const SERVICE_LIST: ServiceListItem[] = [
   {
-    title: "Maintenance & Support",
-    desc: "Updates, fixes, monitoring.",
+    title: "Emergency Fix",
+    desc: "Single technical or design issue fix. Fast turnaround.",
+    price: "$150",
+    icon: Icons.QA, 
+    href: "/services/emergency-fix",
+  },
+  {
+    title: "Site Care & Support",
+    desc: "Updates, monitoring, & small content swaps.",
     price: "$299/mo",
     icon: Icons.Maintenance,
-    href: "/services/maintenance-support",
+    href: "/services/site-care",
   },
   {
-    title: "Performance & Optimization",
-    desc: "Core Web Vitals + speed tuning.",
-    price: "$750",
+    title: "Design & Maintenance Pro",
+    desc: "UI updates, new sections, and ongoing growth.",
+    price: "$599/mo",
     icon: Icons.Performance,
-    href: "/services/performance-optimization",
-  },
-  {
-    title: "Quality Assurance & Reviews",
-    desc: "Bug hunts + pre-launch checks.",
-    price: "$500",
-    icon: Icons.QA,
-    href: "/services/quality-assurance",
-  },
-  {
-    title: "Consulting",
-    desc: "Architecture guidance and roadmap.",
-    price: "$150/hr",
-    icon: Icons.Consulting,
-    href: "/services/consulting",
-  },
-  {
-    title: "Analytics & Tracking",
-    desc: "Events, funnels, reporting.",
-    price: "$400",
-    icon: Icons.Analytics,
-    href: "/services/analytics-tracking",
-  },
-  {
-    title: "Integrations",
-    desc: "Payments, CRMs, automations.",
-    price: "From $600",
-    icon: Icons.Integrations,
-    href: "/services/integrations",
+    href: "/services/design-maintenance-pro",
   },
 ];
 
