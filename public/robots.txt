@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /services/
+Allow: /about
+Allow: /contact
+
+# Sitemaps help Google find your pages faster
+Sitemap: https://threatnest.com/sitemap.xml
