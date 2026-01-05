@@ -32,8 +32,10 @@ export default function ContactPage() {
         <section className="px-6 pt-20 pb-14">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">CONTACT</p>
-            <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Let's get to work.</h1>
-            <p className="mt-6 text-neutral-600 dark:text-white/55 md:text-lg">Tell us about the issue or the updates you need. We'll handle the rest.</p>
+            <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Secure your perimeter.</h1>
+            <p className="mt-6 text-neutral-600 dark:text-white/55 md:text-lg">
+              Tell us about your infrastructure, security needs, or development goals. We'll take it from there.
+            </p>
           </div>
         </section>
 
@@ -52,69 +54,51 @@ export default function ContactPage() {
                 <li className="flex items-start gap-4">
                   <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">01</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Scope & Quote</p>
-                    <p className="text-xs mt-1">We review your request and confirm the pricing tier within 24 hours.</p>
+                    <p className="text-sm font-bold text-black dark:text-white">Scope & Strategy</p>
+                    <p className="text-xs mt-1">We review your request and define the audit parameters or project scope within 24 hours.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">02</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Secure Payment</p>
-                    <p className="text-xs mt-1">You receive a secure Payment link via email.</p>
+                    <p className="text-sm font-bold text-black dark:text-white">Secure Agreement</p>
+                    <p className="text-xs mt-1">You receive a secure payment link and, if necessary, an NDA to protect your data.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">03</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Access & Build</p>
-                    <p className="text-xs mt-1">Once paid, we request GitHub or hosting access to start the work immediately.</p>
+                    <p className="text-sm font-bold text-black dark:text-white">Access & Execution</p>
+                    <p className="text-xs mt-1">We request the necessary environment access (GitHub, Cloud, or Server) to begin work immediately.</p>
                   </div>
                 </li>
               </ul>
 
               <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
-                <p className="text-sm font-semibold text-black dark:text-white">Need something else?</p>
-                <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">For custom large-scale projects, mention "Custom Build" in your message.</p>
+                <p className="text-sm font-semibold text-black dark:text-white">Enterprise & Custom Audits</p>
+                <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
+                  For recurring security checks or full-stack builds, mention "Retainer" or "Custom Build" in your message.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Footer */}
+        {/* Footer remains largely the same but ensures clean dark mode transition */}
         <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
           <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
             <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/white.png"
-                alt="ThreatNest logo"
-                className="h-10 w-10 invert dark:invert-0 transition"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">
-                THREATNEST
-              </span>
+              <img src="/white.png" alt="ThreatNest logo" className="h-10 w-10 invert dark:invert-0 transition" />
+              <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">THREATNEST</span>
             </Link>
 
             <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-                SERVICES
-              </Link>
-              <Link href="/about" className="hover:text-black dark:hover:text-white transition">
-                ABOUT
-              </Link>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-                CONTACT
-              </Link>
-              <Link href="/terms" className="hover:text-black dark:hover:text-white transition">
-                TERMS
-              </Link>
-              <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">
-                PRIVACY
-              </Link>
-              <a href="#faq" className="hover:text-black dark:hover:text-white transition">
-                FAQ
-              </a>
+              <Link href="/services" className="hover:text-black dark:hover:text-white transition">SERVICES</Link>
+              <Link href="/about" className="hover:text-black dark:hover:text-white transition">ABOUT</Link>
+              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">CONTACT</Link>
+              <Link href="/terms" className="hover:text-black dark:hover:text-white transition">TERMS</Link>
+              <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">PRIVACY</Link>
+              <a href="#faq" className="hover:text-black dark:hover:text-white transition">FAQ</a>
             </div>
 
             <p className="text-xs text-neutral-400 dark:text-white/45">
