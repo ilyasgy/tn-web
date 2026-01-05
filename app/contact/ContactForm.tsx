@@ -147,7 +147,7 @@ function ContactFormInner() {
           {status === "loading" ? "Processing..." : "Send Request →"}
         </button>
         <p className="text-[10px] text-neutral-400 dark:text-white/30 uppercase tracking-widest text-center sm:text-left">
-          Whish or Payoneer links sent <br /> after scope confirmation.
+          Payment link sent <br /> after scope confirmation.
         </p>
       </div>
 

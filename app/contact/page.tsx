@@ -62,7 +62,7 @@ export default function ContactPage() {
                   <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">02</span>
                   <div>
                     <p className="text-sm font-bold text-black dark:text-white">Secure Agreement</p>
-                    <p className="text-xs mt-1">You receive a secure payment link and, if necessary, an NDA to protect your data.</p>
+                    <p className="text-xs mt-1">You receive a secure payment link.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -74,17 +74,16 @@ export default function ContactPage() {
                 </li>
               </ul>
 
-              <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
+              {/* <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
                 <p className="text-sm font-semibold text-black dark:text-white">Enterprise & Custom Audits</p>
                 <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
                   For recurring security checks or full-stack builds, mention "Retainer" or "Custom Build" in your message.
                 </p>
-              </div>
+              </div>*/}
             </div>
           </div>
         </section>
 
-        {/* Footer remains largely the same but ensures clean dark mode transition */}
         <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
           <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
             <Link href="/" className="flex items-center gap-2">
