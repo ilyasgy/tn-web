@@ -509,7 +509,7 @@ function ContactSection() {
                   href="/start"
                   className="inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
                 >
-                  or Start Now <span className="text-neutral-400 dark:text-white/50">→</span>
+                  Start Now <span className="text-neutral-400 dark:text-white/50">→</span>
                 </Link>
               </div>
             </div>
