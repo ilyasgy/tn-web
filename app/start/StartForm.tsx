@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const SHOW_TEST_ACCOUNT_FIELDS = false;
+
 export default function StartForm() {
   const API_BASE = useMemo(() => process.env.NEXT_PUBLIC_API_BASE || "", []);
 
@@ -15,12 +17,14 @@ export default function StartForm() {
     email: "",
     website: "",
     platform: "",
-    testEmail: "",
-    testPassword: "",
     concerns: "",
     authorization: false,
+    company: "",
+
+    // hidden for now
+    testEmail: "",
+    testPassword: "",
     limitedAccess: false,
-    company: "", // honeypot
   });
 
   const inputClasses =
@@ -32,45 +36,30 @@ export default function StartForm() {
     e.preventDefault();
 
     if (!form.authorization) {
-      setError("Authorization is required before submitting.");
       setStatus("error");
+      setError("Authorization is required before submitting.");
       return;
     }
 
     setStatus("loading");
     setError("");
 
-    const composedMessage = `
-Start Request
-
-Full Name: ${form.fullName}
-Email: ${form.email}
-Website: ${form.website}
-Platform: ${form.platform || "Not provided"}
-
-Optional Test Account:
-- Email/Username: ${form.testEmail || "Not provided"}
-- Password: ${form.testPassword ? "[Provided]" : "Not provided"}
-- Limited access confirmed: ${form.limitedAccess ? "Yes" : "No"}
-
-Specific Concerns:
-${form.concerns || "None provided"}
-
-Authorization:
-The client confirmed they are the owner or authorized operator of the website and grant ThreatNest permission to perform a safe, non-destructive security assessment.
-`.trim();
-
     try {
-      const res = await fetch(`${API_BASE}/api/support/ticket`, {
+      const res = await fetch(`${API_BASE}/api/start/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: form.fullName,
+          fullName: form.fullName,
           email: form.email,
           website: form.website,
-          message: composedMessage,
-          pageUrl: typeof window !== "undefined" ? window.location.href : "/start",
+          platform: form.platform,
+          concerns: form.concerns,
+          authorization: form.authorization,
           company: form.company,
+
+          testEmail: form.testEmail,
+          testPassword: form.testPassword,
+          limitedAccess: form.limitedAccess,
         }),
       });
 
@@ -86,12 +75,12 @@ The client confirmed they are the owner or authorized operator of the website an
         email: "",
         website: "",
         platform: "",
-        testEmail: "",
-        testPassword: "",
         concerns: "",
         authorization: false,
-        limitedAccess: false,
         company: "",
+        testEmail: "",
+        testPassword: "",
+        limitedAccess: false,
       });
     } catch (err: any) {
       setStatus("error");
@@ -144,7 +133,7 @@ The client confirmed they are the owner or authorized operator of the website an
           <label className={labelClasses}>Platform (optional)</label>
           <input
             type="text"
-            placeholder="Shopify, Next.js, WordPress, etc."
+            placeholder="Shopify, WordPress, Next.js, etc."
             value={form.platform}
             onChange={(e) => setForm({ ...form, platform: e.target.value })}
             className={inputClasses}
@@ -152,54 +141,53 @@ The client confirmed they are the owner or authorized operator of the website an
         </div>
       </div>
 
-      <div className="rounded-2xl border border-neutral-200 dark:border-white/10 p-5 bg-neutral-50/70 dark:bg-white/[0.02]">
-        <p className="text-sm font-semibold text-black dark:text-white">
-          Optional test account
-        </p>
-        <p className="mt-2 text-xs text-neutral-500 dark:text-white/45">
-          Only provide a temporary account with limited permissions if you want deeper logged-in testing.
-        </p>
+      {SHOW_TEST_ACCOUNT_FIELDS && (
+        <div className="rounded-2xl border border-neutral-200 dark:border-white/10 p-5 bg-neutral-50/70 dark:bg-white/[0.02]">
+          <p className="text-sm font-semibold text-black dark:text-white">
+            Optional test account
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-          <div>
-            <label className={labelClasses}>Test Email / Username</label>
-            <input
-              type="text"
-              placeholder="test@company.com"
-              value={form.testEmail}
-              onChange={(e) => setForm({ ...form, testEmail: e.target.value })}
-              className={inputClasses}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+            <div>
+              <label className={labelClasses}>Test Email / Username</label>
+              <input
+                type="text"
+                placeholder="test@company.com"
+                value={form.testEmail}
+                onChange={(e) => setForm({ ...form, testEmail: e.target.value })}
+                className={inputClasses}
+              />
+            </div>
+
+            <div>
+              <label className={labelClasses}>Test Password</label>
+              <input
+                type="text"
+                placeholder="Temporary password"
+                value={form.testPassword}
+                onChange={(e) => setForm({ ...form, testPassword: e.target.value })}
+                className={inputClasses}
+              />
+            </div>
           </div>
 
-          <div>
-            <label className={labelClasses}>Test Password</label>
+          <label className="mt-4 flex items-start gap-3 text-sm text-neutral-600 dark:text-white/65">
             <input
-              type="text"
-              placeholder="Temporary password"
-              value={form.testPassword}
-              onChange={(e) => setForm({ ...form, testPassword: e.target.value })}
-              className={inputClasses}
+              type="checkbox"
+              checked={form.limitedAccess}
+              onChange={(e) => setForm({ ...form, limitedAccess: e.target.checked })}
+              className="mt-1 h-4 w-4 rounded border-neutral-300"
             />
-          </div>
+            <span>This account has limited access and can be removed after the assessment.</span>
+          </label>
         </div>
-
-        <label className="mt-4 flex items-start gap-3 text-sm text-neutral-600 dark:text-white/65">
-          <input
-            type="checkbox"
-            checked={form.limitedAccess}
-            onChange={(e) => setForm({ ...form, limitedAccess: e.target.checked })}
-            className="mt-1 h-4 w-4 rounded border-neutral-300"
-          />
-          <span>This account has limited access and can be removed after the assessment.</span>
-        </label>
-      </div>
+      )}
 
       <div>
         <label className={labelClasses}>Specific Concerns (optional)</label>
         <textarea
           rows={5}
-          placeholder="Login page, admin panel, checkout, file upload, headers, or anything you want checked first."
+          placeholder="Login, admin panel, headers, file upload, checkout, or anything you want checked first."
           value={form.concerns}
           onChange={(e) => setForm({ ...form, concerns: e.target.value })}
           className={inputClasses}
@@ -207,9 +195,7 @@ The client confirmed they are the owner or authorized operator of the website an
       </div>
 
       <div className="rounded-2xl border border-[#2cff68]/25 bg-[#2cff68]/[0.05] px-5 py-4">
-        <p className="text-sm font-semibold text-black dark:text-white">
-          Authorization
-        </p>
+        <p className="text-sm font-semibold text-black dark:text-white">Authorization</p>
         <label className="mt-3 flex items-start gap-3 text-sm text-neutral-700 dark:text-white/75">
           <input
             type="checkbox"
