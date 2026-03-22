@@ -3,48 +3,11 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <main className="relative text-neutral-900 dark:text-white overflow-hidden bg-white dark:bg-black transition-colors min-h-screen">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white/90 dark:bg-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
       </div>
 
-      {/* Header */}
-      <header className="px-6 pt-5">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <img
-              src="/white.png"
-              alt="ThreatNest logo"
-              className="h-10 w-10 invert dark:invert-0 transition"
-              loading="eager"
-              decoding="async"
-            />
-            <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
-            <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-              SERVICES
-            </Link>
-            <Link href="/about" className="text-black dark:text-white">
-              ABOUT
-            </Link>
-            <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-              CONTACT
-            </Link>
-          </nav>
-
-          <Link
-            href="/contact"
-            className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold tracking-wide text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
-          >
-            START PROJECT
-          </Link>
-        </div>
-      </header>
-
-      {/* Hero */}
       <section className="px-6 pt-20 pb-12">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">ABOUT</p>
@@ -74,10 +37,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Main grid */}
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
+  
           <div className="relative rounded-[28px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-black/70 p-8 overflow-hidden md:col-span-2 shadow-lg dark:shadow-none">
             <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-transparent dark:from-white/[0.03]" />
             <div className="relative">
@@ -105,7 +67,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Card 2 (security) */}
           <div className="relative rounded-[28px] border border-[#2cff68]/30 dark:border-[#2cff68]/20 bg-white/50 dark:bg-black/70 p-8 overflow-hidden shadow-lg dark:shadow-none">
             <div className="absolute inset-0 bg-gradient-to-b from-[#2cff68]/10 to-transparent dark:from-[#2cff68]/[0.06]" />
             <div className="relative">
@@ -129,7 +90,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
         <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
           <Link href="/" className="flex items-center gap-2">
