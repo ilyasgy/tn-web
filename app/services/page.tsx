@@ -106,7 +106,7 @@ export default function ServicesPage() {
             <img src="/white.png" alt="Logo" className="h-10 w-10 invert dark:invert-0 transition" />
             <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
           </Link>
-          <Link href="/contact" className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition">START PROJECT</Link>
+          <Link href="/start" className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition">START HERE</Link>
         </div>
       </header>
 
