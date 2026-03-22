@@ -99,16 +99,6 @@ export default function ServicesPage() {
   return (
     <main className="relative min-h-screen bg-white text-neutral-900 dark:bg-black dark:text-white overflow-hidden transition-colors">
       <div className="absolute inset-0 -z-10 bg-white/90 dark:bg-black/80" />
-      
-      <header className="px-6 pt-5">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/white.png" alt="Logo" className="h-10 w-10 invert dark:invert-0 transition" />
-            <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
-          </Link>
-          <Link href="/start" className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition">START HERE</Link>
-        </div>
-      </header>
 
       <section className="px-6 pt-16 pb-12 text-center">
         <h1 className="mt-5 text-4xl md:text-5xl font-bold">Services & Pricing</h1>
