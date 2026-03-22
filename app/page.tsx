@@ -588,46 +588,6 @@ export default function Home() {
 
       <div className="relative z-10">
 
-        <header className="px-6 pt-5">
-          <div className="mx-auto flex max-w-6xl items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/white.png"
-                alt="ThreatNest logo"
-                className="h-10 w-10 invert dark:invert-0 transition"
-                loading="eager"
-                decoding="async"
-              />
-              <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
-              <Link href="/start" className="hover:text-black dark:hover:text-white transition">
-                START
-              </Link>
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-                SERVICES
-              </Link>
-              <a href="#process" className="hover:text-black dark:hover:text-white transition">
-                PROCESS
-              </a>
-              <a href="#faq" className="hover:text-black dark:hover:text-white transition">
-                FAQ
-              </a>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-                CONTACT
-              </Link>
-            </nav>
-
-            <a
-              href="/start"
-              className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold tracking-wide text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition"
-            >
-              START PROJECT
-            </a>
-          </div>
-        </header>
-
         <section className="px-6 pt-32 pb-24 md:pt-40 md:pb-32">
           <div className="mx-auto max-w-6xl flex flex-col items-center text-center">
             <h1 className="text-5xl font-bold leading-[1.05] md:text-7xl text-black dark:text-white">
