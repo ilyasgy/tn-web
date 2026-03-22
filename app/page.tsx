@@ -120,14 +120,6 @@ function ServicesSystemSection() {
       style={sectionStyle as any}
     >
       <div className="relative mx-auto max-w-screen-2xl">
-        <div className="mx-auto flex h-20 w-full max-w-sm items-center justify-center border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
-          <Link
-            href="/start"
-            className="text-neutral-600 hover:text-black dark:text-white/70 dark:hover:text-white transition text-2xl font-semibold"
-          >
-            Start your project
-          </Link>
-        </div>
 
         <div className="mt-10 relative rounded-[32px] border border-neutral-200 bg-white/80 dark:border-white/10 dark:bg-black/70 shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.5] via-transparent to-neutral-100/50 dark:from-white/[0.02] dark:to-black/35 pointer-events-none" />
