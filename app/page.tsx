@@ -176,7 +176,7 @@ function ServicesSystemSection() {
 
                   <div className="mt-8">
                     <Link
-                      href={SERVICE_ROUTES["Web Development"]}
+                      href="/start}
                       className="group inline-flex items-center gap-4 rounded-full border border-neutral-200 bg-white px-16 py-3 transition hover:border-neutral-300 hover:bg-neutral-50 dark:border-white/15 dark:bg-black dark:hover:bg-white/5"
                     >
                       <span className="text-2xl font-semibold text-black dark:text-white">Start Here</span>
@@ -503,6 +503,13 @@ function ContactSection() {
               >
                 Go to contact <span className="text-neutral-400 dark:text-white/50">→</span>
               </Link>
+
+              <Link
+                href="/start"
+                className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
+              >
+                or Start Now <span className="text-neutral-400 dark:text-white/50">→</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -593,6 +600,9 @@ export default function Home() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
+              <Link href="/start" className="hover:text-black dark:hover:text-white transition">
+                START
+              </Link>
               <Link href="/services" className="hover:text-black dark:hover:text-white transition">
                 SERVICES
               </Link>
@@ -608,7 +618,7 @@ export default function Home() {
             </nav>
 
             <a
-              href="#contact"
+              href="/start"
               className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold tracking-wide text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90 transition"
             >
               START PROJECT
@@ -632,7 +642,7 @@ export default function Home() {
             <div className="mt-12">
               <div className="relative inline-flex rounded-xl border border-neutral-300 bg-neutral-100 p-1 dark:border-white/15 dark:bg-white/5">
                 <a
-                  href="#contact"
+                  href="/start"
                   className="relative z-10 rounded-lg bg-black px-9 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
                 >
                   Start project
