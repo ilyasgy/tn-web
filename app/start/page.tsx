@@ -21,26 +21,14 @@ export default function StartPage() {
         <header className="px-6 pt-5">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/white.png"
-                alt="ThreatNest"
-                className="h-10 w-10 invert dark:invert-0 transition"
-              />
-              <span className="text-sm font-semibold tracking-[0.22em]">
-                THREATNEST
-              </span>
+              <img src="/white.png" alt="ThreatNest" className="h-10 w-10 invert dark:invert-0 transition" />
+              <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-                SERVICES
-              </Link>
-              <Link href="/about" className="hover:text-black dark:hover:text-white transition">
-                ABOUT
-              </Link>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-                CONTACT
-              </Link>
+              <Link href="/services" className="hover:text-black dark:hover:text-white transition">SERVICES</Link>
+              <Link href="/about" className="hover:text-black dark:hover:text-white transition">ABOUT</Link>
+              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">CONTACT</Link>
             </nav>
 
             <Link
@@ -54,15 +42,13 @@ export default function StartPage() {
 
         <section className="px-6 pt-20 pb-14">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">
-              START
-            </p>
+            <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">START</p>
             <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">
               Start your security review.
             </h1>
             <p className="mt-6 text-neutral-600 dark:text-white/55 md:text-lg max-w-2xl mx-auto">
               Send your website details and authorization in one place.
-              We’ll review the scope and reply with the next steps before any work begins.
+              We’ll review the scope and reply with next steps before any work begins.
             </p>
           </div>
         </section>
@@ -85,98 +71,45 @@ export default function StartPage() {
 
               <ul className="mt-6 space-y-5 text-neutral-600 dark:text-white/70">
                 <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">
-                    01
-                  </span>
+                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">01</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">
-                      Review & Scope
-                    </p>
-                    <p className="text-xs mt-1">
-                      We review your website, platform, and any specific concerns.
-                    </p>
+                    <p className="text-sm font-bold text-black dark:text-white">Review & Scope</p>
+                    <p className="text-xs mt-1">We review your website and any specific concerns first.</p>
                   </div>
                 </li>
 
                 <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">
-                    02
-                  </span>
+                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">02</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">
-                      Authorization Confirmed
-                    </p>
-                    <p className="text-xs mt-1">
-                      We only proceed with owner or authorized permission.
-                    </p>
+                    <p className="text-sm font-bold text-black dark:text-white">Authorization Confirmed</p>
+                    <p className="text-xs mt-1">We only proceed with the owner or an authorized operator.</p>
                   </div>
                 </li>
 
                 <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">
-                    03
-                  </span>
+                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">03</span>
                   <div>
-                    <p className="text-sm font-bold text-black dark:text-white">
-                      Proposal & Execution
-                    </p>
-                    <p className="text-xs mt-1">
-                      If the scope fits, we send the proposal and begin after confirmation.
-                    </p>
+                    <p className="text-sm font-bold text-black dark:text-white">Proposal & Start</p>
+                    <p className="text-xs mt-1">If the scope fits, we reply with the next steps and begin after confirmation.</p>
                   </div>
                 </li>
               </ul>
 
               <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
-                <p className="text-sm font-semibold text-black dark:text-white">
-                  What you may need
+                <p className="text-sm font-semibold text-black dark:text-white">This page is for starting work.</p>
+                <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
+                  For general questions, budget discussions, or service inquiries, use the contact page.
                 </p>
-                <ul className="mt-3 space-y-2 text-sm text-neutral-600 dark:text-white/55">
-                  <li>• Website link</li>
-                  <li>• Optional test account with limited access</li>
-                  <li>• Any areas you want checked first</li>
-                </ul>
+                <Link
+                  href="/contact"
+                  className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
+                >
+                  Go to contact <span className="text-neutral-400 dark:text-white/50">→</span>
+                </Link>
               </div>
             </div>
           </div>
         </section>
-
-        <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
-          <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-            <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/white.png"
-                alt="ThreatNest logo"
-                className="h-10 w-10 invert dark:invert-0 transition"
-              />
-              <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">
-                THREATNEST
-              </span>
-            </Link>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-                SERVICES
-              </Link>
-              <Link href="/about" className="hover:text-black dark:hover:text-white transition">
-                ABOUT
-              </Link>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-                CONTACT
-              </Link>
-              <Link href="/terms" className="hover:text-black dark:hover:text-white transition">
-                TERMS
-              </Link>
-              <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">
-                PRIVACY
-              </Link>
-            </div>
-
-            <p className="text-xs text-neutral-400 dark:text-white/45">
-              © {new Date().getFullYear()} ThreatNest. All rights reserved.
-            </p>
-          </div>
-        </footer>
       </div>
     </main>
   );
