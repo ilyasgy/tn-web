@@ -194,7 +194,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <footer className="relative px-6 py-14 border-t border-neutral-200 bg-neutral-50 dark:bg-black dark:border-white/10 transition-colors">
+    {/*<footer className="relative px-6 py-14 border-t border-neutral-200 bg-neutral-50 dark:bg-black dark:border-white/10 transition-colors">
         <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
           <Link href="/" className="flex items-center gap-2">
             <img
@@ -234,7 +234,7 @@ export default function ServicesPage() {
             © {new Date().getFullYear()} ThreatNest. All rights reserved.
           </p>
         </div>
-      </footer>
+      </footer>*/}
     </main>
   );
 }
