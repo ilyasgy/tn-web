@@ -22,9 +22,9 @@ export default function StartForm() {
     company: "",
 
     // hidden for now
-    testEmail: "",
-    testPassword: "",
-    limitedAccess: false,
+    // testEmail: "",
+    // testPassword: "",
+    // limitedAccess: false,
   });
 
   const inputClasses =
