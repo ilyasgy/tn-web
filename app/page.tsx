@@ -176,7 +176,7 @@ function ServicesSystemSection() {
 
                   <div className="mt-8">
                     <Link
-                      href="/start}
+                      href="/start"
                       className="group inline-flex items-center gap-4 rounded-full border border-neutral-200 bg-white px-16 py-3 transition hover:border-neutral-300 hover:bg-neutral-50 dark:border-white/15 dark:bg-black dark:hover:bg-white/5"
                     >
                       <span className="text-2xl font-semibold text-black dark:text-white">Start Here</span>
