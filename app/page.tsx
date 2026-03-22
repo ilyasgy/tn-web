@@ -662,7 +662,7 @@ export default function Home() {
           <ContactSection />
         </section>
 
-        <Footer />
+        // <Footer />
       </div>
       <SectionDock items={DOCK_ITEMS} offset={110} showAfter={220} />
     </main>
