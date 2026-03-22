@@ -57,9 +57,9 @@ export default function StartForm() {
           authorization: form.authorization,
           company: form.company,
 
-          testEmail: form.testEmail,
-          testPassword: form.testPassword,
-          limitedAccess: form.limitedAccess,
+          //testEmail: form.testEmail,
+          //testPassword: form.testPassword,
+          //limitedAccess: form.limitedAccess,
         }),
       });
 
@@ -78,9 +78,9 @@ export default function StartForm() {
         concerns: "",
         authorization: false,
         company: "",
-        testEmail: "",
-        testPassword: "",
-        limitedAccess: false,
+       // testEmail: "",
+       // testPassword: "",
+        //limitedAccess: false,
       });
     } catch (err: any) {
       setStatus("error");
