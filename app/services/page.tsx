@@ -158,7 +158,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-24">
+      <section className="px-6 pb-14">
         <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {SERVICE_LIST.map((s) => (
             <Link
