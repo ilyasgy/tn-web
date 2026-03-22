@@ -497,19 +497,21 @@ function ContactSection() {
               <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
                 Use the contact page to share details and we’ll reply with next steps.
               </p>
-              <Link
-                href="/contact"
-                className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
-              >
-                Go to contact <span className="text-neutral-400 dark:text-white/50">→</span>
-              </Link>
-
-              <Link
-                href="/start"
-                className="mt-5 inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
-              >
-                or Start Now <span className="text-neutral-400 dark:text-white/50">→</span>
-              </Link>
+              <div className="mt-5 flex flex-wrap items-center gap-6">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
+                >
+                  Go to contact <span className="text-neutral-400 dark:text-white/50">→</span>
+                </Link>
+              
+                <Link
+                  href="/start"
+                  className="inline-flex items-center gap-3 text-sm font-semibold text-neutral-700 hover:text-black dark:text-white/80 dark:hover:text-white transition"
+                >
+                  or Start Now <span className="text-neutral-400 dark:text-white/50">→</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
