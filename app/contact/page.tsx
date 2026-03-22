@@ -66,7 +66,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
+        {/*<footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
           <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
             <Link href="/" className="flex items-center gap-2">
               <img src="/white.png" alt="ThreatNest logo" className="h-10 w-10 invert dark:invert-0 transition" />
@@ -86,7 +86,7 @@ export default function ContactPage() {
               © {new Date().getFullYear()} ThreatNest. All rights reserved.
             </p>
           </div>
-        </footer>
+        </footer>*/}
       </div>
     </main>
   );
