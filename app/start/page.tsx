@@ -18,27 +18,6 @@ export default function StartPage() {
       </div>
 
       <div className="relative z-10">
-        <header className="px-6 pt-5">
-          <div className="mx-auto flex max-w-6xl items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/white.png" alt="ThreatNest" className="h-10 w-10 invert dark:invert-0 transition" />
-              <span className="text-sm font-semibold tracking-[0.22em]">THREATNEST</span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/70">
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">SERVICES</Link>
-              <Link href="/about" className="hover:text-black dark:hover:text-white transition">ABOUT</Link>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">CONTACT</Link>
-            </nav>
-
-            <Link
-              href="/start"
-              className="rounded-lg bg-neutral-900 px-5 py-2 text-xs font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              START REVIEW
-            </Link>
-          </div>
-        </header>
 
         <section className="px-6 pt-20 pb-14">
           <div className="mx-auto max-w-4xl text-center">
