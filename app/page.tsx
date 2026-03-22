@@ -122,7 +122,7 @@ function ServicesSystemSection() {
       <div className="relative mx-auto max-w-screen-2xl">
         <div className="mx-auto flex h-20 w-full max-w-sm items-center justify-center border border-neutral-200 bg-white dark:border-white/10 dark:bg-black">
           <Link
-            href="/contact"
+            href="/start"
             className="text-neutral-600 hover:text-black dark:text-white/70 dark:hover:text-white transition text-2xl font-semibold"
           >
             Start your project
@@ -427,7 +427,7 @@ function ContactSection() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/contact"
+                  href="/start"
                   className="inline-flex items-center justify-center rounded-xl bg-black px-7 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-white/90"
                 >
                   Start project
@@ -529,6 +529,9 @@ function Footer() {
         </Link>
 
         <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
+           <Link href="/start" className="hover:text-black dark:hover:text-white transition">
+            START
+          </Link>
           <Link href="/services" className="hover:text-black dark:hover:text-white transition">
             SERVICES
           </Link>
