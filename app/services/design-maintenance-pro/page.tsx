@@ -5,41 +5,41 @@ export default function DesignMaintenanceProPage() {
     <ServiceDetailPage
       cfg={{
         title: "Design & Maintenance Pro",
-        subtitle: "A dedicated webmaster for businesses that need constant growth and visual evolution.",
+        subtitle: "Monthly design and site updates for teams that are still shipping.",
         image: "/service-performance.png",
-        primaryCtaText: "Join Pro Plan",
+        primaryCtaText: "Ask about Pro",
         primaryCtaHref: "/contact?service=design-maintenance-pro",
         price: "$599 / mo",
         sections: {
           what: [
-            { title: "Design Refresh", desc: "Monthly UI improvements and landing page tweaks." },
-            { title: "New Sections", desc: "Building new blocks, pages, or features as you scale." },
-            { title: "Full Care", desc: "All features of the Site Care plan are included." },
+            { title: "Design updates", desc: "Fresh sections, visual updates, and cleaner pages." },
+            { title: "New work", desc: "New pages, landing sections, and ongoing frontend changes." },
+            { title: "Technical upkeep", desc: "Regular support work stays covered while the site grows." },
           ],
           includes: {
             label: "INCLUDED",
             title: "What you get",
             items: [
-              "Proactive design audits",
+              "Design reviews and visual improvements",
               "Priority support requests",
-              "Unlimited small design tweaks",
-              "Bi-weekly check-ins",
+              "Ongoing frontend changes",
+              "Regular check-ins",
             ],
           },
           goodFor: {
             label: "GOOD FOR",
-            title: "Best fit if",
+            title: "Good fit",
             items: [
-              "You are constantly launching new marketing campaigns",
-              "Your site needs regular visual updates to stay fresh",
-              "You want a technical partner involved in your growth",
+              "Teams running regular campaigns",
+              "Sites that need fresh design work every month",
+              "Businesses that want one partner staying close to the site",
             ],
           },
           howItGoes: [
-            { n: "01", title: "Strategy", desc: "We discuss your monthly goals." },
-            { n: "02", title: "Design", desc: "We propose and implement visual updates." },
-            { n: "03", title: "Optimize", desc: "Regular performance and conversion tuning." },
-            { n: "04", title: "Scale", desc: "Continuous improvements as your business grows." },
+            { n: "01", title: "Plan", desc: "We review the monthly goals and the work list." },
+            { n: "02", title: "Design", desc: "We ship the visual and frontend changes." },
+            { n: "03", title: "Check", desc: "We review the changes and tighten the details." },
+            { n: "04", title: "Repeat", desc: "The next batch of work starts from there." },
           ],
         },
       }}

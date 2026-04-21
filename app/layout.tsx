@@ -1,43 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import ThemeToggle from "./components/ThemeToggle";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollRevealObserver from "./components/ScrollRevealObserver";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
+import ThemeToggle from "./components/ThemeToggle";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 
 export const metadata: Metadata = {
   title: {
-    default: "ThreatNest — Modern Web Development",
-    template: "%s — ThreatNest",
+    default: "ThreatNest - Web Development and Website Security",
+    template: "%s - ThreatNest",
   },
-  description: "We design, build, and deploy modern websites, from planning to launch.",
-
+  description:
+    "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
   metadataBase: new URL("https://threatnest.com"),
-
-  // Optional: nice for PWA installs + iOS home screen naming
   applicationName: "ThreatNest",
   appleWebApp: {
     title: "ThreatNest",
     capable: true,
   },
   manifest: "/manifest.json",
-
   openGraph: {
     type: "website",
     url: "https://threatnest.com/",
-    title: "ThreatNest — Modern Web Development",
-    description: "We design, build, and deploy modern websites, from planning to launch.",
+    title: "ThreatNest - Web Development and Website Security",
+    description:
+      "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
     siteName: "ThreatNest",
     images: [
       {
@@ -48,24 +44,17 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "ThreatNest — Modern Web Development",
-    description: "We design, build, and deploy modern websites, from planning to launch.",
+    title: "ThreatNest - Web Development and Website Security",
+    description:
+      "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
     images: ["/og.png"],
   },
-
-  // If you used RealFaviconGenerator + placed files in app/ (or src/app/),
-  // Next can auto-detect. Keeping this is fine too.
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-    ],
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
-
   robots: {
     index: true,
     follow: true,
@@ -78,9 +67,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // CHANGED: Removed className="dark" so it defaults to Light Mode
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                try {
+                  var saved = localStorage.getItem("theme");
+                  var root = document.documentElement;
+                  var isDark = saved !== "light";
+                  root.classList.toggle("dark", isDark);
+                  root.classList.toggle("light", !isDark);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} antialiased`}>
+        <Suspense fallback={null}>
+          <ScrollToTopOnRouteChange />
+        </Suspense>
+        <ScrollRevealObserver />
         <Navbar />
         {children}
         <Footer />

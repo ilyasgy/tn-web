@@ -1,230 +1,275 @@
-import React from "react";
 import Link from "next/link";
-import SecurityImpactSection from "@/app/components/SecurityImpactSection";
-import SectionDock from "@/app/components/SectionDock";
 
-// --- ICONS ---
-const Icons = {
-  WebDev: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-16 h-16">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 19.5" />
-    </svg>
-  ),
-  Security: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-    </svg>
-  ),
-  Maintenance: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-    </svg>
-  ),
-  Performance: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-    </svg>
-  ),
-  QA: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-    </svg>
-  ),
-  Consulting: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-    </svg>
-  ),
-  Analytics: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-    </svg>
-  ),
-  Integrations: (
-    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-12 h-12">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-    </svg>
-  ),
-};
-
-type ServiceListItem = {
+type ServiceRow = {
   title: string;
-  desc: string;
   price: string;
-  icon: React.ReactNode;
   href: string;
+  description: string;
+  features: string;
 };
 
-const SERVICE_LIST: ServiceListItem[] = [
+const SERVICE_ROUTES = {
+  webDevelopment: "/services/web-development",
+  websiteSecurity: "/services/website-security",
+} as const;
+
+const AT_A_GLANCE = [
+  ["From $700", "Web development is priced by scope."],
+  ["$500 Fixed", "Security reviews are $250 to start, $250 on delivery."],
+  ["48-Hour Report", "Security findings land within 48 hours after testing ends."],
+  ["14-Day Retest", "One free security retest is included after you fix the issues."],
+] as const;
+
+const CORE_SERVICES: ServiceRow[] = [
   {
-    title: "Emergency Fix",
-    desc: "Single technical or design issue fix. Fast turnaround.",
-    price: "$150",
-    icon: Icons.QA, 
-    href: "/services/emergency-fix",
+    title: "Web Development",
+    price: "From $700",
+    href: SERVICE_ROUTES.webDevelopment,
+    description:
+      "We design and build websites that are fast, easy to use, and easy to update. For new websites and rebuilds.",
+    features:
+      "Page structure and content flow / Responsive frontend build / SEO, analytics, and launch setup.",
   },
   {
-    title: "Site Care & Support",
-    desc: "Updates, monitoring, & small content swaps.",
-    price: "$299/mo",
-    icon: Icons.Maintenance,
-    href: "/services/site-care",
-  },
-  {
-    title: "Design & Maintenance Pro",
-    desc: "UI updates, new sections, and ongoing growth.",
-    price: "$599/mo",
-    icon: Icons.Performance,
-    href: "/services/design-maintenance-pro",
+    title: "Website Security",
+    price: "$500 fixed",
+    href: SERVICE_ROUTES.websiteSecurity,
+    description:
+      "We review live websites for auth issues, access problems, risky setups, and other web app flaws. For sites that are already live.",
+    features:
+      "Manual testing / Report with proof and fixes / 48-hour report and 14-day retest.",
   },
 ];
 
-const SERVICE_ROUTES: Record<string, string> = {
-  "Web Development": "/services/web-development",
-  "Website Security": "/services/website-security",
-};
+const SECURITY_METHOD = [
+  {
+    title: "Recon",
+    text: "We map the public attack surface first: domains, frameworks, hidden endpoints, and anything already exposed.",
+  },
+  {
+    title: "Config review",
+    text: "We check headers, TLS, cookies, exposed files, admin paths, and the kind of setup problems that cause avoidable risk.",
+  },
+  {
+    title: "Auth testing",
+    text: "We test login, reset, session handling, enumeration, and takeover paths that affect real accounts.",
+  },
+  {
+    title: "Logic testing",
+    text: "We look for access issues, forced browsing, workflow mistakes, and business-logic problems scanners usually miss.",
+  },
+] as const;
 
-export default function ServicesPage() {
-  const CardGrid = () => (
-    <div
-      className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08] pointer-events-none"
-      style={{
-        backgroundImage:
-          "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
-        backgroundSize: "20px 20px",
-      }}
-    />
-  );
+const DELIVERABLES = [
+  "Short summary",
+  "Scope recap",
+  "Findings with proof and fixes",
+  "One free retest within 14 days",
+] as const;
 
+const TERMS = [
+  ["Testing window", "2 business days from written authorization."],
+  ["Fee structure", "$250 before testing, $250 on delivery."],
+  ["Report timing", "Final PDF delivered within 48 hours after testing concludes."],
+  ["After delivery", "7-day written Q&A and a 14-day retest window."],
+] as const;
+
+function HeroSection() {
   return (
-    <main className="relative min-h-screen bg-white text-neutral-900 dark:bg-black dark:text-white overflow-hidden transition-colors">
-      <div className="absolute inset-0 -z-10 bg-white/90 dark:bg-black/80" />
+    <section className="tn-page-hero">
+      <div className="tn-container">
+        <div
+          className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          <h1 className="max-w-none">Services</h1>
+          <p className="tn-body tn-page-summary max-w-3xl">
+            Need a site built? Start with development. Already live? Start with security.
+          </p>
 
-      <section className="px-6 pt-16 pb-12 text-center">
-        <h1 className="mt-5 text-4xl md:text-5xl font-bold">Services & Pricing</h1>
-        <p className="mt-4 opacity-60">Transparent pricing. No hidden fees.</p>
-      </section>
-
-      <section className="px-6 pb-6">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <Link
-            href="/services/web-development"
-            className="group relative flex flex-col justify-between rounded-[24px] border border-neutral-200 bg-white dark:bg-[#080808] dark:border-white/10 overflow-hidden transition-all duration-300 hover:border-neutral-400 dark:hover:border-white/25 hover:-translate-y-1 shadow-sm md:min-h-[280px]"
-          >
-            <CardGrid />
-            <div className="relative h-48 flex items-center justify-center text-neutral-800 dark:text-white group-hover:scale-110 transition-transform duration-500">
-              {Icons.WebDev}
-            </div>
-            <div className="px-8 pb-8 relative z-10">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2">
-                <div>
-                  <p className="font-bold text-xl">Web Development</p>
-                  <p className="mt-2 text-sm opacity-55">Landing pages & custom builds.</p>
-                </div>
-                <span className="rounded bg-neutral-100 px-3 py-1.5 text-xs font-bold text-neutral-600 dark:bg-white/10 dark:text-white whitespace-nowrap">
-                  from $700
-                </span>
-              </div>
-            </div>
-          </Link>
-
-          <Link
-            href="/services/website-security"
-            className="group relative flex flex-col justify-between rounded-[24px] border border-[#2cff68]/30 dark:border-[#2cff68]/20 bg-white dark:bg-[#080808] overflow-hidden transition-all duration-300 hover:border-[#2cff68]/60 dark:hover:border-[#2cff68]/40 hover:-translate-y-1 shadow-sm md:min-h-[280px]"
-          >
-            <CardGrid />
-
-            <div className="absolute top-6 right-6 z-20">
-              <span className="text-[#2cff68] text-[10px] font-bold tracking-widest border border-[#2cff68]/30 px-2 py-1 rounded-full bg-[#2cff68]/5">NEW</span>
-            </div>
-
-            <div className="relative h-48 flex items-center justify-center text-[#2cff68] group-hover:scale-110 transition-transform duration-500">
-              {Icons.Security}
-            </div>
-            <div className="px-8 pb-8 relative z-10">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2">
-                <div>
-                  <p className="font-bold text-xl">Website Security</p>
-                  <p className="mt-2 text-sm opacity-55">Fixes & protection.</p>
-                </div>
-                <span className="rounded bg-[#2cff68]/10 px-3 py-1.5 text-xs font-bold text-[#2cff68] whitespace-nowrap">
-                  $300
-                </span>
-              </div>
-            </div>
-          </Link>
-
-        </div>
-      </section>
-
-      <section className="px-6 pb-14">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {SERVICE_LIST.map((s) => (
-            <Link
-              key={s.title}
-              href={s.href}
-              className="group relative flex flex-col justify-between rounded-[18px] border border-neutral-200 bg-white dark:bg-[#080808] dark:border-white/10 overflow-hidden transition-all duration-300 hover:border-neutral-400 dark:hover:border-white/25 hover:-translate-y-1 shadow-sm h-[240px]"
-            >
-              <CardGrid />
-              <div className="relative flex-1 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                {s.icon}
-              </div>
-              <div className="px-6 pb-6 relative z-10">
-                <div className="flex justify-between items-start">
-                  <p className="font-bold text-base leading-tight">{s.title}</p>
-                  <span className="rounded bg-neutral-100 px-2 py-1 text-[10px] font-bold text-neutral-600 dark:bg-white/10 dark:text-white whitespace-nowrap ml-2">
-                    {s.price}
-                  </span>
-                </div>
-                <p className="mt-2 text-xs opacity-55 line-clamp-1">{s.desc}</p>
-              </div>
+          <div className="tn-actions justify-center">
+            <Link href={SERVICE_ROUTES.webDevelopment} className="tn-button-primary">
+              Web Development
             </Link>
+            <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
+              Security Review
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AtAGlanceSection() {
+  return (
+    <section className="tn-cta-band">
+      <div className="tn-container">
+        <div
+          className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          {AT_A_GLANCE.map(([title, text]) => (
+            <div key={title} className="border-t border-[var(--border-grid)] pt-6">
+              <p className="text-[var(--accent-blue)] text-2xl font-semibold leading-tight tracking-[-0.03em]">
+                {title}
+              </p>
+              <p className="tn-body pt-3">{text}</p>
+            </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-    {/*<footer className="relative px-6 py-14 border-t border-neutral-200 bg-neutral-50 dark:bg-black dark:border-white/10 transition-colors">
-        <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-          <Link href="/" className="flex items-center gap-2">
-            <img
-              src="/white.png"
-              alt="Logo"
-              className="h-10 w-10 invert dark:invert-0 transition"
-              loading="lazy"
-              decoding="async"
-            />
-            <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">
-              THREATNEST
-            </span>
-          </Link>
+function CoreServicesSection() {
+  return (
+    <section className="tn-cta-band">
+      <div className="tn-container tn-section-stack">
+        <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
+          <h2>Choose your path.</h2>
+        </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
-            <Link href="/services" className="hover:text-black dark:hover:text-white transition">
-              SERVICES
-            </Link>
-            <Link href="/about" className="hover:text-black dark:hover:text-white transition">
-              ABOUT
-            </Link>
-            <Link href="/contact" className="hover:text-black dark:hover:text-white transition">
-              CONTACT
-            </Link>
-            <Link href="/terms" className="hover:text-black dark:hover:text-white transition">
-              TERMS
-            </Link>
-            <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">
-              PRIVACY
-            </Link>
-            <a href="#faq" className="hover:text-black dark:hover:text-white transition">
-              FAQ
-            </a>
-          </div>
+        <div className="tn-line-list" data-tn-reveal="up" data-tn-reveal-state="hidden">
+          {CORE_SERVICES.map((service) => (
+            <article key={service.title} className="tn-line-item">
+              <div className="flex flex-col gap-5">
+                <div className="flex flex-wrap items-end gap-3">
+                  <h3>{service.title}</h3>
+                  <p className="text-[var(--accent-blue)] text-base font-semibold">{service.price}</p>
+                </div>
 
-          <p className="text-xs text-neutral-400 dark:text-white/45">
-            © {new Date().getFullYear()} ThreatNest. All rights reserved.
+                <p className="tn-body">{service.description}</p>
+                <p className="tn-body tn-body-strong">{service.features}</p>
+
+                <div>
+                  <Link href={service.href} className="tn-button-secondary inline-flex items-center gap-2">
+                    See details
+                    <span aria-hidden="true">-&gt;</span>
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SecurityMethodSection() {
+  return (
+    <section className="pb-20 pt-20 md:pb-24 md:pt-24">
+      <div className="tn-container tn-section-stack">
+        <div
+          className="tn-section-head tn-section-head-wide"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          <h2>How the review works.</h2>
+          <p className="tn-body">
+            We agree on the scope first, test by hand, and send a report with proof and fixes. No
+            destructive actions. Every issue is verified before it goes into the report, and
+            urgent findings are flagged quickly. Reports and access details stay strictly
+            confidential.
           </p>
         </div>
-      </footer>*/}
+
+        <div
+          className="tn-number-list tn-number-list-balanced"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          {SECURITY_METHOD.map((item, index) => (
+            <div key={item.title} className="tn-number-row">
+              <p className="tn-number">0{index + 1}</p>
+              <div className="tn-stack-16">
+                <h3>{item.title}</h3>
+                <p className="tn-body">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DeliverablesSection() {
+  return (
+    <section className="tn-cta-band">
+      <div className="tn-container tn-grid-2">
+        <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
+          <h2>Report and retest.</h2>
+          <p className="tn-body">
+            You get a short report, detailed findings, and one retest after fixes.
+          </p>
+
+          <div className="tn-plain-list">
+            {DELIVERABLES.map((item) => (
+              <p key={item} className="tn-plain-list-item">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2" data-tn-reveal="right" data-tn-reveal-state="hidden">
+          {TERMS.map(([title, text]) => (
+            <div key={title} className="border-t border-[var(--border-grid)] pt-6">
+              <p className="text-[var(--text-primary)] text-2xl font-semibold leading-tight tracking-[-0.03em]">
+                {title}
+              </p>
+              <p className="tn-body pt-3">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FooterCtaSection() {
+  return (
+    <section className="pb-24 pt-20 md:pb-28 md:pt-24">
+      <div className="tn-container">
+        <div
+          className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          <h2>Ready to start?</h2>
+          <p className="tn-body max-w-3xl">
+            If the site is not live yet, start with web development. If it is already live, start
+            with the security review.
+          </p>
+
+          <div className="tn-actions justify-center">
+            <Link href="/contact" className="tn-button-primary">
+              Contact Us
+            </Link>
+            <Link href="/start" className="tn-button-secondary">
+              Request a Security Review
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <main className="tn-page tn-blueprint-grid tn-main">
+      <HeroSection />
+      <CoreServicesSection />
+      <SecurityMethodSection />
+      <DeliverablesSection />
+      <AtAGlanceSection />
+      <FooterCtaSection />
     </main>
   );
 }

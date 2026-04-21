@@ -1,93 +1,92 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import ContactForm from "./ContactForm";
+import SocialLinks from "../components/SocialLinks";
+
+const CONTACT_STEPS = [
+  ["Send", "The website, the job, and any deadline."],
+  ["Reply", "We tell you how we would handle it, the timing, and the price."],
+  ["Security", "If it is already a live-site review, you can also use the review form."],
+];
+
+function ContactFormFallback() {
+  return (
+    <div className="tn-line-list">
+      <div className="tn-line-item">
+        <p className="tn-body">Loading form...</p>
+      </div>
+    </div>
+  );
+}
 
 export default function ContactPage() {
   return (
-    <main className="relative text-neutral-900 dark:text-white overflow-hidden bg-white dark:bg-black transition-colors min-h-screen">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-white/90 dark:bg-black/65" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.16),transparent_70%)]" />
-      </div>
-
-      <div className="relative z-10">
-
-        <section className="px-6 pt-20 pb-14">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">CONTACT</p>
-            <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-[1.05]">Secure your perimeter.</h1>
-            <p className="mt-6 text-neutral-600 dark:text-white/55 md:text-lg">
-              Tell us about your infrastructure, security needs, or development goals. We'll take it from there.
+    <main className="tn-page tn-blueprint-grid tn-main">
+      <section className="tn-page-hero">
+        <div className="tn-container tn-section-stack">
+          <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
+            <small className="tn-kicker">Let's talk.</small>
+            <h1>Have a question?</h1>
+            <p className="tn-body tn-page-summary">
+              For general inquiries, partnerships, or just to say hello. For project requests,
+              <Link href="/start"> use our start form</Link>.
             </p>
           </div>
-        </section>
 
-        <section className="px-6 pb-24">
-          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8">
-            <div className="rounded-[28px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-black/70 overflow-hidden shadow-lg dark:shadow-none">
-              <div className="p-8 md:p-10">
-                <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">PROJECT DETAILS</p>
+          <div
+            className="grid gap-6 md:grid-cols-3"
+            data-tn-reveal="up"
+            data-tn-reveal-state="hidden"
+          >
+            {CONTACT_STEPS.map(([title, text]) => (
+              <div key={title} className="border-t border-[var(--border-grid)] pt-6">
+                <small className="tn-meta-label">{title}</small>
+                <p className="tn-body pt-3">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 md:pb-28">
+        <div className="tn-container tn-grid-2 tn-form-page-grid">
+          <div data-tn-reveal="left" data-tn-reveal-state="hidden">
+            <div className="tn-form-shell">
+              <Suspense fallback={<ContactFormFallback />}>
                 <ContactForm />
+              </Suspense>
+            </div>
+          </div>
+
+          <div className="tn-stack-64" data-tn-reveal="right" data-tn-reveal-state="hidden">
+            <div className="tn-line-list">
+              <div className="tn-line-item">
+                <small className="tn-kicker">Direct contact</small>
+                <p className="tn-line-copy tn-body pt-2">
+                  Email us at <a href="mailto:hello@threatnest.com" className="tn-inline-link">hello@threatnest.com</a>
+                </p>
+                <p className="tn-line-copy tn-body">We usually reply within 1 business day.</p>
+                <SocialLinks className="pt-4" />
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-neutral-200 bg-white/50 dark:border-white/10 dark:bg-black/70 p-8 md:p-10 shadow-lg dark:shadow-none">
-              <p className="text-xs font-semibold tracking-[0.22em] text-neutral-400 dark:text-white/55">WHAT HAPPENS NEXT</p>
-              <ul className="mt-6 space-y-5 text-neutral-600 dark:text-white/70">
-                <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">01</span>
-                  <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Scope & Strategy</p>
-                    <p className="text-xs mt-1">We review your request and define the audit parameters or project scope within 24 hours.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">02</span>
-                  <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Secure Agreement</p>
-                    <p className="text-xs mt-1">You receive a secure payment link.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold flex items-center justify-center">03</span>
-                  <div>
-                    <p className="text-sm font-bold text-black dark:text-white">Access & Execution</p>
-                    <p className="text-xs mt-1">We request the necessary environment access (GitHub, Cloud, or Server) to begin work immediately.</p>
-                  </div>
-                </li>
-              </ul>
-
-              {/* <div className="mt-10 border-t border-neutral-200 dark:border-white/10 pt-6">
-                <p className="text-sm font-semibold text-black dark:text-white">Enterprise & Custom Audits</p>
-                <p className="mt-2 text-sm text-neutral-600 dark:text-white/55">
-                  For recurring security checks or full-stack builds, mention "Retainer" or "Custom Build" in your message.
+            <div className="tn-line-list">
+              <div className="tn-line-item">
+                <small className="tn-kicker">Looking to start a project?</small>
+                <p className="tn-line-copy tn-body pt-2">
+                  If you need a security review or a new website, our Start page will get you a
+                  quote faster.
                 </p>
-              </div>*/}
+                <div className="pt-4">
+                  <Link href="/start" className="tn-button-secondary">
+                    Go to Start Work →
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-
-        {/*<footer className="relative px-6 py-14 border-t border-neutral-200 dark:border-white/10 bg-white dark:bg-black transition-colors">
-          <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/white.png" alt="ThreatNest logo" className="h-10 w-10 invert dark:invert-0 transition" />
-              <span className="text-sm font-semibold tracking-[0.22em] text-neutral-800 dark:text-white/80">THREATNEST</span>
-            </Link>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-semibold tracking-wide text-neutral-600 dark:text-white/60">
-              <Link href="/services" className="hover:text-black dark:hover:text-white transition">SERVICES</Link>
-              <Link href="/about" className="hover:text-black dark:hover:text-white transition">ABOUT</Link>
-              <Link href="/contact" className="hover:text-black dark:hover:text-white transition">CONTACT</Link>
-              <Link href="/terms" className="hover:text-black dark:hover:text-white transition">TERMS</Link>
-              <Link href="/privacy" className="hover:text-black dark:hover:text-white transition">PRIVACY</Link>
-              <a href="#faq" className="hover:text-black dark:hover:text-white transition">FAQ</a>
-            </div>
-
-            <p className="text-xs text-neutral-400 dark:text-white/45">
-              © {new Date().getFullYear()} ThreatNest. All rights reserved.
-            </p>
-          </div>
-        </footer>*/}
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

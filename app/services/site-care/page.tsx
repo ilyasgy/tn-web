@@ -5,16 +5,16 @@ export default function SiteCarePage() {
     <ServiceDetailPage
       cfg={{
         title: "Site Care & Support",
-        subtitle: "Monthly maintenance to keep your site updated, secure, and running smoothly.",
+        subtitle: "Monthly upkeep for sites that need regular updates, checks, and small changes.",
         image: "/service-maintenance.png",
         primaryCtaText: "Start care plan",
         primaryCtaHref: "/contact?service=site-care",
         price: "$299 / mo",
         sections: {
           what: [
-            { title: "Updates", desc: "Regular maintenance of plugins, themes, and core files." },
-            { title: "Monitoring", desc: "24/7 uptime checks and security scanning." },
-            { title: "Small Tasks", desc: "Up to 2 small text or image swaps included per month." },
+            { title: "Core updates", desc: "Regular maintenance for the site and the parts behind it." },
+            { title: "Monitoring", desc: "Ongoing checks for uptime and obvious technical issues." },
+            { title: "Small changes", desc: "Monthly text, image, and simple content updates." },
           ],
           includes: {
             label: "INCLUDED",
@@ -22,24 +22,24 @@ export default function SiteCarePage() {
             items: [
               "Technical maintenance",
               "Uptime monitoring",
-              "Monthly backup verification",
-              "Content update credits",
+              "Backup checks",
+              "Time for small content updates",
             ],
           },
           goodFor: {
             label: "GOOD FOR",
-            title: "Best fit if",
+            title: "Good fit",
             items: [
-              "You want peace of mind regarding security",
-              "You don't have time to manage technical updates",
-              "You need a reliable partner for small monthly tweaks",
+              "Businesses without in-house technical support",
+              "Sites that need regular upkeep",
+              "Teams that want small changes handled quickly",
             ],
           },
           howItGoes: [
-            { n: "01", title: "Onboard", desc: "We connect your site to our tools." },
-            { n: "02", title: "Audit", desc: "Initial check to fix existing backlog issues." },
-            { n: "03", title: "Maintain", desc: "Continuous monitoring and monthly updates." },
-            { n: "04", title: "Report", desc: "Monthly summary of site health and updates." },
+            { n: "01", title: "Onboard", desc: "We connect the site and review the current setup." },
+            { n: "02", title: "Fix backlog", desc: "We handle the obvious issues first." },
+            { n: "03", title: "Maintain", desc: "Ongoing checks and routine updates continue monthly." },
+            { n: "04", title: "Report", desc: "You get a short update on the work done." },
           ],
         },
       }}

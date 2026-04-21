@@ -5,41 +5,41 @@ export default function EmergencyFixPage() {
     <ServiceDetailPage
       cfg={{
         title: "Emergency Fix",
-        subtitle: "Fast turnaround for critical website issues, broken layouts, or plugin conflicts.",
+        subtitle: "Fast help for broken pages, layout issues, or one urgent bug.",
         image: "/service-qa.png",
         primaryCtaText: "Request a fix",
         primaryCtaHref: "/contact?service=emergency",
         price: "$150",
         sections: {
           what: [
-            { title: "Bug Fixes", desc: "Resolving functional errors and broken features." },
-            { title: "UI Repairs", desc: "Fixing messy layouts, CSS glitches, and mobile responsiveness." },
-            { title: "Security Restoration", desc: "Recovering sites from minor breaches or configuration errors." },
+            { title: "Bug fix", desc: "We identify the issue and resolve the specific problem." },
+            { title: "Layout repair", desc: "We fix broken mobile layouts, styling issues, and frontend errors." },
+            { title: "Recovery help", desc: "We can also help with smaller breakages or bad config changes." },
           ],
           includes: {
             label: "INCLUDED",
             title: "What you get",
             items: [
-              "Single issue resolution",
-              "Pre-fix diagnostics",
+              "Single issue investigation",
+              "Fix implementation",
               "Verification testing",
-              "Brief explanation of the fix",
+              "Short summary of the fix",
             ],
           },
           goodFor: {
             label: "GOOD FOR",
-            title: "Best fit if",
+            title: "Good fit",
             items: [
-              "Your contact form stopped working",
-              "The site looks 'broken' on mobile",
-              "You have a single annoying bug you can't solve",
+              "A broken contact form",
+              "A layout problem on mobile",
+              "One bug that needs a fast fix",
             ],
           },
           howItGoes: [
-            { n: "01", title: "Report", desc: "Describe the issue and provide access." },
-            { n: "02", title: "Verify", desc: "We confirm the bug and plan the fix." },
-            { n: "03", title: "Resolve", desc: "We implement the solution safely." },
-            { n: "04", title: "Handoff", desc: "Issue fixed and verified by you." },
+            { n: "01", title: "Send it", desc: "You describe the issue and send access if needed." },
+            { n: "02", title: "Verify it", desc: "We confirm the problem and the safest fix." },
+            { n: "03", title: "Fix it", desc: "We apply the change and test it." },
+            { n: "04", title: "Close it", desc: "You get the fix and a short explanation." },
           ],
         },
       }}
