@@ -9,6 +9,10 @@ import ScrollRevealObserver from "./components/ScrollRevealObserver";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import ThemeToggle from "./components/ThemeToggle";
 
+const siteTitle = "ThreatNest \u2014 Web Development & Website Security Reviews";
+const siteDescription =
+  "We build clean, modern websites, then review the live site for real security issues after launch.";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -16,12 +20,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "ThreatNest - Web Development and Website Security",
-    template: "%s - ThreatNest",
-  },
-  description:
-    "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
+  title: siteTitle,
+  description: siteDescription,
   metadataBase: new URL("https://threatnest.com"),
   applicationName: "ThreatNest",
   appleWebApp: {
@@ -32,9 +32,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://threatnest.com/",
-    title: "ThreatNest - Web Development and Website Security",
-    description:
-      "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
+    title: siteTitle,
+    description: siteDescription,
     siteName: "ThreatNest",
     images: [
       {
@@ -47,14 +46,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ThreatNest - Web Development and Website Security",
-    description:
-      "ThreatNest builds websites and reviews live ones for performance, clarity, and security.",
+    title: siteTitle,
+    description: siteDescription,
     images: ["/og.png"],
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-icon.png",
   },
   robots: {
     index: true,
