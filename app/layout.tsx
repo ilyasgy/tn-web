@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import ScrollRevealObserver from "./components/ScrollRevealObserver";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import ThemeToggle from "./components/ThemeToggle";
@@ -87,6 +88,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased`}>
         <Suspense fallback={null}>
+          <GoogleAnalytics />
           <ScrollToTopOnRouteChange />
         </Suspense>
         <ScrollRevealObserver />

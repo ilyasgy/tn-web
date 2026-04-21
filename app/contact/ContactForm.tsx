@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { trackEvent } from "../lib/analytics";
 
 type ContactFormState = {
   name: string;
@@ -35,16 +36,35 @@ export default function ContactForm() {
   const [feedback, setFeedback] = useState("");
   const [subjectMenuOpen, setSubjectMenuOpen] = useState(false);
   const subjectMenuRef = useRef<HTMLDivElement | null>(null);
+  const hasTrackedView = useRef(false);
 
   const requestedSubject = searchParams.get("subject");
+  const requestedSubjectValue =
+    SUBJECT_OPTIONS.find((option) => option.value === requestedSubject)?.value || "";
   const selectedSubject =
     SUBJECT_OPTIONS.find((option) => option.value === form.subject) ?? SUBJECT_OPTIONS[0];
 
   useEffect(() => {
-    if (requestedSubject) {
-      setForm((current) => ({ ...current, subject: requestedSubject }));
+    if (requestedSubjectValue) {
+      setForm((current) =>
+        current.subject === requestedSubjectValue
+          ? current
+          : { ...current, subject: requestedSubjectValue }
+      );
     }
-  }, [requestedSubject]);
+  }, [requestedSubjectValue]);
+
+  useEffect(() => {
+    if (hasTrackedView.current) {
+      return;
+    }
+
+    hasTrackedView.current = true;
+    trackEvent("contact_form_view", {
+      subject: requestedSubjectValue || form.subject,
+      prefilled_subject: Boolean(requestedSubjectValue),
+    });
+  }, [form.subject, requestedSubjectValue]);
 
   useEffect(() => {
     const handlePointerDown = (event: MouseEvent) => {
@@ -65,12 +85,20 @@ export default function ContactForm() {
     event.preventDefault();
 
     if (!form.name.trim()) {
+      trackEvent("contact_form_error", {
+        error_type: "missing_name",
+        subject: form.subject,
+      });
       setStatus("error");
       setFeedback("Please add your name.");
       return;
     }
 
     if (!form.message.trim()) {
+      trackEvent("contact_form_error", {
+        error_type: "missing_message",
+        subject: form.subject,
+      });
       setStatus("error");
       setFeedback("Please add a short message.");
       return;
@@ -78,6 +106,10 @@ export default function ContactForm() {
 
     setStatus("sending");
     setFeedback("");
+    trackEvent("contact_form_submit", {
+      subject: form.subject,
+      has_email: Boolean(form.email.trim()),
+    });
 
     try {
       const response = await fetch(
@@ -102,10 +134,18 @@ export default function ContactForm() {
         throw new Error(data?.error || "Failed to send your message.");
       }
 
+      trackEvent("contact_form_success", {
+        subject: form.subject,
+        has_email: Boolean(form.email.trim()),
+      });
       setStatus("done");
       setFeedback("Thanks. We usually reply within 1 business day.");
       setForm(EMPTY_FORM);
     } catch (error) {
+      trackEvent("contact_form_error", {
+        error_type: "request_failed",
+        subject: form.subject,
+      });
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Failed to send your message.");
     }
@@ -185,6 +225,7 @@ export default function ContactForm() {
                       aria-selected={isActive}
                       className={`tn-select-option ${isActive ? "tn-select-option-active" : ""}`}
                       onClick={() => {
+                        trackEvent("contact_subject_select", { subject: option.value });
                         setValue("subject", option.value);
                         setSubjectMenuOpen(false);
                       }}

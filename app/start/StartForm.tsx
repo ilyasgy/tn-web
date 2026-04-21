@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { trackEvent } from "../lib/analytics";
 
 type StartFormState = {
   fullName: string;
@@ -45,6 +46,15 @@ const EMPTY_FORM: StartFormState = {
 
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/$/, "");
 
+function getSelectedServices(form: Pick<StartFormState, "webSelected" | "securitySelected">) {
+  return [
+    form.webSelected ? "web_development" : "",
+    form.securitySelected ? "security_review" : "",
+  ]
+    .filter(Boolean)
+    .join("+") || "none";
+}
+
 function ChoicePill({
   active,
   label,
@@ -70,6 +80,10 @@ export default function StartForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [feedback, setFeedback] = useState("");
 
+  useEffect(() => {
+    trackEvent("start_form_view");
+  }, []);
+
   function setValue<K extends keyof StartFormState>(key: K, value: StartFormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
   }
@@ -78,12 +92,14 @@ export default function StartForm() {
     event.preventDefault();
 
     if (!form.fullName.trim()) {
+      trackEvent("start_form_error", { error_type: "missing_name" });
       setStatus("error");
       setFeedback("Please add your name.");
       return;
     }
 
     if (!form.webSelected && !form.securitySelected) {
+      trackEvent("start_form_error", { error_type: "missing_service" });
       setStatus("error");
       setFeedback("Please choose at least one: Web Development or Security Review.");
       return;
@@ -93,12 +109,20 @@ export default function StartForm() {
     const needsSecurity = form.securitySelected;
 
     if ((needsDev || needsSecurity) && !form.website.trim()) {
+      trackEvent("start_form_error", {
+        error_type: "missing_website",
+        service_selection: getSelectedServices(form),
+      });
       setStatus("error");
       setFeedback("Please add the website or target domain.");
       return;
     }
 
     if (needsSecurity && !form.authorization) {
+      trackEvent("start_form_error", {
+        error_type: "missing_authorization",
+        service_selection: getSelectedServices(form),
+      });
       setStatus("error");
       setFeedback("Please confirm you own the site or have permission to request the security review.");
       return;
@@ -106,6 +130,12 @@ export default function StartForm() {
 
     setStatus("sending");
     setFeedback("");
+    trackEvent("start_form_submit", {
+      service_selection: getSelectedServices(form),
+      has_platform: Boolean(form.platform.trim()),
+      has_notes: Boolean(form.concerns.trim()),
+      has_repo_access: Boolean(form.githubAccess.trim()),
+    });
 
     try {
       const payload = {
@@ -141,10 +171,17 @@ export default function StartForm() {
         throw new Error(data?.error || "Failed to send the request.");
       }
 
+      trackEvent("start_form_success", {
+        service_selection: getSelectedServices(form),
+      });
       setStatus("done");
       setFeedback("We got it. We'll review it and reply shortly.");
       setForm(EMPTY_FORM);
     } catch (error) {
+      trackEvent("start_form_error", {
+        error_type: "request_failed",
+        service_selection: getSelectedServices(form),
+      });
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Failed to send the request.");
     }
@@ -158,12 +195,24 @@ export default function StartForm() {
           <ChoicePill
             active={form.webSelected}
             label="Web Development"
-            onClick={() => setValue("webSelected", !form.webSelected)}
+            onClick={() => {
+              trackEvent("start_service_toggle", {
+                service: "web_development",
+                selected: !form.webSelected,
+              });
+              setValue("webSelected", !form.webSelected);
+            }}
           />
           <ChoicePill
             active={form.securitySelected}
             label="Security Review"
-            onClick={() => setValue("securitySelected", !form.securitySelected)}
+            onClick={() => {
+              trackEvent("start_service_toggle", {
+                service: "security_review",
+                selected: !form.securitySelected,
+              });
+              setValue("securitySelected", !form.securitySelected);
+            }}
           />
         </div>
       </div>
@@ -236,7 +285,10 @@ export default function StartForm() {
                 key={option}
                 active={form.siteType === option}
                 label={option}
-                onClick={() => setValue("siteType", option)}
+                onClick={() => {
+                  trackEvent("start_site_type_select", { site_type: option });
+                  setValue("siteType", option);
+                }}
               />
             ))}
           </div>
@@ -250,7 +302,10 @@ export default function StartForm() {
                     key={option}
                     active={form.budgetRange === option}
                     label={option}
-                    onClick={() => setValue("budgetRange", option)}
+                    onClick={() => {
+                      trackEvent("start_budget_range_select", { budget_range: option });
+                      setValue("budgetRange", option);
+                    }}
                   />
                 ))}
               </div>
@@ -264,7 +319,10 @@ export default function StartForm() {
                     key={option}
                     active={form.timeline === option}
                     label={option}
-                    onClick={() => setValue("timeline", option)}
+                    onClick={() => {
+                      trackEvent("start_timeline_select", { timeline: option });
+                      setValue("timeline", option);
+                    }}
                   />
                 ))}
               </div>
