@@ -9,9 +9,30 @@ import ScrollRevealObserver from "./components/ScrollRevealObserver";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import ThemeToggle from "./components/ThemeToggle";
 
-const siteTitle = "ThreatNest \u2014 Web Development & Website Security Reviews";
+const siteUrl = "https://threatnest.com";
+const siteTitle = "ThreatNest | Healthcare Application Security Audits";
 const siteDescription =
-  "We build clean, modern websites, then review the live site for real security issues after launch.";
+  "Fixed-scope application security audits for healthcare clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, developer-ready fixes, and one retest.";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ThreatNest",
+  url: siteUrl,
+  logo: `${siteUrl}/icon1.png`,
+  sameAs: [
+    "https://www.instagram.com/threatnest/",
+    "https://tr.linkedin.com/company/threatnest/",
+  ],
+  description: siteDescription,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "ThreatNest",
+  url: siteUrl,
+};
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,10 +41,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: siteTitle,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | ThreatNest",
+  },
   description: siteDescription,
-  metadataBase: new URL("https://threatnest.com"),
   applicationName: "ThreatNest",
+  keywords: [
+    "healthcare application security audit",
+    "healthcare penetration testing",
+    "medical website security audit",
+    "dental website security audit",
+    "PHI tracking exposure review",
+    "security header assessment",
+    "application penetration test",
+  ],
+  authors: [{ name: "ThreatNest" }],
+  creator: "ThreatNest",
+  publisher: "ThreatNest",
+  category: "Cybersecurity",
+  alternates: {
+    canonical: "/",
+  },
   appleWebApp: {
     title: "ThreatNest",
     capable: true,
@@ -31,16 +71,17 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
-    url: "https://threatnest.com/",
+    url: siteUrl,
     title: siteTitle,
     description: siteDescription,
     siteName: "ThreatNest",
+    locale: "en_US",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "ThreatNest",
+        alt: "ThreatNest healthcare application security audits",
       },
     ],
   },
@@ -52,10 +93,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -67,6 +116,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

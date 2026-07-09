@@ -5,31 +5,31 @@ const TERMS_SECTIONS = [
   {
     title: "1. Services",
     paragraphs: [
-      "ThreatNest provides web development and website security checks. We look at how the site actually behaves in real use and point out where things could go wrong in performance and security. Everything stays within the agreed scope, and nothing disruptive is done unless you have clearly approved it.",
+      "ThreatNest provides fixed-scope application security audits. We look at how the application actually behaves in real use and document application-layer vulnerabilities, PHI tracking exposure, weak configurations, and remediation guidance. Everything stays within the agreed scope, and nothing disruptive is done unless you have clearly approved it.",
     ],
   },
   {
     title: "2. Scope & Authorization",
     paragraphs: [
-      "We only work on websites or systems you own or have permission to manage. By requesting a service, you confirm you are authorized to do so.",
+      "We only work on websites, applications, or systems you own or have permission to test. By requesting an audit, you confirm you are authorized to do so.",
     ],
   },
   {
     title: "3. Payments",
     paragraphs: [
-      "Most projects require a 50% upfront payment, with the rest due after completion. Work usually starts once the initial payment is received, unless agreed otherwise.",
+      "Audit pricing and payment terms are confirmed before work begins. Work usually starts once the initial payment is received, unless agreed otherwise.",
     ],
   },
   {
     title: "4. Delivery",
     paragraphs: [
-      "Security work includes a report with findings and clear next steps. Development work includes the agreed site or features. How long it takes mostly depends on how big the project is.",
+      "Audit work includes technical evidence, findings, remediation guidance, and one complimentary retest after fixes. Full documentation is delivered within 7 days unless the written scope says otherwise.",
     ],
   },
   {
     title: "5. Limitations",
     paragraphs: [
-      "A security check does not mean a site is fully safe. New issues can appear over time as systems change or new attack methods are discovered.",
+      "A security audit does not mean an application is fully safe. New issues can appear over time as systems change or new attack methods are discovered.",
     ],
   },
   {

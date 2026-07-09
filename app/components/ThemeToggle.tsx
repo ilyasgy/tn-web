@@ -22,12 +22,16 @@ export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("theme");
-    const shouldUseDark = saved !== "light";
+    const timer = window.setTimeout(() => {
+      setMounted(true);
+      const saved = localStorage.getItem("theme");
+      const shouldUseDark = saved !== "light";
 
-    setIsDark(shouldUseDark);
-    applyTheme(shouldUseDark);
+      setIsDark(shouldUseDark);
+      applyTheme(shouldUseDark);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const toggle = () => {

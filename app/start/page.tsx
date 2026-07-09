@@ -1,12 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import StartForm from "./StartForm";
 import SocialLinks from "../components/SocialLinks";
 
+
+export const metadata: Metadata = {
+  title: "Request a Healthcare Application Security Audit",
+  description: "Send your website URL and application notes to request a fixed-scope healthcare application security audit from ThreatNest.",
+  alternates: {
+    canonical: "/start",
+  },
+};
 const START_FACTS = [
-  ["$500 fixed", "$250 before testing and $250 on delivery."],
-  ["2 business days", "Testing window after scope and written authorization are confirmed."],
-  ["48-hour report", "Final report delivery after testing ends."],
-  ["14-day retest", "One free retest after fixes are applied."],
+  ["$2,000 Fixed", "One fixed fee for the audit and remediation blueprint."],
+  ["7-day delivery", "Full documentation delivered within 7 days."],
+  ["Manual testing", "Every finding is verified by hand before it reaches your report."],
+  ["Included retest", "One complimentary retest after fixes are applied."],
 ];
 
 export default function StartPage() {
@@ -16,9 +25,10 @@ export default function StartPage() {
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
             <small className="tn-kicker">Get started</small>
-            <h1>Start your project.</h1>
+            <h1>Request an application security audit.</h1>
             <p className="tn-body tn-page-summary">
-              Tell us what you need — security review, new site work, or design help.
+              Send your website URL and a short description of your application. We will confirm
+              scope, explain the assessment process, and provide the next steps.
             </p>
           </div>
 
@@ -52,6 +62,7 @@ export default function StartPage() {
                 <div className="tn-stack-16 pt-4">
                   {[
                     "Login, reset, and session handling",
+                    "PHI tracking exposure and third-party JavaScript",
                     "Access control, exposed paths, and risky setup",
                     "Forms, APIs, uploads, and common web flaws",
                   ].map((item) => (
@@ -67,8 +78,8 @@ export default function StartPage() {
               <div className="tn-line-item">
                 <small className="tn-kicker">After that</small>
                 <p className="tn-line-copy tn-body">
-                  We confirm scope, test the live site by hand, and send the final report within
-                  48 hours after testing ends.
+                  We confirm scope, test the live application by hand, and deliver the remediation
+                  blueprint within 7 days.
                 </p>
               </div>
             </div>
@@ -78,16 +89,18 @@ export default function StartPage() {
                 <small className="tn-kicker">What happens next</small>
                 <div className="tn-stack-12 pt-4">
                   <div>
-                    <p className="tn-meta-label">1 — Review</p>
-                    <p className="tn-body">We review your site and requirements.</p>
+                    <p className="tn-meta-label">1 - Scope</p>
+                    <p className="tn-body">We define the application, pages, and systems included.</p>
                   </div>
                   <div>
-                    <p className="tn-meta-label">2 — Estimate</p>
-                    <p className="tn-body">We send a fixed-price quote and timeline.</p>
+                    <p className="tn-meta-label">2 - Authorize</p>
+                    <p className="tn-body">You confirm ownership or written permission to test.</p>
                   </div>
                   <div>
-                    <p className="tn-meta-label">3 — Kickoff</p>
-                    <p className="tn-body">We confirm details by email and begin the work.</p>
+                    <p className="tn-meta-label">3 - Audit</p>
+                    <p className="tn-body">
+                      We begin the manual assessment and report critical findings quickly.
+                    </p>
                   </div>
                 </div>
               </div>

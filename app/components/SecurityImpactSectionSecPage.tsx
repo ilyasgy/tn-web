@@ -4,10 +4,10 @@ export default function SecurityImpactSectionSecPage() {
       <div className="tn-container tn-grid-2">
         <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
           <small className="tn-kicker">Why after launch</small>
-          <h2>Live traffic finds weak setups fast.</h2>
+          <h2>Production is where compliance is proven.</h2>
           <p className="tn-body">
-            A live site shows the routes, headers, login flow, and setup outsiders can actually
-            reach.
+            A live patient-facing application shows the routes, headers, login flow, tracking
+            scripts, and setup outsiders can actually reach.
           </p>
         </div>
 
@@ -18,6 +18,7 @@ export default function SecurityImpactSectionSecPage() {
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body tn-body-strong">Auth, sessions, and account abuse paths</p>
                 <p className="tn-body tn-body-strong">Access control, input handling, and APIs</p>
+                <p className="tn-body tn-body-strong">PHI tracking exposure and third-party JavaScript</p>
                 <p className="tn-body tn-body-strong">Headers, cookies, TLS, and exposed files</p>
               </div>
             </div>
@@ -27,9 +28,9 @@ export default function SecurityImpactSectionSecPage() {
             <div className="tn-line-item">
               <small className="tn-kicker">Report and retest</small>
               <div className="tn-stack-16 pt-4">
-                <p className="tn-body tn-body-strong">Findings with proof and severity</p>
-                <p className="tn-body tn-body-strong">Fixes, not vague notes</p>
-                <p className="tn-body tn-body-strong">One free retest within 14 days</p>
+                <p className="tn-body tn-body-strong">Findings with proof, severity, and business impact</p>
+                <p className="tn-body tn-body-strong">Developer-ready remediation guidance</p>
+                <p className="tn-body tn-body-strong">One complimentary retest after fixes</p>
               </div>
             </div>
           </div>

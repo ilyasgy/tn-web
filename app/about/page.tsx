@@ -1,12 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import SocialLinks from "../components/SocialLinks";
 
+
+export const metadata: Metadata = {
+  title: "About ThreatNest",
+  description: "ThreatNest is a boutique application security service for healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
+  alternates: {
+    canonical: "/about",
+  },
+};
 const ABOUT_POINTS = [
-  ["What we do", "Web development and live-site security review."],
-  ["Who we help", "Small and midsize businesses, ecommerce brands, and simple platforms."],
+  ["What we do", "Fixed-scope application security audits."],
+  ["Who we help", "Healthcare clinics, dental practices, and medical centers."],
   [
     "How we work",
-    "Practical build work, real testing, and clear fixes instead of generic scan output.",
+    "Manual testing, evidence, and developer-ready remediation guidance.",
   ],
 ];
 
@@ -17,23 +26,24 @@ export default function AboutPage() {
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
             <small className="tn-kicker">About</small>
-            <h1 className="tn-display">Build the site. Review the live one.</h1>
+            <h1 className="tn-display">Boutique application security for healthcare teams.</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest builds websites and reviews live ones for small and midsize businesses,
-              ecommerce brands, and simple platforms that need a site that performs and holds up.
+              ThreatNest performs fixed-scope application security audits for healthcare clinics,
+              dental practices, and medical centers operating patient-facing web applications.
             </p>
             <p className="tn-body">
-              We handle the build work up front and the manual security review after launch that
-              checks what outsiders can actually reach. Slow or exposed sites cost trust, sales,
-              and time. We fix that with direct work and clear decisions.
+              We look for application-layer vulnerabilities, PHI exposure through tracking
+              technologies, weak browser security controls, and production configuration risks.
+              Every audit ends with technical evidence and a remediation blueprint your developer
+              can implement.
             </p>
 
             <div className="tn-actions">
-              <Link href="/contact" className="tn-button-primary">
-                Contact Us
+              <Link href="/start" className="tn-button-primary">
+                Request Audit
               </Link>
-              <Link href="/services" className="tn-button-secondary">
-                See Services
+              <Link href="/services/website-security" className="tn-button-secondary">
+                View Scope
               </Link>
             </div>
 

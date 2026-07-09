@@ -1,12 +1,21 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ContactForm from "./ContactForm";
 import SocialLinks from "../components/SocialLinks";
 
+
+export const metadata: Metadata = {
+  title: "Contact ThreatNest",
+  description: "Contact ThreatNest about healthcare application security audits, partnerships, or questions before requesting a fixed-scope assessment.",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 const CONTACT_STEPS = [
-  ["Send", "The website, the job, and any deadline."],
-  ["Reply", "We tell you how we would handle it, the timing, and the price."],
-  ["Security", "If it is already a live-site review, you can also use the review form."],
+  ["Send", "The website URL, application notes, and any deadline."],
+  ["Scope", "We confirm whether the application fits the fixed audit scope."],
+  ["Next", "We explain the assessment process and authorization requirements."],
 ];
 
 function ContactFormFallback() {
@@ -25,10 +34,10 @@ export default function ContactPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Let's talk.</small>
+            <small className="tn-kicker">Let&apos;s talk.</small>
             <h1>Have a question?</h1>
             <p className="tn-body tn-page-summary">
-              For general inquiries, partnerships, or just to say hello. For project requests,
+              For general inquiries, partnerships, or just to say hello. For audit requests,
               <Link href="/start"> use our start form</Link>.
             </p>
           </div>
@@ -63,7 +72,10 @@ export default function ContactPage() {
               <div className="tn-line-item">
                 <small className="tn-kicker">Direct contact</small>
                 <p className="tn-line-copy tn-body pt-2">
-                  Email us at <a href="mailto:hello@threatnest.com" className="tn-inline-link">hello@threatnest.com</a>
+                  Email us at{" "}
+                  <a href="mailto:hello@threatnest.com" className="tn-inline-link">
+                    hello@threatnest.com
+                  </a>
                 </p>
                 <p className="tn-line-copy tn-body">We usually reply within 1 business day.</p>
                 <SocialLinks className="pt-4" />
@@ -72,14 +84,14 @@ export default function ContactPage() {
 
             <div className="tn-line-list">
               <div className="tn-line-item">
-                <small className="tn-kicker">Looking to start a project?</small>
+                <small className="tn-kicker">Looking to request an audit?</small>
                 <p className="tn-line-copy tn-body pt-2">
-                  If you need a security review or a new website, our Start page will get you a
-                  quote faster.
+                  If you are ready to send a website URL and application notes, our Start page will
+                  get scope confirmation moving faster.
                 </p>
                 <div className="pt-4">
                   <Link href="/start" className="tn-button-secondary">
-                    Go to Start Work →
+                    Go to Request Audit -&gt;
                   </Link>
                 </div>
               </div>

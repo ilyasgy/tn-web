@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+
+export const metadata: Metadata = {
+  title: "Application Security Audit Services",
+  description: "ThreatNest provides a fixed-scope application penetration test and remediation blueprint for patient-facing healthcare websites, delivered within 7 days with one retest.",
+  alternates: {
+    canonical: "/services",
+  },
+};
 type ServiceRow = {
   title: string;
   price: string;
@@ -9,35 +18,25 @@ type ServiceRow = {
 };
 
 const SERVICE_ROUTES = {
-  webDevelopment: "/services/web-development",
   websiteSecurity: "/services/website-security",
 } as const;
 
 const AT_A_GLANCE = [
-  ["From $700", "Web development is priced by scope."],
-  ["$500 Fixed", "Security reviews are $250 to start, $250 on delivery."],
-  ["48-Hour Report", "Security findings land within 48 hours after testing ends."],
-  ["14-Day Retest", "One free security retest is included after you fix the issues."],
+  ["$2,000 Fixed", "One fixed fee for the application audit and remediation blueprint."],
+  ["7-Day Delivery", "Full documentation is delivered within 7 days."],
+  ["Manual Testing", "Every finding is verified by hand before it reaches your report."],
+  ["Included Retest", "One complimentary retest is included after fixes are applied."],
 ] as const;
 
 const CORE_SERVICES: ServiceRow[] = [
   {
-    title: "Web Development",
-    price: "From $700",
-    href: SERVICE_ROUTES.webDevelopment,
-    description:
-      "We design and build websites that are fast, easy to use, and easy to update. For new websites and rebuilds.",
-    features:
-      "Page structure and content flow / Responsive frontend build / SEO, analytics, and launch setup.",
-  },
-  {
-    title: "Website Security",
-    price: "$500 fixed",
+    title: "Application Penetration Test & Remediation Blueprint",
+    price: "$2,000 Fixed",
     href: SERVICE_ROUTES.websiteSecurity,
     description:
-      "We review live websites for auth issues, access problems, risky setups, and other web app flaws. For sites that are already live.",
+      "For independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
     features:
-      "Manual testing / Report with proof and fixes / 48-hour report and 14-day retest.",
+      "Manual application penetration test / PHI tracking exposure review / Security header assessment / Proof-of-risk screenshots / Developer remediation blueprint / One complimentary retest after fixes / Delivered within 7 days.",
   },
 ];
 
@@ -61,17 +60,20 @@ const SECURITY_METHOD = [
 ] as const;
 
 const DELIVERABLES = [
-  "Short summary",
-  "Scope recap",
-  "Findings with proof and fixes",
-  "One free retest within 14 days",
+  "Manual application penetration test",
+  "PHI tracking exposure review",
+  "Security header assessment",
+  "Proof-of-risk screenshots",
+  "Developer remediation blueprint",
+  "One complimentary retest after fixes",
+  "Delivered within 7 days",
 ] as const;
 
 const TERMS = [
-  ["Testing window", "2 business days from written authorization."],
-  ["Fee structure", "$250 before testing, $250 on delivery."],
-  ["Report timing", "Final PDF delivered within 48 hours after testing concludes."],
-  ["After delivery", "7-day written Q&A and a 14-day retest window."],
+  ["Scope", "Application, pages, and systems are defined before testing."],
+  ["Delivery", "Full documentation is delivered within 7 days."],
+  ["Retest", "One complimentary retest is included after remediation."],
+  ["Authorization", "Written authorization and a fixed testing window are required."],
 ] as const;
 
 function HeroSection() {
@@ -85,15 +87,15 @@ function HeroSection() {
         >
           <h1 className="max-w-none">Services</h1>
           <p className="tn-body tn-page-summary max-w-3xl">
-            Need a site built? Start with development. Already live? Start with security.
+            One fixed-scope audit. One developer-ready repair blueprint.
           </p>
 
           <div className="tn-actions justify-center">
-            <Link href={SERVICE_ROUTES.webDevelopment} className="tn-button-primary">
-              Web Development
+            <Link href="/start" className="tn-button-primary">
+              Request Audit
             </Link>
             <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
-              Security Review
+              View Scope
             </Link>
           </div>
         </div>
@@ -130,7 +132,7 @@ function CoreServicesSection() {
     <section className="tn-cta-band">
       <div className="tn-container tn-section-stack">
         <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
-          <h2>Choose your path.</h2>
+          <h2>Application security audit.</h2>
         </div>
 
         <div className="tn-line-list" data-tn-reveal="up" data-tn-reveal-state="hidden">
@@ -169,12 +171,11 @@ function SecurityMethodSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <h2>How the review works.</h2>
+          <h2>How the audit works.</h2>
           <p className="tn-body">
-            We agree on the scope first, test by hand, and send a report with proof and fixes. No
-            destructive actions. Every issue is verified before it goes into the report, and
-            urgent findings are flagged quickly. Reports and access details stay strictly
-            confidential.
+            We agree on the scope first, test by hand, and send a developer-ready remediation
+            blueprint with proof, severity, affected assets, business impact, and fixes. No
+            destructive actions. Reports and access details stay strictly confidential.
           </p>
         </div>
 
@@ -243,16 +244,16 @@ function FooterCtaSection() {
         >
           <h2>Ready to start?</h2>
           <p className="tn-body max-w-3xl">
-            If the site is not live yet, start with web development. If it is already live, start
-            with the security review.
+            Send your website URL and a short description of your application. We will confirm
+            scope, explain the assessment process, and provide the next steps.
           </p>
 
           <div className="tn-actions justify-center">
-            <Link href="/contact" className="tn-button-primary">
-              Contact Us
+            <Link href="/start" className="tn-button-primary">
+              Request Audit
             </Link>
-            <Link href="/start" className="tn-button-secondary">
-              Request a Security Review
+            <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
+              View Scope
             </Link>
           </div>
         </div>

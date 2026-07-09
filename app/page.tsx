@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 import SectionDock from "@/app/components/SectionDock";
 
+
+export const metadata: Metadata = {
+  title: "Healthcare Application Security Audits",
+  description: "Fixed-scope healthcare application security audits for clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, developer-ready remediation, and one retest.",
+  alternates: {
+    canonical: "/",
+  },
+};
 type HomeService = {
   label: string;
   title: string;
@@ -15,7 +24,6 @@ type HomeService = {
 };
 
 const SERVICE_ROUTES = {
-  webDevelopment: "/services/web-development",
   websiteSecurity: "/services/website-security",
 } as const;
 
@@ -28,107 +36,112 @@ const DOCK_ITEMS = [
 ];
 
 const HOW_WE_WORK_STEPS = [
-  ["01", "Plan and build", "We shape the pages, design the site, and build the frontend."],
-  ["02", "Launch", "We handle QA, performance basics, analytics, and launch setup."],
+  [
+    "01",
+    "Surface Review",
+    "We inspect browser behavior, public pages, patient forms, and exposed infrastructure.",
+  ],
+  [
+    "02",
+    "Manual Assessment",
+    "Every reachable application component is manually tested for security weaknesses.",
+  ],
   [
     "03",
-    "Review",
-    "Once the site is live, we test what outsiders can actually reach and exploit.",
+    "Developer Blueprint",
+    "Every finding includes technical proof and remediation instructions your developer can implement.",
   ],
 ] as const;
 
 const SERVICE_TRACKS: HomeService[] = [
   {
-    label: "Web development",
-    title: "Web Development",
-    description: "For new websites and rebuilds.",
+    label: "Fixed-scope audit",
+    title: "Application Penetration Test & Remediation Blueprint",
+    description:
+      "For independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
     bullets: [
-      "Page structure",
-      "Responsive frontend build",
-      "SEO, analytics, and launch setup",
-    ],
-    href: SERVICE_ROUTES.webDevelopment,
-    cta: "See web development",
-    tone: "default",
-    price: "From $700",
-    audience: "We design and build sites that are fast, easy to use, and easy to update.",
-  },
-  {
-    label: "Website security",
-    title: "Website Security Review",
-    description: "For sites that are already live.",
-    bullets: [
-      "Manual testing",
-      "Report with proof and fixes in 48 hours",
-      "48-hour report and 14-day retest",
+      "Manual application penetration test",
+      "PHI tracking exposure review",
+      "Security header assessment",
+      "Proof-of-risk screenshots",
+      "Developer remediation blueprint",
+      "One complimentary retest after fixes",
+      "Delivered within 7 days",
     ],
     href: SERVICE_ROUTES.websiteSecurity,
-    cta: "See security review",
+    cta: "View scope",
     tone: "security",
-    price: "$500 fixed",
-    audience:
-      "We review live websites for auth issues, access problems, risky setups, and web app flaws.",
+    price: "$2,000 Fixed",
+    audience: "Deliverables",
   },
 ];
 
 const PROCESS_STEPS = [
-  ["01", "Scope", "We agree on what is being built or what is being tested."],
-  ["02", "Execute", "We do the work efficiently without dragging out the timeline."],
+  ["01", "Scope", "We define the application, pages, and systems included in the assessment."],
+  [
+    "02",
+    "Manual Testing",
+    "The live application is assessed for application-layer vulnerabilities, configuration weaknesses, and data exposure risks.",
+  ],
   [
     "03",
-    "Review",
-    "Important issues are reviewed by hand before anything is sent your way.",
+    "Validation",
+    "Every finding is reproduced, verified, and documented with supporting evidence.",
   ],
-  ["04", "Deliver", "You get the optimized site, the security report, or the critical fixes that matter."],
+  [
+    "04",
+    "Delivery",
+    "You receive a remediation blueprint, technical evidence, and one complimentary retest after fixes.",
+  ],
 ];
 
 const QUICK_LINKS = [
   {
-    title: "Services overview",
-    text: "All services in one view.",
-    href: "/services",
-  },
-  {
-    title: "Web development",
-    text: "Pricing and scope for website work.",
-    href: SERVICE_ROUTES.webDevelopment,
-  },
-  {
-    title: "Security review",
-    text: "How the security review works.",
+    title: "Audit scope",
+    text: "What the fixed-scope assessment includes.",
     href: SERVICE_ROUTES.websiteSecurity,
   },
   {
+    title: "Request audit",
+    text: "Send the URL and notes to confirm scope.",
+    href: "/start",
+  },
+  {
     title: "About ThreatNest",
-    text: "Who we work with and how we approach the work.",
+    text: "How we approach healthcare application security.",
     href: "/about",
+  },
+  {
+    title: "Contact",
+    text: "Ask a question before sending scope.",
+    href: "/contact",
   },
 ];
 
 const FAQ_ITEMS = [
   {
     q: "Who do you usually work with?",
-    a: "Mostly small and midsize businesses, ecommerce brands, and straightforward platforms that need a better website or a security review once the site is live.",
+    a: "Independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
   },
   {
-    q: "Is the security review just an automated scan?",
-    a: "No. We use tools when they help, but we verify findings by hand and only report what we can stand behind.",
+    q: "Is the audit just an automated scan?",
+    a: "No. Tools help with coverage, but every finding is manually verified before it reaches your report.",
   },
   {
-    q: "When should the security review happen?",
-    a: "Usually right before launch or after launch. The closer it is to the live site, the more useful the review is.",
+    q: "When should the audit happen?",
+    a: "When the patient-facing application is live or production-ready, because the real browser behavior and exposed surface matter.",
   },
   {
     q: "What do we actually get back?",
-    a: "For website work, you get the site and everything needed to manage it. For security work, you get a report with proof, severity, and fixes.",
+    a: "You get technical findings with proof, severity, affected assets, business impact, and developer-ready remediation guidance.",
   },
   {
-    q: "Can you stay involved after launch?",
-    a: "Yes. We can stay on for follow-up work, improvements, or the security review after launch.",
+    q: "Is a retest included?",
+    a: "Yes. One complimentary retest is included after your developer applies the fixes.",
   },
   {
-    q: "Do we keep the site and access?",
-    a: "Yes. The code, assets, and access stay with you. We are not trying to lock anyone in.",
+    q: "Do you need authorization?",
+    a: "Yes. Every audit requires written authorization and a fixed scope before testing begins.",
   },
 ];
 
@@ -142,18 +155,20 @@ function HeroSection() {
           data-tn-reveal-state="hidden"
         >
           <small className="tn-kicker">ThreatNest</small>
-          <h1 className="tn-display">Build it right. Secure it for real.</h1>
+          <h1 className="tn-display">Application security audits for healthcare websites.</h1>
           <p className="tn-body">
-            We work with small and midsize businesses to build clean, high-performing websites and
-            review the live version before weak points turn into lost trust or lost sales.
+            ThreatNest performs fixed-scope application security audits for independent healthcare
+            clinics, dental practices, and medical centers. We identify application-layer
+            vulnerabilities, PHI exposure through tracking technologies, weak security
+            configurations, and provide a developer-ready remediation blueprint within 7 days.
           </p>
 
           <div className="tn-actions">
-            <Link href="/contact" className="tn-button-primary">
-              Contact Us
+            <Link href="/start" className="tn-button-primary">
+              Request Audit
             </Link>
-            <Link href="#services" className="tn-button-secondary">
-              See Services
+            <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
+              View Scope
             </Link>
           </div>
         </div>
@@ -161,25 +176,21 @@ function HeroSection() {
         <div className="tn-hero-meta" data-tn-reveal="right" data-tn-reveal-state="hidden">
           {[
             [
-              "Website",
-              "New websites and rebuilds",
-              "Fast, clear, and easy to manage after launch.",
+              "PHI Tracking Exposure",
+              "Meta Pixels, analytics scripts, and third-party JavaScript inside patient forms.",
             ],
             [
-              "Security",
-              "Manual review for live sites",
-              "We test the real production version, not a staged guess.",
+              "Security Header Failures",
+              "Browser security controls, transport protection, and configuration weaknesses.",
             ],
             [
-              "Focus",
-              "Small and midsize businesses",
-              "A strong fit for ecommerce brands and simple platforms.",
+              "Application Risks",
+              "Authentication flaws, access control issues, exposed files, insecure business logic, and production vulnerabilities.",
             ],
-          ].map(([label, title, text]) => (
+          ].map(([label, text]) => (
             <div key={label} className="tn-hero-meta-item">
               <small className="tn-meta-label">{label}</small>
-              <p className="tn-meta-value">{title}</p>
-              <p className="tn-body">{text}</p>
+              <p className="tn-meta-value">{text}</p>
             </div>
           ))}
         </div>
@@ -197,13 +208,13 @@ function IntroBridgeSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <small className="tn-kicker">How we work</small>
+          <small className="tn-kicker">Audit approach</small>
           <h2>
-            Website first. Security in production.
+            Security begins where patients interact.
           </h2>
           <p className="tn-body">
-            We build the site, take it live, and then test the exact version real visitors and
-            attackers can reach.
+            We inspect the production paths patients actually use, then turn verified risk into
+            developer-ready fixes.
           </p>
         </div>
 
@@ -247,7 +258,7 @@ function ServiceTrackCard({
           <p className="text-sm font-bold text-neutral-500 dark:text-white/45">{service.label}</p>
 
           <div className="mt-4 flex flex-wrap items-center gap-4">
-            <h3 className="text-4xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
+            <h3 className="text-3xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
               {service.title}
             </h3>
             <span
@@ -269,9 +280,11 @@ function ServiceTrackCard({
           <p className="mt-4 text-xl font-bold leading-8 text-black dark:text-white">
             {service.audience}
           </p>
-          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-neutral-600 dark:text-white/60">
-            {service.bullets.join(" / ")}
-          </p>
+          <ul className="mt-5 grid gap-3 text-lg font-medium leading-8 text-neutral-600 dark:text-white/60">
+            {service.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
 
           <Link
             href={service.href}
@@ -301,10 +314,11 @@ function ServicesSystemSection() {
         >
           <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Services</p>
           <h2 className="mt-4 text-5xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
-            Two ways we help.
+            One fixed-scope audit. One developer-ready repair blueprint.
           </h2>
           <p className="mt-6 text-xl font-medium leading-8 text-neutral-700 dark:text-white/65">
-            One service is for building the website. The other is for reviewing a live one.
+            Manual application testing, PHI tracking exposure review, security header assessment,
+            and remediation guidance delivered within 7 days.
           </p>
         </div>
 
@@ -333,7 +347,7 @@ function ProcessSection() {
         >
           <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Process</p>
           <h2 className="mt-4 text-4xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
-            Short process. No extra ceremony.
+            Structured. Evidence-driven. Developer-focused.
           </h2>
         </div>
 
@@ -359,7 +373,8 @@ function ProcessSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          For security work, we also need written authorization and a fixed testing window.
+          Every audit requires written authorization and a fixed testing window before testing
+          begins.
         </p>
       </div>
     </section>
@@ -416,27 +431,27 @@ function ContactSection() {
           <div data-tn-reveal="left" data-tn-reveal-state="hidden">
             <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Contact</p>
             <h2 className="mt-4 text-5xl font-bold leading-[1.02] text-black dark:text-white md:text-6xl">
-              Tell us about the job.
+              Request an application security audit.
             </h2>
             <p className="mt-6 max-w-2xl text-xl font-medium leading-8 text-neutral-600 dark:text-white/60">
-              Need a new website, a rebuild, a security review, or a fix for something that broke?
-              Send it over, and we will tell you exactly how we would handle it.
+              Send your website URL and a short description of your application. We&apos;ll confirm
+              scope, explain the assessment process, and provide the next steps.
             </p>
 
             <div className="tn-actions mt-8">
-              <Link href="/contact" className="tn-button-primary">
-                Contact Us
+              <Link href="/start" className="tn-button-primary">
+                Request Audit
               </Link>
-              <Link href="/start" className="tn-button-secondary">
-                Request a Security Review
+              <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
+                View Scope
               </Link>
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-3">
               {[
-                ["Build", "New website or rebuild."],
-                ["Review", "Security review for a live site."],
-                ["Fix", "A bug, breakage, or follow-up work."],
+                ["Audit", "Manual application penetration testing."],
+                ["Report", "Technical findings with developer-ready remediation."],
+                ["Retest", "Verification after remediation is complete."],
               ].map(([title, text]) => (
                 <div key={title}>
                   <p className="text-xl font-bold text-black dark:text-white">{title}</p>

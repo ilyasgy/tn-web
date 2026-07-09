@@ -1,11 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSectionSecPage";
 
+
+export const metadata: Metadata = {
+  title: "Application Penetration Test & Remediation Blueprint",
+  description: "Manual application penetration testing for healthcare websites, including PHI tracking exposure, security headers, access control, forms, APIs, developer-ready fixes, and a complimentary retest.",
+  alternates: {
+    canonical: "/services/website-security",
+  },
+};
 const IN_SCOPE = [
   "Login, password reset, session handling, and account abuse checks.",
   "Access control, user boundaries, and IDOR-style issues.",
+  "PHI tracking exposure from pixels, analytics scripts, and third-party JavaScript.",
   "Forms, APIs, uploads, input handling, and common web vulnerabilities.",
-  "Public setup issues such as headers, TLS, cookies, exposed files, and admin paths.",
+  "Security headers, TLS, cookies, exposed files, admin paths, and browser controls.",
 ];
 
 const OUT_OF_SCOPE = [
@@ -17,35 +27,50 @@ const OUT_OF_SCOPE = [
 
 const METHODOLOGY = [
   {
-    title: "Scope and recon",
-    text: "We confirm the target, map the public surface, and note the frameworks, routes, and exposed assets.",
+    title: "Surface review",
+    text: "We inspect browser behavior, public pages, patient forms, and exposed infrastructure.",
   },
   {
-    title: "Config and auth review",
-    text: "We check headers, TLS, cookies, login, reset flows, rate limits, and session behavior.",
+    title: "Manual assessment",
+    text: "Every reachable application component is manually tested for security weaknesses.",
   },
   {
-    title: "App and logic testing",
-    text: "We test access control, workflow mistakes, APIs, input handling, and the common web issues that matter on live sites.",
+    title: "Validation",
+    text: "Every finding is reproduced, verified, and documented with supporting evidence.",
   },
   {
-    title: "Manual verification and report",
-    text: "Every finding is reproduced by hand before it goes into the report, with proof and direct fixes.",
+    title: "Developer blueprint",
+    text: "Every finding includes technical proof and remediation instructions your developer can implement.",
   },
 ];
 
 const DELIVERABLES = [
-  "Short summary for the client or team lead",
-  "Findings with proof, severity, and direct fixes",
-  "48-hour report delivery after testing ends",
-  "One free retest within 14 days after fixes",
+  "Manual application penetration test",
+  "PHI tracking exposure review",
+  "Security header assessment",
+  "Proof-of-risk screenshots",
+  "Developer remediation blueprint",
+  "One complimentary retest after fixes",
+  "Delivered within 7 days",
 ];
 
 const ENGAGEMENT_FLOW = [
-  ["01", "Authorize", "You confirm ownership or written permission and approve the target."],
-  ["02", "Prepare", "We confirm scope, test accounts if needed, and the testing window."],
-  ["03", "Test", "Testing runs over 2 business days with important issues raised quickly."],
-  ["04", "Report", "You get the final PDF within 48 hours, plus one retest after fixes."],
+  ["01", "Scope", "We define the application, pages, and systems included in the assessment."],
+  [
+    "02",
+    "Manual Testing",
+    "The live application is assessed for application-layer vulnerabilities, configuration weaknesses, and data exposure risks.",
+  ],
+  [
+    "03",
+    "Validation",
+    "Every finding is reproduced, verified, and documented with supporting evidence.",
+  ],
+  [
+    "04",
+    "Delivery",
+    "You receive a remediation blueprint, technical evidence, and one complimentary retest after fixes.",
+  ],
 ];
 
 export default function WebsiteSecurityDetailPage() {
@@ -54,16 +79,17 @@ export default function WebsiteSecurityDetailPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-page-hero-grid">
           <div className="tn-page-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Website security review</small>
-            <h1>Review the live website.</h1>
+            <small className="tn-kicker">Application security audit</small>
+            <h1>Application Penetration Test & Remediation Blueprint</h1>
             <p className="tn-body tn-page-summary">
-              We test live websites for auth issues, access problems, risky setup, and the web
-              flaws that matter.
+              ThreatNest performs fixed-scope application security audits for independent
+              healthcare clinics, dental practices, and medical centers operating patient-facing
+              web applications.
             </p>
 
             <div className="tn-actions">
               <Link href="/start" className="tn-button-primary">
-                Start Review
+                Request Audit
               </Link>
               <Link href="/services" className="tn-button-secondary">
                 Back to Services
@@ -73,10 +99,10 @@ export default function WebsiteSecurityDetailPage() {
 
           <div className="tn-aside-list" data-tn-reveal="right" data-tn-reveal-state="hidden">
             {[
-              ["$500 fixed", "$250 before testing and $250 on delivery."],
-              ["2 business days", "Testing window after scope and authorization are confirmed."],
-              ["48-hour report", "Final PDF after testing is complete."],
-              ["14-day retest", "Included for remediated findings."],
+              ["$2,000 Fixed", "One fixed fee for the audit and remediation blueprint."],
+              ["7-day delivery", "Full documentation delivered within 7 days."],
+              ["Complimentary retest", "One retest after remediation is complete."],
+              ["Healthcare focus", "Built for patient-facing web applications."],
             ].map(([title, text]) => (
               <div key={title} className="tn-aside-row">
                 <small className="tn-meta-label">{title}</small>
@@ -117,9 +143,10 @@ export default function WebsiteSecurityDetailPage() {
         <div className="tn-container tn-section-stack">
           <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
             <small className="tn-kicker">Method</small>
-            <h2>How the review runs.</h2>
+            <h2>How the audit runs.</h2>
             <p className="tn-body">
-              We agree scope, test by hand, and write everything up with proof and fixes.
+              We agree scope, test by hand, and write everything up with proof, severity,
+              affected assets, business impact, and developer-ready fixes.
             </p>
           </div>
 
@@ -145,7 +172,7 @@ export default function WebsiteSecurityDetailPage() {
         <div className="tn-container tn-grid-2">
           <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
             <small className="tn-kicker">Deliverables</small>
-            <h2>Report and retest.</h2>
+            <h2>Remediation blueprint and retest.</h2>
             <div className="tn-plain-list">
               {DELIVERABLES.map((item) => (
                 <p key={item} className="tn-plain-list-item">
@@ -182,13 +209,14 @@ export default function WebsiteSecurityDetailPage() {
               <small className="tn-kicker">Next step</small>
               <h2>Ready to send the target?</h2>
               <p className="tn-body">
-                Send the domain, your notes, and any access details if the review needs them.
+                Send your website URL and a short description of your application. We will confirm
+                scope, explain the assessment process, and provide the next steps.
               </p>
             </div>
 
             <div className="tn-actions lg:justify-end" data-tn-reveal="right" data-tn-reveal-state="hidden">
               <Link href="/start" className="tn-button-primary">
-                Start the Review
+                Request Audit
               </Link>
               <Link href="/contact" className="tn-button-secondary">
                 Ask a Question

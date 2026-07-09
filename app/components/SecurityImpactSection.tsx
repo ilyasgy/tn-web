@@ -55,11 +55,11 @@ export default function SecurityImpactSection() {
               The Security Reality
             </p>
             <h2 className="mt-4 text-4xl font-bold leading-[0.98] text-black dark:text-white md:text-5xl">
-              Small sites get attacked, too.
+              Patient-facing sites are scanned constantly.
             </h2>
             <p className="mt-6 max-w-2xl text-xl font-medium leading-8 text-neutral-700 dark:text-white/60">
-              Bots do not care how big your brand is. Microsoft reports roughly 600 million
-              cyberattacks a day, roughly 416,667 attempts every minute.
+              Automated attacks do not care how large your organization is. Microsoft reports
+              roughly 600 million cyberattacks a day, roughly 416,667 attempts every minute.
             </p>
           </div>
 
@@ -120,20 +120,24 @@ export default function SecurityImpactSection() {
           data-tn-reveal-state="hidden"
         >
           <p className="text-sm font-bold text-neutral-500 dark:text-white/45">
-            How we protect you
+            What your audit includes
           </p>
-          <div className="mt-8 grid gap-10 lg:grid-cols-3">
+          <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <ProtectionBlock
-              title="Manual testing"
-              text="We rely on human expertise, not just raw automated scan output."
+              title="Manual Testing"
+              text="Every finding is manually verified before it reaches your report."
             />
             <ProtectionBlock
-              title="Clear proof"
-              text="Every issue we report includes proof and fixes your team can actually execute."
+              title="Evidence"
+              text="Each vulnerability includes proof, severity, affected assets, and business impact."
             />
             <ProtectionBlock
-              title="Fast results"
-              text="Critical issues are flagged immediately, full reports follow in 48 hours, and one free retest is included within 14 days."
+              title="Developer Blueprint"
+              text="Every issue includes practical remediation guidance for your development team."
+            />
+            <ProtectionBlock
+              title="Fast Delivery"
+              text="Critical findings are reported immediately. Full documentation is delivered within 7 days."
             />
           </div>
         </div>
@@ -147,13 +151,13 @@ export default function SecurityImpactSection() {
             href="/services/website-security"
             className="tn-button-primary"
           >
-            View security review
+            View audit scope
           </Link>
           <Link
             href="/start"
             className="tn-button-secondary"
           >
-            Start Security Review
+            Request audit
           </Link>
         </div>
 
@@ -162,7 +166,7 @@ export default function SecurityImpactSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          Figures use Microsoft's reported 600 million cyberattacks per day.
+          Figures use Microsoft&apos;s reported 600 million cyberattacks per day.
         </p>
       </div>
     </section>

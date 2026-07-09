@@ -17,8 +17,8 @@ export default function Footer() {
           </Link>
 
           <p className="mt-5 max-w-md text-lg font-medium leading-8 text-[#333333] dark:text-white/70">
-            Websites and security reviews for businesses that need a site that performs and holds
-            up.
+            Application security audits for healthcare clinics, dental practices, and medical
+            centers.
           </p>
         </div>
 

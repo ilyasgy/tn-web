@@ -17,11 +17,6 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // close mobile menu on route change
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     const el = menuRef.current;
     if (!el) return;
 
@@ -136,7 +131,7 @@ export default function Navbar() {
             );
           })}
 
-          <Link href="/contact" className="tn-button-primary">
+          <Link href="/contact" onClick={() => setOpen(false)} className="tn-button-primary">
             Contact
           </Link>
         </div>

@@ -19,25 +19,16 @@ type StartFormState = {
   company: string;
 };
 
-const SITE_TYPES = ["Business site", "Ecommerce", "Portal or dashboard", "Not sure yet"] as const;
-const BUDGET_RANGES = [
-  "Not sure",
-  "Starter ($1,000 - $3,000)",
-  "Growth ($3,000 - $10,000)",
-  "$10,000+",
-] as const;
-const TIMELINES = ["ASAP", "1-2 weeks", "This month", "Flexible"] as const;
-
 const EMPTY_FORM: StartFormState = {
   fullName: "",
   email: "",
   website: "",
   platform: "",
-  siteType: "Business site",
-  budgetRange: "Not sure",
+  siteType: "",
+  budgetRange: "",
   timeline: "Flexible",
   webSelected: false,
-  securitySelected: false,
+  securitySelected: true,
   githubAccess: "",
   concerns: "",
   authorization: false,
@@ -49,30 +40,10 @@ const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/$/, "");
 function getSelectedServices(form: Pick<StartFormState, "webSelected" | "securitySelected">) {
   return [
     form.webSelected ? "web_development" : "",
-    form.securitySelected ? "security_review" : "",
+    form.securitySelected ? "application_security_audit" : "",
   ]
     .filter(Boolean)
     .join("+") || "none";
-}
-
-function ChoicePill({
-  active,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`tn-choice-pill ${active ? "tn-choice-pill-active" : ""}`}
-    >
-      <span className="tn-choice-title">{label}</span>
-    </button>
-  );
 }
 
 export default function StartForm() {
@@ -98,15 +69,8 @@ export default function StartForm() {
       return;
     }
 
-    if (!form.webSelected && !form.securitySelected) {
-      trackEvent("start_form_error", { error_type: "missing_service" });
-      setStatus("error");
-      setFeedback("Please choose at least one: Web Development or Security Review.");
-      return;
-    }
-
-    const needsDev = form.webSelected;
-    const needsSecurity = form.securitySelected;
+    const needsDev = false;
+    const needsSecurity = true;
 
     if ((needsDev || needsSecurity) && !form.website.trim()) {
       trackEvent("start_form_error", {
@@ -124,7 +88,7 @@ export default function StartForm() {
         service_selection: getSelectedServices(form),
       });
       setStatus("error");
-      setFeedback("Please confirm you own the site or have permission to request the security review.");
+      setFeedback("Please confirm you own the application or have permission to request testing.");
       return;
     }
 
@@ -143,9 +107,9 @@ export default function StartForm() {
         email: form.email.trim(),
         website: form.website.trim(),
         platform: form.platform.trim(),
-        siteType: needsDev ? form.siteType : "",
-        budgetRange: needsDev ? form.budgetRange : "",
-        timeline: needsDev ? form.timeline : "",
+        siteType: "",
+        budgetRange: "",
+        timeline: "",
         needsDev,
         needsSecurity,
         webSelected: needsDev,
@@ -175,7 +139,7 @@ export default function StartForm() {
         service_selection: getSelectedServices(form),
       });
       setStatus("done");
-      setFeedback("We got it. We'll review it and reply shortly.");
+      setFeedback("We got it. We'll review the scope and reply shortly.");
       setForm(EMPTY_FORM);
     } catch (error) {
       trackEvent("start_form_error", {
@@ -190,31 +154,10 @@ export default function StartForm() {
   return (
     <form onSubmit={handleSubmit} className="tn-form">
       <div className="tn-form-section">
-        <p className="tn-label">What do you need?</p>
-        <div className="tn-choice-group pt-4">
-          <ChoicePill
-            active={form.webSelected}
-            label="Web Development"
-            onClick={() => {
-              trackEvent("start_service_toggle", {
-                service: "web_development",
-                selected: !form.webSelected,
-              });
-              setValue("webSelected", !form.webSelected);
-            }}
-          />
-          <ChoicePill
-            active={form.securitySelected}
-            label="Security Review"
-            onClick={() => {
-              trackEvent("start_service_toggle", {
-                service: "security_review",
-                selected: !form.securitySelected,
-              });
-              setValue("securitySelected", !form.securitySelected);
-            }}
-          />
-        </div>
+        <p className="tn-label">Audit request</p>
+        <p className="tn-body tn-body-strong pt-4">
+          Application Penetration Test & Remediation Blueprint
+        </p>
       </div>
 
       <div className="tn-form-section">
@@ -276,127 +219,44 @@ export default function StartForm() {
         </div>
       </div>
 
-      {form.webSelected ? (
-        <div className="tn-form-section">
-          <p className="tn-label">Type of site</p>
-          <div className="tn-choice-group pt-4">
-            {SITE_TYPES.map((option) => (
-              <ChoicePill
-                key={option}
-                active={form.siteType === option}
-                label={option}
-                onClick={() => {
-                  trackEvent("start_site_type_select", { site_type: option });
-                  setValue("siteType", option);
-                }}
-              />
-            ))}
+      <div className="tn-form-section">
+        <div className="tn-field">
+          <div className="tn-field-label-row">
+            <label className="tn-label">GitHub / repo access</label>
+            <span className="tn-help tn-help-inline">Optional.</span>
           </div>
-
-          <div className="tn-field-grid pt-6">
-            <div>
-              <p className="tn-label">Budget range</p>
-              <div className="tn-choice-group pt-4">
-                {BUDGET_RANGES.map((option) => (
-                  <ChoicePill
-                    key={option}
-                    active={form.budgetRange === option}
-                    label={option}
-                    onClick={() => {
-                      trackEvent("start_budget_range_select", { budget_range: option });
-                      setValue("budgetRange", option);
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="tn-label">Timeline</p>
-              <div className="tn-choice-group pt-4">
-                {TIMELINES.map((option) => (
-                  <ChoicePill
-                    key={option}
-                    active={form.timeline === option}
-                    label={option}
-                    onClick={() => {
-                      trackEvent("start_timeline_select", { timeline: option });
-                      setValue("timeline", option);
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          <input
+            type="text"
+            value={form.githubAccess}
+            onChange={(event) => setValue("githubAccess", event.target.value)}
+            className="tn-input tn-input-wide-right"
+            placeholder="github.com/yourname or repo"
+          />
         </div>
-      ) : null}
 
-      {form.securitySelected ? (
-        <div className="tn-form-section">
-          <div className="tn-field-grid">
-            <div className="tn-field">
-              <label className="tn-label">Target stack</label>
-              <input
-                type="text"
-                value={form.platform}
-                onChange={(event) => setValue("platform", event.target.value)}
-                className="tn-input"
-                placeholder="e.g. Node.js, Next.js, PHP"
-              />
-            </div>
+        <div className="tn-field pt-4">
+          <label className="tn-label">Priority areas or notes</label>
+          <p className="tn-help">Tell us what matters most.</p>
+          <textarea
+            value={form.concerns}
+            onChange={(event) => setValue("concerns", event.target.value)}
+            className="tn-textarea"
+            placeholder="Patient forms, login, portal paths, tracking scripts, uploads, or anything you want checked first."
+          />
+        </div>
 
-            <div className="tn-field">
-              <div className="tn-field-label-row">
-                <label className="tn-label">GitHub / repo access</label>
-                <span className="tn-help tn-help-inline">Optional.</span>
-              </div>
-              <input
-                type="text"
-                value={form.githubAccess}
-                onChange={(event) => setValue("githubAccess", event.target.value)}
-                className="tn-input tn-input-wide-right"
-                placeholder="github.com/yourname or repo"
-              />
-            </div>
-          </div>
-
-          <div className="tn-field pt-4">
-            <label className="tn-label">Priority areas or notes</label>
-            <p className="tn-help">Tell us what matters most.</p>
-            <textarea
-              value={form.concerns}
-              onChange={(event) => setValue("concerns", event.target.value)}
-              className="tn-textarea"
-              placeholder="Login, admin paths, uploads, checkout, or anything you want checked first."
+        <div className="tn-field pt-4">
+          <label className="tn-label">
+            <input
+              type="checkbox"
+              checked={form.authorization}
+              onChange={(event) => setValue("authorization", event.target.checked)}
+              className="mr-2 align-middle"
             />
-          </div>
-
-          <div className="tn-field pt-4">
-            <label className="tn-label">
-              <input
-                type="checkbox"
-                checked={form.authorization}
-                onChange={(event) => setValue("authorization", event.target.checked)}
-                className="mr-2 align-middle"
-              />
-              I own this site or have permission to test it
-            </label>
-          </div>
+            I own this application or have written permission to request testing
+          </label>
         </div>
-      ) : (
-        <div className="tn-form-section">
-          <div className="tn-field">
-            <label className="tn-label">What should we look at?</label>
-            <p className="tn-help">Tell us what matters most.</p>
-            <textarea
-              value={form.concerns}
-              onChange={(event) => setValue("concerns", event.target.value)}
-              className="tn-textarea"
-              placeholder="Goals, features, or anything else you want addressed."
-            />
-          </div>
-        </div>
-      )}
+      </div>
 
       <input
         value={form.company}
@@ -413,7 +273,7 @@ export default function StartForm() {
           disabled={status === "sending"}
           className="tn-button-primary disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === "sending" ? "Sending..." : "Send request"}
+          {status === "sending" ? "Sending..." : "Request audit"}
         </button>
 
         {feedback ? (
