@@ -40,7 +40,7 @@ export default function SocialLinks({
           className={["tn-social-link", linkClassName].filter(Boolean).join(" ")}
           href={item.href}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label={item.label}
           title={item.label}
         >

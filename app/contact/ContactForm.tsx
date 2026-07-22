@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { trackEvent } from "../lib/analytics";
+import { postApi } from "../lib/api";
 
 type ContactFormState = {
   name: string;
@@ -28,32 +29,22 @@ const EMPTY_FORM: ContactFormState = {
   company: "",
 };
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/$/, "");
-
 export default function ContactForm() {
   const searchParams = useSearchParams();
-  const [form, setForm] = useState<ContactFormState>(EMPTY_FORM);
+  const requestedSubject = searchParams.get("subject");
+  const requestedSubjectValue =
+    SUBJECT_OPTIONS.find((option) => option.value === requestedSubject)?.value || "";
+  const [form, setForm] = useState<ContactFormState>(() => ({
+    ...EMPTY_FORM,
+    subject: requestedSubjectValue || EMPTY_FORM.subject,
+  }));
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [feedback, setFeedback] = useState("");
   const [subjectMenuOpen, setSubjectMenuOpen] = useState(false);
   const subjectMenuRef = useRef<HTMLDivElement | null>(null);
   const hasTrackedView = useRef(false);
-
-  const requestedSubject = searchParams.get("subject");
-  const requestedSubjectValue =
-    SUBJECT_OPTIONS.find((option) => option.value === requestedSubject)?.value || "";
   const selectedSubject =
     SUBJECT_OPTIONS.find((option) => option.value === form.subject) ?? SUBJECT_OPTIONS[0];
-
-  useEffect(() => {
-    if (requestedSubjectValue) {
-      setForm((current) =>
-        current.subject === requestedSubjectValue
-          ? current
-          : { ...current, subject: requestedSubjectValue }
-      );
-    }
-  }, [requestedSubjectValue]);
 
   useEffect(() => {
     if (hasTrackedView.current) {
@@ -113,27 +104,15 @@ export default function ContactForm() {
     });
 
     try {
-      const response = await fetch(
-        API_BASE ? `${API_BASE}/api/support/ticket` : "/api/support/ticket",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: form.name.trim(),
-            email: form.email.trim(),
-            company: form.company,
-            pageUrl: typeof window !== "undefined" ? window.location.href : "/contact",
-            topic: `Contact: ${selectedSubject.label}`,
-            category: selectedSubject.label,
-            message: form.message.trim(),
-          }),
-        }
-      );
-
-      const data = await response.json().catch(() => null);
-      if (!response.ok || !data?.ok) {
-        throw new Error(data?.error || "Failed to send your message.");
-      }
+      await postApi("/api/support/ticket", {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company,
+        pageUrl: window.location.href,
+        topic: `Contact: ${selectedSubject.label}`,
+        category: selectedSubject.label,
+        message: form.message.trim(),
+      });
 
       trackEvent("contact_form_success", {
         subject: form.subject,
@@ -165,6 +144,7 @@ export default function ContactForm() {
               className="tn-input"
               placeholder="Name"
               autoComplete="name"
+              maxLength={120}
               required
             />
           </div>
@@ -180,6 +160,7 @@ export default function ContactForm() {
               className="tn-input"
               placeholder="you@company.com"
               autoComplete="email"
+              maxLength={200}
             />
           </div>
         </div>
@@ -254,6 +235,7 @@ export default function ContactForm() {
             onChange={(event) => setValue("message", event.target.value)}
             className="tn-textarea"
             placeholder="Write your message here"
+            maxLength={2000}
             required
           />
         </div>

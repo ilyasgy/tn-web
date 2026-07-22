@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "@/app/components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Design and Maintenance Pro",
+  description: "Monthly design, frontend updates, and technical upkeep for active websites.",
+  alternates: { canonical: "/services/design-maintenance-pro" },
+};
 
 export default function DesignMaintenanceProPage() {
   return (

@@ -1,4 +1,8 @@
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+
+export const GA_MEASUREMENT_ID = /^(G|AW)-[A-Z0-9-]+$/.test(configuredMeasurementId)
+  ? configuredMeasurementId
+  : "";
 
 declare global {
   interface Window {

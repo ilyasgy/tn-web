@@ -28,6 +28,7 @@ export default function StatCounter({
   compactSuffix = "M",
 }: Props) {
   const ref = useRef<HTMLSpanElement | null>(null);
+  const hasAnimatedRef = useRef(false);
   const [inView, setInView] = useState(false);
   const [value, setValue] = useState(0);
 
@@ -57,7 +58,7 @@ export default function StatCounter({
 
   useEffect(() => {
     if (!inView) return;
-    if (once && value !== 0) return;
+    if (once && hasAnimatedRef.current) return;
 
     let raf = 0;
     const start = performance.now();
@@ -70,13 +71,16 @@ export default function StatCounter({
       const next = from + (end - from) * eased;
 
       setValue(next);
-      if (p < 1) raf = requestAnimationFrame(tick);
+      if (p < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        hasAnimatedRef.current = true;
+      }
     };
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, end, durationMs]);
+  }, [inView, end, durationMs, once]);
 
   return (
     <span ref={ref} className={className}>

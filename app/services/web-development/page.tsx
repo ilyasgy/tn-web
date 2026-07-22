@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Web Development",
+  description: "Website structure, responsive frontend development, QA, and launch support.",
+  alternates: { canonical: "/services/web-development" },
+};
 
 const CAPABILITIES = [
   "Page structure and content flow",

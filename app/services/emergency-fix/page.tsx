@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "@/app/components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Emergency Website Fix",
+  description: "Focused help for a broken page, frontend error, layout issue, or urgent website bug.",
+  alternates: { canonical: "/services/emergency-fix" },
+};
 
 export default function EmergencyFixPage() {
   return (
