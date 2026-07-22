@@ -17,8 +17,8 @@ export default function Footer() {
           </Link>
 
           <p className="mt-5 max-w-md text-lg font-medium leading-8 text-[#333333] dark:text-white/70">
-            Application security audits for healthcare clinics, dental practices, and medical
-            centers.
+            Independent international cybersecurity services for businesses and organizations.
+            Security engagements are led by Omar Geylani, Lead Penetration Tester.
           </p>
         </div>
 
@@ -41,6 +41,12 @@ export default function Footer() {
             </Link>
             <Link href="/privacy" className="tn-footer-link">
               Privacy
+            </Link>
+            <Link href="/authorized-testing" className="tn-footer-link">
+              Authorized Testing
+            </Link>
+            <Link href="/data-handling" className="tn-footer-link">
+              Data Handling
             </Link>
           </div>
 

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SecurityImpactSection from "@/app/components/SecurityImpactSection";
-import SectionDock from "@/app/components/SectionDock";
 
 
 export const metadata: Metadata = {
   title: "Healthcare Application Security Audits",
-  description: "Fixed-scope healthcare application security audits for clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, developer-ready remediation, and one retest.",
+  description: "Business to business healthcare application security audits led by Omar Geylani. Manual testing, validated findings, clear remediation, and one retest.",
   alternates: {
     canonical: "/",
   },
@@ -19,21 +18,12 @@ type HomeService = {
   href: string;
   cta: string;
   tone: "default" | "security";
-  price: string;
   audience: string;
 };
 
 const SERVICE_ROUTES = {
   websiteSecurity: "/services/website-security",
 } as const;
-
-const DOCK_ITEMS = [
-  { id: "services", label: "Services" },
-  { id: "security", label: "Security" },
-  { id: "process", label: "Process" },
-  { id: "faq", label: "FAQ" },
-  { id: "contact", label: "Contact" },
-];
 
 const HOW_WE_WORK_STEPS = [
   [
@@ -55,23 +45,22 @@ const HOW_WE_WORK_STEPS = [
 
 const SERVICE_TRACKS: HomeService[] = [
   {
-    label: "Fixed-scope audit",
+    label: "Fixed scope audit",
     title: "Application Penetration Test & Remediation Blueprint",
     description:
-      "For independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
+      "For independent healthcare clinics, dental practices, and medical centers operating patient facing web applications.",
     bullets: [
       "Manual application penetration test",
       "PHI tracking exposure review",
       "Security header assessment",
-      "Proof-of-risk screenshots",
+      "Screenshots that show the risk",
       "Developer remediation blueprint",
       "One complimentary retest after fixes",
-      "Delivered within 7 days",
+      "Designed for delivery within 7 calendar days",
     ],
     href: SERVICE_ROUTES.websiteSecurity,
     cta: "View scope",
     tone: "security",
-    price: "$2,000 Fixed",
     audience: "Deliverables",
   },
 ];
@@ -81,7 +70,7 @@ const PROCESS_STEPS = [
   [
     "02",
     "Manual Testing",
-    "The live application is assessed for application-layer vulnerabilities, configuration weaknesses, and data exposure risks.",
+    "The live application is assessed for application vulnerabilities, configuration weaknesses, and data exposure risks.",
   ],
   [
     "03",
@@ -98,7 +87,7 @@ const PROCESS_STEPS = [
 const QUICK_LINKS = [
   {
     title: "Audit scope",
-    text: "What the fixed-scope assessment includes.",
+    text: "What the fixed scope assessment includes.",
     href: SERVICE_ROUTES.websiteSecurity,
   },
   {
@@ -121,7 +110,7 @@ const QUICK_LINKS = [
 const FAQ_ITEMS = [
   {
     q: "Who do you usually work with?",
-    a: "Independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
+    a: "Independent healthcare clinics, dental practices, and medical centers operating patient facing web applications.",
   },
   {
     q: "Is the audit just an automated scan?",
@@ -129,70 +118,63 @@ const FAQ_ITEMS = [
   },
   {
     q: "When should the audit happen?",
-    a: "When the patient-facing application is live or production-ready, because the real browser behavior and exposed surface matter.",
+    a: "When the patient facing application is live or ready for production, because the real browser behavior and exposed surface matter.",
   },
   {
     q: "What do we actually get back?",
-    a: "You get technical findings with proof, severity, affected assets, business impact, and developer-ready remediation guidance.",
+    a: "You get technical findings with proof, severity, affected assets, business impact, and remediation guidance for your developer.",
   },
   {
     q: "Is a retest included?",
-    a: "Yes. One complimentary retest is included after your developer applies the fixes.",
+    a: "Yes. One complimentary retest of the original findings is included when requested within 14 calendar days after the final report is delivered, unless the Engagement Documents state another period.",
   },
   {
     q: "Do you need authorization?",
-    a: "Yes. Every audit requires written authorization and a fixed scope before testing begins.",
+    a: "Yes. Every audit requires signed written authorization, an agreed scope, Rules of Engagement, a testing window, cleared payment, required access, and ThreatNest confirmation before testing begins. A form, call, or email is not authorization.",
   },
 ];
 
 function HeroSection() {
   return (
     <section className="tn-hero tn-home-hero pt-6">
-      <div className="tn-container tn-hero-grid">
+      <div className="tn-container tn-home-hero-layout">
         <div
-          className="tn-hero-copy"
+          className="tn-home-hero-heading"
           data-tn-reveal="left"
           data-tn-reveal-state="hidden"
         >
-          <small className="tn-kicker">ThreatNest</small>
-          <h1 className="tn-display">Application security audits for healthcare websites.</h1>
-          <p className="tn-body">
-            ThreatNest performs fixed-scope application security audits for independent healthcare
-            clinics, dental practices, and medical centers. We identify application-layer
-            vulnerabilities, PHI exposure through tracking technologies, weak security
-            configurations, and provide a developer-ready remediation blueprint within 7 days.
-          </p>
-
-          <div className="tn-actions">
-            <Link href="/start" className="tn-button-primary">
-              Request Audit
-            </Link>
-            <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
-              View Scope
-            </Link>
-          </div>
+          <h1 className="tn-home-display">
+            Application security audits for healthcare websites
+          </h1>
         </div>
 
-        <div className="tn-hero-meta" data-tn-reveal="right" data-tn-reveal-state="hidden">
-          {[
-            [
-              "PHI Tracking Exposure",
-              "Meta Pixels, analytics scripts, and third-party JavaScript inside patient forms.",
-            ],
-            [
-              "Security Header Failures",
-              "Browser security controls, transport protection, and configuration weaknesses.",
-            ],
-            [
-              "Application Risks",
-              "Authentication flaws, access control issues, exposed files, insecure business logic, and production vulnerabilities.",
-            ],
-          ].map(([label, text]) => (
-            <div key={label} className="tn-hero-meta-item">
-              <small className="tn-meta-label">{label}</small>
-              <p className="tn-meta-value">{text}</p>
+        <div className="tn-home-hero-lower">
+          <div
+            className="tn-home-hero-intro"
+            data-tn-reveal="up"
+            data-tn-reveal-state="hidden"
+          >
+            <p className="tn-home-hero-lead">
+              ThreatNest manually tests patient facing applications for exploitable weaknesses,
+              privacy exposure, and unsafe configuration. The report gives your developer clear
+              evidence and practical fixes.
+            </p>
+            <p className="tn-home-hero-note">
+              The standard scope includes manual application testing, PHI tracking review,
+              security configuration review, a repair blueprint, and one retest. Delivery is
+              designed for seven calendar days after engagement requirements are met.
+            </p>
+
+            <div className="tn-actions">
+              <Link href="/start" className="tn-button-primary">
+                Request Audit
+              </Link>
+              <Link href={SERVICE_ROUTES.websiteSecurity} className="tn-button-secondary">
+                View Scope
+              </Link>
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
     </section>
@@ -208,13 +190,12 @@ function IntroBridgeSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <small className="tn-kicker">Audit approach</small>
           <h2>
-            Security begins where patients interact.
+            We test the parts of the application patients can reach.
           </h2>
           <p className="tn-body">
             We inspect the production paths patients actually use, then turn verified risk into
-            developer-ready fixes.
+            fixes your developer can use.
           </p>
         </div>
 
@@ -257,19 +238,10 @@ function ServiceTrackCard({
         <div>
           <p className="text-sm font-bold text-neutral-500 dark:text-white/45">{service.label}</p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-4">
+          <div className="mt-4">
             <h3 className="text-3xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
               {service.title}
             </h3>
-            <span
-              className={`rounded-full px-4 py-2 text-sm font-bold ${
-                isSecurity
-                  ? "bg-[#2cff68]/10 text-[#0e7f2d] dark:text-[#76ff9c]"
-                  : "bg-neutral-100 text-neutral-700 dark:bg-white/10 dark:text-white"
-              }`}
-            >
-              {service.price}
-            </span>
           </div>
         </div>
 
@@ -295,7 +267,6 @@ function ServiceTrackCard({
             }`}
           >
             {service.cta}
-            <span aria-hidden="true">-&gt;</span>
           </Link>
         </div>
       </div>
@@ -312,13 +283,13 @@ function ServicesSystemSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Services</p>
-          <h2 className="mt-4 text-5xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
-            One fixed-scope audit. One developer-ready repair blueprint.
+          <h2 className="text-4xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
+            One audit with a clear scope and a report your developer can use.
           </h2>
           <p className="mt-6 text-xl font-medium leading-8 text-neutral-700 dark:text-white/65">
             Manual application testing, PHI tracking exposure review, security header assessment,
-            and remediation guidance delivered within 7 days.
+            and remediation guidance. The standard seven calendar day delivery period starts only
+            after the engagement prerequisites are complete.
           </p>
         </div>
 
@@ -345,9 +316,8 @@ function ProcessSection() {
           data-tn-reveal="left"
           data-tn-reveal-state="hidden"
         >
-          <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Process</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
-            Structured. Evidence-driven. Developer-focused.
+          <h2 className="text-4xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
+            From scope to final report.
           </h2>
         </div>
 
@@ -373,8 +343,8 @@ function ProcessSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          Every audit requires written authorization and a fixed testing window before testing
-          begins.
+          Every audit requires signed written authorization, an agreed scope and testing window,
+          cleared payment, required access, and ThreatNest confirmation before testing begins.
         </p>
       </div>
     </section>
@@ -390,9 +360,8 @@ function FAQSection() {
           data-tn-reveal="left"
           data-tn-reveal-state="hidden"
         >
-          <p className="text-sm font-bold text-neutral-500 dark:text-white/45">FAQ</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-black dark:text-white md:text-6xl">
-            Straight answers.
+          <h2 className="text-4xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
+            Questions clients usually ask.
           </h2>
         </div>
 
@@ -429,13 +398,17 @@ function ContactSection() {
       <div className="relative mx-auto max-w-6xl">
         <div className="grid gap-16 md:grid-cols-[1.05fr_0.95fr]">
           <div data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Contact</p>
-            <h2 className="mt-4 text-5xl font-bold leading-[1.02] text-black dark:text-white md:text-6xl">
+            <h2 className="text-4xl font-bold leading-[1.02] text-black dark:text-white md:text-5xl">
               Request an application security audit.
             </h2>
             <p className="mt-6 max-w-2xl text-xl font-medium leading-8 text-neutral-600 dark:text-white/60">
               Send your website URL and a short description of your application. We&apos;ll confirm
               scope, explain the assessment process, and provide the next steps.
+            </p>
+            <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-neutral-600 dark:text-white/60">
+              Requests are for businesses and organizations. Do not send patient information,
+              credentials, access tokens, private keys, or confidential source code through the
+              public form. Submitting a request does not authorize testing.
             </p>
 
             <div className="tn-actions mt-8">
@@ -450,7 +423,7 @@ function ContactSection() {
             <div className="mt-12 grid gap-8 sm:grid-cols-3">
               {[
                 ["Audit", "Manual application penetration testing."],
-                ["Report", "Technical findings with developer-ready remediation."],
+                ["Report", "Technical findings with remediation guidance for your developer."],
                 ["Retest", "Verification after remediation is complete."],
               ].map(([title, text]) => (
                 <div key={title}>
@@ -464,7 +437,7 @@ function ContactSection() {
           </div>
 
           <div data-tn-reveal="right" data-tn-reveal-state="hidden">
-            <p className="text-sm font-bold text-neutral-500 dark:text-white/45">Quick links</p>
+            <h2 className="text-2xl font-bold text-black dark:text-white">Find the details</h2>
 
             <div className="mt-6 border-t border-neutral-200 dark:border-white/10">
               {QUICK_LINKS.map((item) => (
@@ -501,7 +474,7 @@ export default function Home() {
         <ServicesSystemSection />
 
         <section id="security">
-          <SecurityImpactSection />
+        <SecurityImpactSection />
         </section>
 
         <ProcessSection />
@@ -511,7 +484,6 @@ export default function Home() {
         <ContactSection />
       </div>
 
-      <SectionDock items={DOCK_ITEMS} offset={110} showAfter={220} />
     </main>
   );
 }

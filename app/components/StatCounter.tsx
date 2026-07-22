@@ -11,6 +11,8 @@ type Props = {
   className?: string;
   once?: boolean; // animate once when in view
   format?: (n: number) => string;
+  compact?: boolean;
+  compactSuffix?: string;
 };
 
 export default function StatCounter({
@@ -22,6 +24,8 @@ export default function StatCounter({
   className = "",
   once = true,
   format,
+  compact = false,
+  compactSuffix = "M",
 }: Props) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const [inView, setInView] = useState(false);
@@ -29,12 +33,15 @@ export default function StatCounter({
 
   const formatter = useMemo(() => {
     if (format) return format;
+    if (compact) {
+      return (n: number) => `${Math.round(n / 1_000_000)}${compactSuffix}`;
+    }
     return (n: number) =>
       n.toLocaleString(undefined, {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
       });
-  }, [decimals, format]);
+  }, [compact, compactSuffix, decimals, format]);
 
   useEffect(() => {
     if (!ref.current) return;

@@ -5,24 +5,25 @@ import SecurityImpactSection from "@/app/components/SecurityImpactSectionSecPage
 
 export const metadata: Metadata = {
   title: "Application Penetration Test & Remediation Blueprint",
-  description: "Manual application penetration testing for healthcare websites, including PHI tracking exposure, security headers, access control, forms, APIs, developer-ready fixes, and a complimentary retest.",
+  description: "Manual application penetration testing for healthcare websites, including PHI tracking exposure, security headers, access control, forms, APIs, clear fixes, and a complimentary retest.",
   alternates: {
     canonical: "/services/website-security",
   },
 };
 const IN_SCOPE = [
   "Login, password reset, session handling, and account abuse checks.",
-  "Access control, user boundaries, and IDOR-style issues.",
-  "PHI tracking exposure from pixels, analytics scripts, and third-party JavaScript.",
+  "Access control, user boundaries, and IDOR issues.",
+  "PHI tracking exposure from pixels, analytics scripts, and third party JavaScript.",
   "Forms, APIs, uploads, input handling, and common web vulnerabilities.",
   "Security headers, TLS, cookies, exposed files, admin paths, and browser controls.",
 ];
 
 const OUT_OF_SCOPE = [
-  "Anything destructive or availability-focused, including DDoS.",
-  "Social engineering unless it is agreed in writing.",
-  "Internal systems or third-party services you do not control.",
-  "Physical security and on-site access.",
+  "Denial of service, load, stress, destructive, or availability testing.",
+  "Phishing, impersonation, social engineering, physical security, or ransomware simulation.",
+  "Internal networks, wireless systems, employee personal accounts, or unrelated systems.",
+  "Third party services the client does not own or have written authority to include.",
+  "Intentional exfiltration or exploitation beyond the minimum proof needed to validate a finding.",
 ];
 
 const METHODOLOGY = [
@@ -36,7 +37,7 @@ const METHODOLOGY = [
   },
   {
     title: "Validation",
-    text: "Every finding is reproduced, verified, and documented with supporting evidence.",
+    text: "Every reported finding is manually reviewed and validated with evidence minimized to what is reasonably necessary.",
   },
   {
     title: "Developer blueprint",
@@ -48,10 +49,10 @@ const DELIVERABLES = [
   "Manual application penetration test",
   "PHI tracking exposure review",
   "Security header assessment",
-  "Proof-of-risk screenshots",
+  "Screenshots that show the risk",
   "Developer remediation blueprint",
   "One complimentary retest after fixes",
-  "Delivered within 7 days",
+  "Designed for delivery within seven calendar days after prerequisites are complete",
 ];
 
 const ENGAGEMENT_FLOW = [
@@ -59,7 +60,7 @@ const ENGAGEMENT_FLOW = [
   [
     "02",
     "Manual Testing",
-    "The live application is assessed for application-layer vulnerabilities, configuration weaknesses, and data exposure risks.",
+    "The live application is assessed for application vulnerabilities, configuration weaknesses, and data exposure risks.",
   ],
   [
     "03",
@@ -79,11 +80,10 @@ export default function WebsiteSecurityDetailPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-page-hero-grid">
           <div className="tn-page-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Application security audit</small>
             <h1>Application Penetration Test & Remediation Blueprint</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest performs fixed-scope application security audits for independent
-              healthcare clinics, dental practices, and medical centers operating patient-facing
+              ThreatNest performs fixed scope application security audits for independent
+              healthcare clinics, dental practices, and medical centers operating patient facing
               web applications.
             </p>
 
@@ -99,10 +99,10 @@ export default function WebsiteSecurityDetailPage() {
 
           <div className="tn-aside-list" data-tn-reveal="right" data-tn-reveal-state="hidden">
             {[
-              ["$2,000 Fixed", "One fixed fee for the audit and remediation blueprint."],
-              ["7-day delivery", "Full documentation delivered within 7 days."],
-              ["Complimentary retest", "One retest after remediation is complete."],
-              ["Healthcare focus", "Built for patient-facing web applications."],
+              ["Standard assessment", "USD 2,000 for the defined scope. Final scope and price are confirmed in writing."],
+              ["Seven calendar days", "The standard delivery period starts after scope, authorization, payment, access, and the testing window are complete."],
+              ["Complimentary retest", "One retest of the original findings when requested within 14 calendar days after the final report is delivered, unless agreed otherwise."],
+              ["Healthcare focus", "Built for patient facing web applications."],
             ].map(([title, text]) => (
               <div key={title} className="tn-aside-row">
                 <small className="tn-meta-label">{title}</small>
@@ -116,7 +116,7 @@ export default function WebsiteSecurityDetailPage() {
       <section className="pb-[128px]">
         <div className="tn-container tn-grid-2">
           <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">In scope</small>
+            <h2>In scope</h2>
             <div className="tn-plain-list">
               {IN_SCOPE.map((item) => (
                 <p key={item} className="tn-plain-list-item">
@@ -127,7 +127,7 @@ export default function WebsiteSecurityDetailPage() {
           </div>
 
           <div className="tn-section-copy" data-tn-reveal="right" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Out of scope</small>
+            <h2>Out of scope</h2>
             <div className="tn-plain-list">
               {OUT_OF_SCOPE.map((item) => (
                 <p key={item} className="tn-plain-list-item">
@@ -142,11 +142,10 @@ export default function WebsiteSecurityDetailPage() {
       <section className="tn-cta-band">
         <div className="tn-container tn-section-stack">
           <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Method</small>
             <h2>How the audit runs.</h2>
             <p className="tn-body">
               We agree scope, test by hand, and write everything up with proof, severity,
-              affected assets, business impact, and developer-ready fixes.
+              affected assets, business impact, and clear fixes.
             </p>
           </div>
 
@@ -171,7 +170,6 @@ export default function WebsiteSecurityDetailPage() {
       <section className="pb-[128px] pt-[128px]">
         <div className="tn-container tn-grid-2">
           <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Deliverables</small>
             <h2>Remediation blueprint and retest.</h2>
             <div className="tn-plain-list">
               {DELIVERABLES.map((item) => (
@@ -183,6 +181,11 @@ export default function WebsiteSecurityDetailPage() {
             <p className="tn-body">
               Findings, screenshots, credentials, business data, and the report are treated as
               confidential.
+            </p>
+            <p className="tn-body">
+              A penetration test is limited in time and covers the agreed scope. It does not
+              guarantee that every vulnerability will be found or certify legal or regulatory
+              compliance.
             </p>
           </div>
 
@@ -206,11 +209,11 @@ export default function WebsiteSecurityDetailPage() {
         <div className="tn-container">
           <div className="tn-grid-2 items-end">
             <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-              <small className="tn-kicker">Next step</small>
               <h2>Ready to send the target?</h2>
               <p className="tn-body">
                 Send your website URL and a short description of your application. We will confirm
-                scope, explain the assessment process, and provide the next steps.
+                scope, explain the assessment process, and provide the next steps. A request,
+                introductory call, payment, or ordinary email does not authorize testing.
               </p>
             </div>
 
@@ -220,6 +223,9 @@ export default function WebsiteSecurityDetailPage() {
               </Link>
               <Link href="/contact" className="tn-button-secondary">
                 Ask a Question
+              </Link>
+              <Link href="/authorized-testing" className="tn-button-secondary">
+                Authorization Policy
               </Link>
             </div>
           </div>

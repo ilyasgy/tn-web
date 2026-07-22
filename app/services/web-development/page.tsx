@@ -42,7 +42,7 @@ const DELIVERY_FLOW = [
 const FIT_NOTES = [
   "New business websites",
   "Rebuilds of outdated sites",
-  "Service-led websites that need stronger structure",
+  "Service websites that need stronger structure",
   "Teams that want a security review after launch",
 ];
 
@@ -52,7 +52,6 @@ export default function WebDevelopmentDetailPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-page-hero-grid">
           <div className="tn-page-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Web development</small>
             <h1>Design and build the website.</h1>
             <p className="tn-body tn-page-summary">
               We handle the structure, visual direction, frontend build, and launch setup.
@@ -72,7 +71,7 @@ export default function WebDevelopmentDetailPage() {
             {[
               ["From $700", "Starting point for smaller websites and focused builds."],
               ["Design to launch", "Design, build, QA, and launch setup are part of the work."],
-              ["Security later", "The live-site review can be added after launch."],
+              ["Security later", "The live site review can be added after launch."],
             ].map(([title, text]) => (
               <div key={title} className="tn-aside-row">
                 <small className="tn-meta-label">{title}</small>
@@ -86,7 +85,6 @@ export default function WebDevelopmentDetailPage() {
       <section className="pb-[128px]">
         <div className="tn-container tn-grid-2">
           <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">What you get</small>
             <h2>Clear structure from the start.</h2>
             <div className="tn-plain-list">
               {CAPABILITIES.map((item) => (
@@ -98,7 +96,6 @@ export default function WebDevelopmentDetailPage() {
           </div>
 
           <div className="tn-section-copy" data-tn-reveal="right" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Good fit</small>
             <h2>New sites and rebuilds.</h2>
             <div className="tn-plain-list">
               {FIT_NOTES.map((item) => (
@@ -119,7 +116,6 @@ export default function WebDevelopmentDetailPage() {
       <section className="tn-cta-band">
         <div className="tn-container">
           <div className="tn-section-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Project size</small>
             <h2>Choose the scope.</h2>
             <p className="tn-body">
               If the site is bigger than this, we quote it from the actual scope.
@@ -157,7 +153,6 @@ export default function WebDevelopmentDetailPage() {
       <section className="pb-[128px]">
         <div className="tn-container tn-section-stack">
           <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Process</small>
             <h2>How the build runs.</h2>
           </div>
 

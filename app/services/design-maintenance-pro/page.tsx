@@ -23,7 +23,7 @@ export default function DesignMaintenanceProPage() {
               "Design reviews and visual improvements",
               "Priority support requests",
               "Ongoing frontend changes",
-              "Regular check-ins",
+              "Regular check ins",
             ],
           },
           goodFor: {

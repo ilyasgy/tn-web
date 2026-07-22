@@ -30,7 +30,7 @@ export default function SiteCarePage() {
             label: "GOOD FOR",
             title: "Good fit",
             items: [
-              "Businesses without in-house technical support",
+              "Businesses without internal technical support",
               "Sites that need regular upkeep",
               "Teams that want small changes handled quickly",
             ],

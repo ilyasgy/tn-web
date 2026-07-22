@@ -12,7 +12,7 @@ import ThemeToggle from "./components/ThemeToggle";
 const siteUrl = "https://threatnest.com";
 const siteTitle = "ThreatNest | Healthcare Application Security Audits";
 const siteDescription =
-  "Fixed-scope application security audits for healthcare clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, developer-ready fixes, and one retest.";
+  "Fixed scope application security audits for healthcare clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, clear fixes, and one retest.";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
