@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { trackEvent } from "../lib/analytics";
+import { postApi } from "../lib/api";
 
 type StartFormState = {
   fullName: string;
@@ -33,8 +34,6 @@ const EMPTY_FORM: StartFormState = {
   authorization: false,
   company: "",
 };
-
-const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/$/, "");
 
 function getSelectedServices(form: Pick<StartFormState, "webSelected" | "securitySelected">) {
   return [
@@ -119,19 +118,7 @@ export default function StartForm() {
         pageUrl: typeof window !== "undefined" ? window.location.href : "/start",
       };
 
-      const response = await fetch(
-        API_BASE ? `${API_BASE}/api/start/request` : "/api/start/request",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const data = await response.json().catch(() => null);
-      if (!response.ok || !data?.ok) {
-        throw new Error(data?.error || "Failed to send the request.");
-      }
+      await postApi("/api/start/request", payload);
 
       trackEvent("start_form_success", {
         service_selection: getSelectedServices(form),
@@ -169,6 +156,7 @@ export default function StartForm() {
               className="tn-input"
               placeholder="Name"
               autoComplete="name"
+              maxLength={120}
               required
             />
           </div>
@@ -182,6 +170,7 @@ export default function StartForm() {
               className="tn-input"
               placeholder="you@company.com"
               autoComplete="email"
+              maxLength={200}
               required
             />
           </div>
@@ -199,6 +188,7 @@ export default function StartForm() {
               className="tn-input"
               placeholder="https://yourdomain.com"
               autoComplete="url"
+              maxLength={500}
               required
             />
           </div>
@@ -212,6 +202,7 @@ export default function StartForm() {
               className="tn-input"
               placeholder="Next.js, Shopify, WordPress, or unknown"
               autoComplete="off"
+              maxLength={120}
             />
           </div>
         </div>
@@ -230,6 +221,7 @@ export default function StartForm() {
             onChange={(event) => setValue("concerns", event.target.value)}
             className="tn-textarea"
             placeholder="Patient forms, login, portal paths, tracking scripts, uploads, or anything you want checked first."
+            maxLength={2000}
           />
         </div>
 

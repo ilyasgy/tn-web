@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "@/app/components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Site Care and Support",
+  description: "Monthly website maintenance, monitoring, backup checks, and small updates.",
+  alternates: { canonical: "/services/site-care" },
+};
 
 export default function SiteCarePage() {
   return (

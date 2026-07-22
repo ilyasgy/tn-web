@@ -30,6 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 .codex-dev.*.log
+.codex/
+.agents/
+.tmp/
 
 # generated audits and local archives
 /lighthouse-*.json
@@ -40,6 +43,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel

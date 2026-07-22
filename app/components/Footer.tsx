@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
@@ -8,8 +9,8 @@ export default function Footer() {
         <div>
           <Link href="/" className="flex items-center gap-3">
             <div className="tn-logo-stack" aria-hidden="true">
-              <img src="/black.png" alt="" className="tn-logo-light tn-logo-swap" />
-              <img src="/white.png" alt="" className="tn-logo-dark tn-logo-swap" />
+              <Image src="/black.png" alt="" width={48} height={48} className="tn-logo-light tn-logo-swap" />
+              <Image src="/white.png" alt="" width={48} height={48} className="tn-logo-dark tn-logo-swap" />
             </div>
             <span className="tn-brand-text text-sm font-semibold tracking-[0.18em]">
               THREATNEST
