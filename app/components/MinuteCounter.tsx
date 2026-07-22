@@ -43,10 +43,15 @@ export default function MinuteCounter({
   }, [perMinute]);
 
   return (
-    <span className={className}>
-      {prefix}
-      {Math.floor(value).toLocaleString()}
-      {suffix}
-    </span>
+    <div className={["tn-minute-counter", className].filter(Boolean).join(" ")}>
+      <div className="tn-minute-counter-value" aria-live="off">
+        <span className="tn-minute-meter-number">
+          {prefix}
+          {Math.floor(value).toLocaleString()}
+          {suffix}
+        </span>
+        <span className="tn-minute-meter-caption">of {perMinute.toLocaleString()}</span>
+      </div>
+    </div>
   );
 }

@@ -91,7 +91,7 @@ h3 {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   line-height: 1.1;
 }
 
@@ -208,7 +208,7 @@ a.tn-button-secondary {
   border: 1px solid var(--text-primary);
   background: #ffffff;
   color: var(--accent-blue);
-  border-radius: var(--radius-pill);
+  border-radius: 16px;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -219,23 +219,35 @@ a.tn-button-secondary {
   min-width: 188px;
 }
 
-.tn-button-primary {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-}
-
-.tn-button-primary:hover {
+.tn-button-primary,
+.tn-actions > .tn-button-primary,
+a.tn-button-primary {
   border-color: var(--accent-blue);
   background: var(--accent-blue);
+  color: #ffffff;
 }
 
-.tn-button-secondary {
+.tn-button-primary:hover,
+.tn-actions > .tn-button-primary:hover,
+a.tn-button-primary:hover {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+.tn-button-secondary,
+.tn-actions > .tn-button-secondary,
+a.tn-button-secondary {
+  border-color: var(--text-primary);
   background: transparent;
   color: var(--text-primary);
 }
 
-.tn-button-secondary:hover {
+.tn-button-secondary:hover,
+.tn-actions > .tn-button-secondary:hover,
+a.tn-button-secondary:hover {
   border-color: var(--accent-blue);
+  background: transparent;
   color: var(--accent-blue);
 }
 
@@ -264,7 +276,145 @@ a.tn-button-secondary {
 
 .tn-home-hero {
   min-height: auto;
-  padding-block: 52px 84px;
+  padding-block: 56px 80px;
+}
+
+.tn-home-hero-layout {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+.tn-home-hero-heading {
+  max-width: 1120px;
+}
+
+.tn-home-display {
+  max-width: 15ch;
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.tn-home-hero-lower {
+  max-width: 760px;
+}
+
+.tn-home-hero-intro {
+  max-width: 760px;
+}
+
+.tn-home-hero-lead {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.48;
+  letter-spacing: -0.025em;
+}
+
+.tn-home-hero-note {
+  max-width: 64ch;
+  margin: 20px 0 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.tn-home-hero-intro .tn-actions {
+  margin-top: 32px;
+}
+
+.tn-attack-visual {
+  display: grid;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  padding: clamp(32px, 6vw, 72px);
+  border: 1px solid var(--border-strong);
+  border-radius: 32px;
+  background: var(--bg-primary);
+}
+
+.tn-attack-label {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tn-attack-number {
+  margin-top: 18px;
+  color: var(--text-primary);
+  font-size: clamp(3.25rem, 7.5vw, 6.6rem);
+  font-weight: 750;
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+}
+
+.tn-attack-copy {
+  max-width: 540px;
+  margin: 28px 0 0;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.tn-attack-live {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tn-live-heading {
+  margin: 0;
+  margin-bottom: 22px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.tn-live-reset {
+  margin: 22px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.tn-minute-counter {
+  width: min(100%, 360px);
+}
+
+.tn-minute-counter-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tn-minute-meter-number {
+  color: var(--text-primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tn-minute-meter-caption {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
 }
 
 .tn-hero-grid {
@@ -493,7 +643,7 @@ a.tn-button-secondary {
 }
 
 .tn-page-hero {
-  padding-block: 96px 120px;
+  padding-block: 72px 88px;
 }
 
 .tn-page-hero-grid {
@@ -552,10 +702,10 @@ a.tn-button-secondary {
 }
 
 .tn-page-copy-centered {
-  align-items: center;
-  margin-inline: auto;
+  align-items: flex-start;
+  margin-inline: 0;
   max-width: 56rem;
-  text-align: center;
+  text-align: left;
 }
 
 .tn-page-summary {
@@ -1057,6 +1207,15 @@ nextjs-portal {
 
   .tn-form-page-grid {
     grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+  }
+
+  .tn-attack-visual {
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  }
+
+  .tn-attack-live {
+    padding-left: clamp(40px, 6vw, 72px);
+    border-left: none;
   }
 
   .tn-number-list-balanced {

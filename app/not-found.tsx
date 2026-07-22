@@ -10,8 +10,7 @@ export default function NotFound() {
             data-tn-reveal="left"
             data-tn-reveal-state="hidden"
           >
-            <small className="tn-kicker">Error 404</small>
-            <h1>Page not found.</h1>
+            <h1>404. Page not found.</h1>
             <p className="tn-body tn-page-summary">
               The page you were trying to open is not here. The link may be wrong, or the page may
               have moved.

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Application Security Audit Services",
-  description: "ThreatNest provides a fixed-scope application penetration test and remediation blueprint for patient-facing healthcare websites, delivered within 7 days with one retest.",
+  description: "ThreatNest provides a fixed scope application penetration test and remediation blueprint for patient facing healthcare websites, designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
   alternates: {
     canonical: "/services",
   },
@@ -22,21 +22,21 @@ const SERVICE_ROUTES = {
 } as const;
 
 const AT_A_GLANCE = [
-  ["$2,000 Fixed", "One fixed fee for the application audit and remediation blueprint."],
-  ["7-Day Delivery", "Full documentation is delivered within 7 days."],
+  ["Standard assessment", "USD 2,000 for the defined scope. Final scope and price are confirmed in writing."],
+  ["Seven Calendar Days", "The standard period begins after scope, written authorization, cleared payment, the testing window, and required access are confirmed."],
   ["Manual Testing", "Every finding is verified by hand before it reaches your report."],
-  ["Included Retest", "One complimentary retest is included after fixes are applied."],
+  ["Included Retest", "One retest of the original findings is included when requested within 14 calendar days after the final report is delivered, unless agreed otherwise."],
 ] as const;
 
 const CORE_SERVICES: ServiceRow[] = [
   {
     title: "Application Penetration Test & Remediation Blueprint",
-    price: "$2,000 Fixed",
+    price: "Standard assessment: USD 2,000",
     href: SERVICE_ROUTES.websiteSecurity,
     description:
-      "For independent healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
+      "For independent healthcare clinics, dental practices, and medical centers operating patient facing web applications.",
     features:
-      "Manual application penetration test / PHI tracking exposure review / Security header assessment / Proof-of-risk screenshots / Developer remediation blueprint / One complimentary retest after fixes / Delivered within 7 days.",
+      "Manual application penetration test / PHI tracking exposure review / Security header assessment / Screenshots that show the risk / Developer remediation blueprint / One complimentary retest of original findings / Designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
   },
 ];
 
@@ -55,7 +55,7 @@ const SECURITY_METHOD = [
   },
   {
     title: "Logic testing",
-    text: "We look for access issues, forced browsing, workflow mistakes, and business-logic problems scanners usually miss.",
+    text: "We look for access issues, forced browsing, workflow mistakes, and business logic problems scanners usually miss.",
   },
 ] as const;
 
@@ -63,17 +63,17 @@ const DELIVERABLES = [
   "Manual application penetration test",
   "PHI tracking exposure review",
   "Security header assessment",
-  "Proof-of-risk screenshots",
+  "Screenshots that show the risk",
   "Developer remediation blueprint",
   "One complimentary retest after fixes",
-  "Delivered within 7 days",
+  "Designed for delivery within seven calendar days after all engagement prerequisites are confirmed",
 ] as const;
 
 const TERMS = [
   ["Scope", "Application, pages, and systems are defined before testing."],
-  ["Delivery", "Full documentation is delivered within 7 days."],
-  ["Retest", "One complimentary retest is included after remediation."],
-  ["Authorization", "Written authorization and a fixed testing window are required."],
+  ["Delivery", "The standard seven calendar day period begins only after scope, written authorization, cleared payment, the testing window, and required access are confirmed."],
+  ["Retest", "One complimentary retest of the original findings is included when requested within 14 calendar days after the final report is delivered, unless agreed otherwise."],
+  ["Authorization", "A request, call, email, or payment does not authorize testing. Signed written authorization and all other engagement prerequisites are required."],
 ] as const;
 
 function HeroSection() {
@@ -81,16 +81,16 @@ function HeroSection() {
     <section className="tn-page-hero">
       <div className="tn-container">
         <div
-          className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center"
+          className="flex max-w-3xl flex-col items-start gap-5 text-left"
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <h1 className="max-w-none">Services</h1>
+          <h1 className="max-w-none">Application security audits</h1>
           <p className="tn-body tn-page-summary max-w-3xl">
-            One fixed-scope audit. One developer-ready repair blueprint.
+            A defined scope, manual testing, clear evidence, and a report your developer can use.
           </p>
 
-          <div className="tn-actions justify-center">
+          <div className="tn-actions">
             <Link href="/start" className="tn-button-primary">
               Request Audit
             </Link>
@@ -132,7 +132,7 @@ function CoreServicesSection() {
     <section className="tn-cta-band">
       <div className="tn-container tn-section-stack">
         <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
-          <h2>Application security audit.</h2>
+          <h2>Standard assessment</h2>
         </div>
 
         <div className="tn-line-list" data-tn-reveal="up" data-tn-reveal-state="hidden">
@@ -141,7 +141,7 @@ function CoreServicesSection() {
               <div className="flex flex-col gap-5">
                 <div className="flex flex-wrap items-end gap-3">
                   <h3>{service.title}</h3>
-                  <p className="text-[var(--accent-blue)] text-base font-semibold">{service.price}</p>
+                  <p className="text-base font-medium text-[var(--text-secondary)]">{service.price}</p>
                 </div>
 
                 <p className="tn-body">{service.description}</p>
@@ -150,7 +150,6 @@ function CoreServicesSection() {
                 <div>
                   <Link href={service.href} className="tn-button-secondary inline-flex items-center gap-2">
                     See details
-                    <span aria-hidden="true">-&gt;</span>
                   </Link>
                 </div>
               </div>
@@ -173,7 +172,7 @@ function SecurityMethodSection() {
         >
           <h2>How the audit works.</h2>
           <p className="tn-body">
-            We agree on the scope first, test by hand, and send a developer-ready remediation
+            We agree on the scope first, test by hand, and send a remediation
             blueprint with proof, severity, affected assets, business impact, and fixes. No
             destructive actions. Reports and access details stay strictly confidential.
           </p>
@@ -238,7 +237,7 @@ function FooterCtaSection() {
     <section className="pb-24 pt-20 md:pb-28 md:pt-24">
       <div className="tn-container">
         <div
-          className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center"
+          className="flex max-w-3xl flex-col items-start gap-5 text-left"
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
@@ -248,7 +247,7 @@ function FooterCtaSection() {
             scope, explain the assessment process, and provide the next steps.
           </p>
 
-          <div className="tn-actions justify-center">
+          <div className="tn-actions">
             <Link href="/start" className="tn-button-primary">
               Request Audit
             </Link>

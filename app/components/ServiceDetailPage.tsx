@@ -12,7 +12,6 @@ type ListSection = {
 };
 
 type ServiceDetailConfig = {
-  badge?: "NEW";
   title: string;
   subtitle: string;
   image: string;
@@ -33,7 +32,6 @@ function ContactSection() {
     <section className="tn-cta-band">
       <div className="tn-container tn-grid-2">
         <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-          <small className="tn-kicker">Next step</small>
           <h2>Need help with this?</h2>
           <p className="tn-body">
             Send the details and we will come back with timing, scope, and price.
@@ -59,15 +57,7 @@ export default function ServiceDetailPage({ cfg }: { cfg: ServiceDetailConfig })
       <section className="tn-page-hero">
         <div className="tn-container tn-page-hero-grid">
           <div className="tn-page-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Service</small>
-            <h1>
-              {cfg.title}
-              {cfg.badge === "NEW" ? (
-                <span className="pl-4 align-middle text-sm font-semibold tracking-[0.22em] text-[var(--accent-blue)]">
-                  NEW
-                </span>
-              ) : null}
-            </h1>
+            <h1>{cfg.title}</h1>
             <p className="tn-body tn-page-summary">{cfg.subtitle}</p>
             {cfg.price ? <p className="tn-body tn-body-strong">{cfg.price}</p> : null}
 
@@ -117,7 +107,6 @@ export default function ServiceDetailPage({ cfg }: { cfg: ServiceDetailConfig })
       <section className="tn-cta-band">
         <div className="tn-container tn-section-stack">
           <div className="tn-section-head" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Process</small>
             <h2>How it goes.</h2>
           </div>
 

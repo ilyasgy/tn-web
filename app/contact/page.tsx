@@ -7,7 +7,7 @@ import SocialLinks from "../components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "Contact ThreatNest",
-  description: "Contact ThreatNest about healthcare application security audits, partnerships, or questions before requesting a fixed-scope assessment.",
+  description: "Contact ThreatNest about healthcare application security audits, partnerships, or questions before requesting a fixed scope assessment.",
   alternates: {
     canonical: "/contact",
   },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const CONTACT_STEPS = [
   ["Send", "The website URL, application notes, and any deadline."],
   ["Scope", "We confirm whether the application fits the fixed audit scope."],
-  ["Next", "We explain the assessment process and authorization requirements."],
+  ["Authorize", "If the request proceeds, authorization is completed in separate signed Engagement Documents."],
 ];
 
 function ContactFormFallback() {
@@ -34,11 +34,15 @@ export default function ContactPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">Let&apos;s talk.</small>
             <h1>Have a question?</h1>
             <p className="tn-body tn-page-summary">
               For general inquiries, partnerships, or just to say hello. For audit requests,
               <Link href="/start"> use our start form</Link>.
+            </p>
+            <p className="tn-body">
+              Public forms and ordinary email do not authorize testing. Do not send patient
+              information, medical records, credentials, private keys, access tokens, confidential
+              source code, or third party vulnerability evidence through this form.
             </p>
           </div>
 
@@ -70,11 +74,11 @@ export default function ContactPage() {
           <div className="tn-stack-64" data-tn-reveal="right" data-tn-reveal-state="hidden">
             <div className="tn-line-list">
               <div className="tn-line-item">
-                <small className="tn-kicker">Direct contact</small>
+                <h2 className="text-2xl font-bold">Direct contact</h2>
                 <p className="tn-line-copy tn-body pt-2">
                   Email us at{" "}
-                  <a href="mailto:hello@threatnest.com" className="tn-inline-link">
-                    hello@threatnest.com
+                  <a href="mailto:threatnest@threatnest.com" className="tn-inline-link">
+                    threatnest@threatnest.com
                   </a>
                 </p>
                 <p className="tn-line-copy tn-body">We usually reply within 1 business day.</p>
@@ -84,14 +88,22 @@ export default function ContactPage() {
 
             <div className="tn-line-list">
               <div className="tn-line-item">
-                <small className="tn-kicker">Looking to request an audit?</small>
+                <h2 className="text-2xl font-bold">Ready to request an audit?</h2>
                 <p className="tn-line-copy tn-body pt-2">
                   If you are ready to send a website URL and application notes, our Start page will
                   get scope confirmation moving faster.
                 </p>
                 <div className="pt-4">
                   <Link href="/start" className="tn-button-secondary">
-                    Go to Request Audit -&gt;
+                    Go to Request Audit
+                  </Link>
+                </div>
+                <div className="tn-actions pt-4">
+                  <Link href="/privacy" className="tn-text-link">
+                    Privacy Notice
+                  </Link>
+                  <Link href="/authorized-testing" className="tn-text-link">
+                    Authorized Testing Policy
                   </Link>
                 </div>
               </div>

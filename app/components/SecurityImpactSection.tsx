@@ -1,37 +1,9 @@
 import Link from "next/link";
-import MinuteCounter from "@/app/components/MinuteCounter";
 import StatCounter from "@/app/components/StatCounter";
+import MinuteCounter from "@/app/components/MinuteCounter";
 
 const ATTACKS_PER_DAY = 600_000_000;
 const ATTACKS_PER_MIN = Math.round(ATTACKS_PER_DAY / 1440);
-
-function StatCard({
-  label,
-  value,
-  text,
-  accent = false,
-}: {
-  label: string;
-  value: React.ReactNode;
-  text: string;
-  accent?: boolean;
-}) {
-  return (
-    <article className={`rounded-lg border p-5 ${accent ? "border-neutral-200 bg-white/95 dark:bg-[#08101a]" : "border-neutral-200 bg-white/95 dark:bg-[#08101a]"}`}>
-      <p className="text-sm font-bold text-neutral-500 dark:text-white/45">{label}</p>
-      <div
-        className={`mt-3 text-3xl font-bold tracking-tight md:text-4xl ${
-          accent ? "text-[#2563eb] dark:text-[#93c5fd]" : "text-black dark:text-white"
-        }`}
-      >
-        {value}
-      </div>
-      <p className="mt-3 text-base font-medium leading-7 text-neutral-600 dark:text-white/60">
-        {text}
-      </p>
-    </article>
-  );
-}
 
 function ProtectionBlock({ title, text }: { title: string; text: string }) {
   return (
@@ -49,69 +21,43 @@ export default function SecurityImpactSection() {
     <section className="relative overflow-hidden bg-neutral-50 px-6 py-20 text-neutral-900 transition-colors dark:bg-black md:py-24">
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div data-tn-reveal="left" data-tn-reveal-state="hidden">
-            <p className="text-sm font-bold text-neutral-500 dark:text-white/45">
-              The Security Reality
-            </p>
-            <h2 className="mt-4 text-4xl font-bold leading-[0.98] text-black dark:text-white md:text-5xl">
-              Patient-facing sites are scanned constantly.
+            <h2 className="text-4xl font-bold leading-[1.02] text-black dark:text-white md:text-5xl">
+              Your website is already being tested.
             </h2>
-            <p className="mt-6 max-w-2xl text-xl font-medium leading-8 text-neutral-700 dark:text-white/60">
-              Automated attacks do not care how large your organization is. Microsoft reports
-              roughly 600 million cyberattacks a day, roughly 416,667 attempts every minute.
-            </p>
           </div>
 
-          <div
-            className="rounded-lg border border-neutral-200 bg-white/95 p-6 dark:bg-[#08101a]"
-            data-tn-reveal="right"
-            data-tn-reveal-state="hidden"
-          >
-            <p className="text-sm font-bold text-neutral-500 dark:text-white/45">
-              Bots are constantly scanning for
+          <div data-tn-reveal="right" data-tn-reveal-state="hidden">
+            <p className="max-w-3xl text-xl font-medium leading-8 text-neutral-700 dark:text-white/60">
+              Automated traffic looks for the same openings every day, including weak login controls,
+              exposed files, missing browser protections, and predictable admin URLs. Organization
+              size is not part of the decision.
             </p>
-            <div className="mt-4 space-y-3 text-lg font-bold leading-8 text-black dark:text-white">
-              <p>Weak auth</p>
-              <p>Exposed files</p>
-              <p>Bad headers</p>
-              <p>Easy admin paths</p>
+          </div>
+        </div>
+
+        <div
+          className="tn-attack-visual mt-12"
+          data-tn-reveal="up"
+          data-tn-reveal-state="hidden"
+        >
+          <div className="tn-attack-daily">
+            <p className="tn-attack-label">Microsoft daily report</p>
+            <div className="tn-attack-number">
+              <StatCounter end={ATTACKS_PER_DAY} compact compactSuffix="M" />
             </div>
+            <p className="tn-attack-copy">
+              Cyberattacks reported each day across Microsoft&apos;s security ecosystem. At this
+              scale, automated probing is normal background activity on the public internet.
+            </p>
           </div>
-        </div>
 
-        <div
-          className="mt-12 grid gap-5 md:grid-cols-3"
-          data-tn-reveal="up"
-          data-tn-reveal-state="hidden"
-        >
-          <StatCard
-            label="Reported each day"
-            value={<StatCounter end={ATTACKS_PER_DAY} />}
-            text="Microsoft reports roughly 600 million cyberattacks a day."
-          />
-          <StatCard
-            label="Estimated each minute"
-            value={<StatCounter end={ATTACKS_PER_MIN} />}
-            text="That works out to roughly 416,667 attempts every minute."
-          />
-          <StatCard
-            label="This minute"
-            value={<MinuteCounter perMinute={ATTACKS_PER_MIN} />}
-            text="A live counter based on the same estimate."
-            accent
-          />
-        </div>
-
-        <div
-          className="mt-10 max-w-4xl text-lg font-medium leading-8 text-neutral-700 dark:text-white/60"
-          data-tn-reveal="up"
-          data-tn-reveal-state="hidden"
-        >
-          <p>
-            Bots are constantly scanning for weak auth, exposed files, bad headers, and easy
-            admin paths.
-          </p>
+          <div className="tn-attack-live">
+            <p className="tn-live-heading">Estimate for the current minute</p>
+            <MinuteCounter perMinute={ATTACKS_PER_MIN} />
+            <p className="tn-live-reset">The meter resets every 60 seconds</p>
+          </div>
         </div>
 
         <div
@@ -119,9 +65,7 @@ export default function SecurityImpactSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          <p className="text-sm font-bold text-neutral-500 dark:text-white/45">
-            What your audit includes
-          </p>
+          <h2 className="text-3xl font-bold text-black dark:text-white">What the audit includes</h2>
           <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <ProtectionBlock
               title="Manual Testing"
@@ -137,7 +81,7 @@ export default function SecurityImpactSection() {
             />
             <ProtectionBlock
               title="Fast Delivery"
-              text="Critical findings are reported immediately. Full documentation is delivered within 7 days."
+              text="Critical findings may be reported early. The standard assessment is designed for delivery within seven calendar days after all engagement prerequisites are complete."
             />
           </div>
         </div>
@@ -166,7 +110,8 @@ export default function SecurityImpactSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          Figures use Microsoft&apos;s reported 600 million cyberattacks per day.
+          The per minute figure is calculated from Microsoft&apos;s reported 600 million cyberattacks
+          per day.
         </p>
       </div>
     </section>

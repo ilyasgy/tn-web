@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import { trackEvent } from "../lib/analytics";
 
 type StartFormState = {
@@ -13,7 +14,6 @@ type StartFormState = {
   timeline: string;
   webSelected: boolean;
   securitySelected: boolean;
-  githubAccess: string;
   concerns: string;
   authorization: boolean;
   company: string;
@@ -29,7 +29,6 @@ const EMPTY_FORM: StartFormState = {
   timeline: "Flexible",
   webSelected: false,
   securitySelected: true,
-  githubAccess: "",
   concerns: "",
   authorization: false,
   company: "",
@@ -98,7 +97,6 @@ export default function StartForm() {
       service_selection: getSelectedServices(form),
       has_platform: Boolean(form.platform.trim()),
       has_notes: Boolean(form.concerns.trim()),
-      has_repo_access: Boolean(form.githubAccess.trim()),
     });
 
     try {
@@ -114,7 +112,7 @@ export default function StartForm() {
         needsSecurity,
         webSelected: needsDev,
         securitySelected: needsSecurity,
-        githubAccess: needsSecurity ? form.githubAccess.trim() : "",
+        githubAccess: "",
         concerns: form.concerns.trim(),
         authorization: needsSecurity ? form.authorization : false,
         company: form.company,
@@ -221,22 +219,12 @@ export default function StartForm() {
 
       <div className="tn-form-section">
         <div className="tn-field">
-          <div className="tn-field-label-row">
-            <label className="tn-label">GitHub / repo access</label>
-            <span className="tn-help tn-help-inline">Optional.</span>
-          </div>
-          <input
-            type="text"
-            value={form.githubAccess}
-            onChange={(event) => setValue("githubAccess", event.target.value)}
-            className="tn-input tn-input-wide-right"
-            placeholder="github.com/yourname or repo"
-          />
-        </div>
-
-        <div className="tn-field pt-4">
           <label className="tn-label">Priority areas or notes</label>
-          <p className="tn-help">Tell us what matters most.</p>
+          <p className="tn-help">
+            Do not include patient information, medical records, passwords, API keys, private
+            keys, access tokens, production credentials, confidential source code, or vulnerability
+            evidence belonging to another organization.
+          </p>
           <textarea
             value={form.concerns}
             onChange={(event) => setValue("concerns", event.target.value)}
@@ -253,7 +241,8 @@ export default function StartForm() {
               onChange={(event) => setValue("authorization", event.target.checked)}
               className="mr-2 align-middle"
             />
-            I own this application or have written permission to request testing
+            I am acting for a business or organization and confirm it owns the target or has
+            authority to request an assessment. I understand this form does not authorize testing.
           </label>
         </div>
       </div>
@@ -281,6 +270,14 @@ export default function StartForm() {
             {feedback}
           </p>
         ) : null}
+
+        <p className="tn-help mt-5">
+          By submitting, you acknowledge the <Link href="/terms" className="tn-inline-link">Terms</Link>{" "}
+          and understand that information is handled under the{" "}
+          <Link href="/privacy" className="tn-inline-link">Privacy Notice</Link>. Sensitive
+          engagement material must use the approved secure exchange process described in the{" "}
+          <Link href="/data-handling" className="tn-inline-link">Data Handling Policy</Link>.
+        </p>
       </div>
     </form>
   );

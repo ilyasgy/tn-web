@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { trackEvent } from "../lib/analytics";
 
 type ContactFormState = {
@@ -243,6 +244,11 @@ export default function ContactForm() {
       <div className="tn-form-section">
         <div className="tn-field">
           <label className="tn-label">Message</label>
+          <p className="tn-help">
+            Do not include patient information, medical records, passwords, API keys, private keys,
+            access tokens, production credentials, confidential source code, or vulnerability
+            evidence belonging to another organization.
+          </p>
           <textarea
             value={form.message}
             onChange={(event) => setValue("message", event.target.value)}
@@ -279,11 +285,17 @@ export default function ContactForm() {
 
         <div className="mt-6 text-sm" style={{ color: "var(--text-secondary)" }}>
           Or email us at{" "}
-          <a href="mailto:hello@threatnest.com" className="tn-inline-link">
-            hello@threatnest.com
+          <a href="mailto:threatnest@threatnest.com" className="tn-inline-link">
+            threatnest@threatnest.com
           </a>
           <div className="pt-2">We usually reply within 1 business day.</div>
         </div>
+
+        <p className="tn-help mt-5">
+          Submitting this form does not authorize testing. See the{" "}
+          <Link href="/privacy" className="tn-inline-link">Privacy Notice</Link> and{" "}
+          <Link href="/authorized-testing" className="tn-inline-link">Authorized Testing Policy</Link>.
+        </p>
       </div>
     </form>
   );

@@ -5,17 +5,17 @@ import SocialLinks from "../components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "About ThreatNest",
-  description: "ThreatNest is a boutique application security service for healthcare clinics, dental practices, and medical centers operating patient-facing web applications.",
+  description: "ThreatNest is an independent international cybersecurity agency led by Omar Geylani and operating through a distributed team.",
   alternates: {
     canonical: "/about",
   },
 };
 const ABOUT_POINTS = [
-  ["What we do", "Fixed-scope application security audits."],
-  ["Who we help", "Healthcare clinics, dental practices, and medical centers."],
+  ["Technical lead", "Omar Geylani, Lead Penetration Tester."],
+  ["Who we help", "Businesses, organizations, and professional practices."],
   [
     "How we work",
-    "Manual testing, evidence, and developer-ready remediation guidance.",
+    "Manual testing, evidence, and remediation guidance for developers.",
   ],
 ];
 
@@ -25,17 +25,22 @@ export default function AboutPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <small className="tn-kicker">About</small>
-            <h1 className="tn-display">Boutique application security for healthcare teams.</h1>
+            <h1>ThreatNest is led by Omar Geylani.</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest performs fixed-scope application security audits for healthcare clinics,
-              dental practices, and medical centers operating patient-facing web applications.
+              ThreatNest is a professional brand used by an independent international
+              cybersecurity agency operating through a distributed team.
             </p>
             <p className="tn-body">
-              We look for application-layer vulnerabilities, PHI exposure through tracking
-              technologies, weak browser security controls, and production configuration risks.
-              Every audit ends with technical evidence and a remediation blueprint your developer
-              can implement.
+              Security engagements are led by Omar Geylani, Lead Penetration Tester. He is
+              responsible for technical oversight, scope control, findings validation, and final
+              reporting. Approved supporting team members may assist with research, testing,
+              verification, documentation, and client coordination under the engagement&apos;s
+              confidentiality, authorization, and data handling requirements.
+            </p>
+            <p className="tn-body">
+              ThreatNest provides business to business services. The contracting service provider
+              for each engagement is identified in the applicable proposal, invoice, Service
+              Agreement, Statement of Work, or other engagement document.
             </p>
 
             <div className="tn-actions">
