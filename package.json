@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint",
-    "check": "eslint && tsc --noEmit && next build"
+    "test": "node --test test/*.test.mjs",
+    "check": "eslint && tsc --noEmit && npm test && next build"
   },
   "engines": {
     "node": ">=20.9.0"

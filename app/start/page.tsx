@@ -33,7 +33,7 @@ export default function StartPage() {
               This business to business request does not authorize testing. Active testing begins
               only after the parties and exact scope are identified, written authorization and
               Rules of Engagement are signed, payment clears, access and emergency contacts are
-              provided, the testing window is agreed, and ThreatNest confirms testing may begin.
+              provided, the testing window is agreed, and we confirm testing may begin.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function StartPage() {
                   <div>
                     <p className="tn-meta-label">3. Audit</p>
                     <p className="tn-body">
-                      Testing begins only after every prerequisite is complete and ThreatNest gives
+                      Testing begins only after every prerequisite is complete and we give
                       confirmation. Critical findings may be reported before the final report.
                     </p>
                   </div>

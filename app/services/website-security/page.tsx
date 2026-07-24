@@ -82,7 +82,7 @@ export default function WebsiteSecurityDetailPage() {
           <div className="tn-page-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
             <h1>Application Penetration Test & Remediation Blueprint</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest performs fixed scope application security audits for independent
+              We perform fixed scope application security audits for independent
               healthcare clinics, dental practices, and medical centers operating patient facing
               web applications.
             </p>

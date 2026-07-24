@@ -16,15 +16,14 @@ const SECTIONS: PolicySection[] = [
   {
     title: "1. About ThreatNest",
     blocks: [
-      p("ThreatNest is a professional brand used by an independent international cybersecurity agency operating through a distributed team."),
-      p("Security engagements are led by Omar Geylani, Lead Penetration Tester, who is responsible for technical oversight, scope control, findings validation, and final reporting. Approved supporting team members may assist with research, testing, verification, documentation, and client coordination."),
+      p("Security engagements are led and performed by Omar Geylani, Lead Penetration Tester, who is responsible for technical oversight, scope control, testing, findings validation, client coordination, and final reporting."),
       p("The contracting service provider for each engagement will be identified in the applicable proposal, invoice, Service Agreement, Statement of Work, or other engagement document."),
     ],
   },
   {
     title: "2. Services for businesses",
     blocks: [
-      p("ThreatNest provides services to businesses, organizations, professional practices, and persons acting for business purposes."),
+      p("We provide services to businesses, organizations, professional practices, and persons acting for business purposes."),
       p("The services are not offered as consumer services for personal, family, or household use."),
       p("By requesting or purchasing services, you confirm that you are acting on behalf of a business or organization and have authority to do so."),
     ],
@@ -32,16 +31,16 @@ const SECTIONS: PolicySection[] = [
   {
     title: "3. Website use",
     blocks: [
-      p("The website provides general information about ThreatNest, its services, methodology, pricing, and engagement process."),
+      p("The website provides general information about our services, methodology, pricing, and engagement process."),
       p("Website content does not constitute:"),
       bullets(
-        "an offer that ThreatNest is required to accept;",
+        "an offer that we are required to accept;",
         "authorization to perform security testing;",
         "legal, regulatory, compliance, insurance, or medical advice;",
         "a guarantee that every vulnerability will be discovered;",
         "or a certification that an organization complies with HIPAA or any other legal or regulatory framework."
       ),
-      p("ThreatNest may refuse a request when the requested work is unlawful, unsafe, outside available expertise, inadequately authorized, or inconsistent with these Terms."),
+      p("We may refuse a request when the requested work is unlawful, unsafe, outside available expertise, inadequately authorized, or inconsistent with these Terms."),
     ],
   },
   {
@@ -56,7 +55,7 @@ const SECTIONS: PolicySection[] = [
         "the testing period and Rules of Engagement have been agreed;",
         "the required payment has cleared;",
         "required accounts, access, and emergency contacts have been provided; and",
-        "ThreatNest has confirmed that testing may begin."
+        "we have confirmed that testing may begin."
       ),
       p("No statement made during an introductory call or ordinary email conversation replaces written authorization."),
     ],
@@ -99,7 +98,7 @@ const SECTIONS: PolicySection[] = [
       ),
       p("A client cannot authorize testing against a third party’s systems merely because those systems are connected to, embedded in, or used by the client’s website."),
       p("Examples include payment processors, patient portals operated by another provider, cloud platforms, content delivery networks, analytics services, embedded scheduling systems, and externally hosted applications."),
-      p("ThreatNest may exclude any asset when ownership or authority cannot be reasonably verified."),
+      p("We may exclude any asset when ownership or authority cannot be reasonably verified."),
     ],
   },
   {
@@ -155,20 +154,19 @@ const SECTIONS: PolicySection[] = [
   {
     title: "9. Safe testing and proof of concept",
     blocks: [
-      p("ThreatNest uses nondestructive methods and collects only the evidence needed."),
+      p("We use nondestructive methods and collect only the evidence needed."),
       p("Where a weakness can be demonstrated without accessing additional information or increasing operational risk, testing will stop at that point."),
-      p("ThreatNest will not intentionally access, download, alter, or disclose more information than is reasonably necessary to validate a finding."),
-      p("Where exploitation could expose patient information, credentials, confidential records, or production information, ThreatNest may stop at the point of proof of concept and report the likely impact without completing full exploitation."),
+      p("We will not intentionally access, download, alter, or disclose more information than is reasonably necessary to validate a finding."),
+      p("Where exploitation could expose patient information, credentials, confidential records, or production information, we may stop at the point of proof of concept and report the likely impact without completing full exploitation."),
       p("A critical or immediately exploitable issue may be reported to the client before the final report is delivered."),
     ],
   },
   {
     title: "10. Testing personnel",
     blocks: [
-      p("Omar Geylani leads the technical assessment and final review."),
-      p("Approved ThreatNest team members may assist under his supervision. Anyone given access to client systems or confidential information must be bound by applicable confidentiality, scope, authorization, and data handling requirements."),
-      p("The client may request the identity or role of personnel who will receive privileged access."),
-      p("ThreatNest will not transfer production credentials or sensitive evidence to unrelated personnel."),
+      p("Omar Geylani performs the technical assessment and final review."),
+      p("The client may confirm the identity and role of the person who will receive privileged access."),
+      p("We will not transfer production credentials or sensitive evidence to unrelated people or providers."),
     ],
   },
   {
@@ -184,12 +182,12 @@ const SECTIONS: PolicySection[] = [
         "identifying any systems that are operationally sensitive;",
         "providing an emergency contact who can pause testing;",
         "monitoring the environment during the testing period;",
-        "informing ThreatNest of scheduled maintenance or changes;",
+        "informing us of scheduled maintenance or changes;",
         "securing credentials and access issued for the assessment;",
         "reviewing and applying remediation recommendations;",
         "and determining its own legal, regulatory, contractual, and insurance obligations."
       ),
-      p("ThreatNest is not responsible for delays caused by missing access, incorrect scope information, third party restrictions, unavailable personnel, changes made by the client, or systems that were not ready for testing."),
+      p("We are not responsible for delays caused by missing access, incorrect scope information, third party restrictions, unavailable personnel, changes made by the client, or systems that were not ready for testing."),
     ],
   },
   {
@@ -200,7 +198,7 @@ const SECTIONS: PolicySection[] = [
       p("Payments are collected through an invoice or payment request using the payment method stated in the Engagement Documents."),
       p("Unless otherwise stated in writing, full cleared payment is required before testing begins."),
       p("The client is responsible for bank, currency conversion, intermediary, or payment provider charges imposed on the client’s side."),
-      p("ThreatNest will not request payment through an undisclosed personal account or a payment destination that does not match the issued payment instructions."),
+      p("We will not request payment through an undisclosed personal account or a payment destination that does not match the issued payment instructions."),
     ],
   },
   {
@@ -212,9 +210,9 @@ const SECTIONS: PolicySection[] = [
         "a client may cancel before testing begins and receive a refund, less payment processing charges that cannot be recovered and any separately approved preparatory work;",
         "once active testing has begun, fees are not refundable;",
         "a testing window may be rescheduled by mutual agreement;",
-        "and ThreatNest may suspend or cancel an engagement where authorization, safety, legality, access, or payment becomes uncertain."
+        "and we may suspend or cancel an engagement where authorization, safety, legality, access, or payment becomes uncertain."
       ),
-      p("If ThreatNest cannot provide the agreed service for reasons within its control and cannot reasonably reschedule or cure the issue, the client will receive a refund for the undelivered portion."),
+      p("If we cannot provide the agreed service for reasons within our control and cannot reasonably reschedule or cure the issue, the client will receive a refund for the undelivered portion."),
     ],
   },
   {
@@ -229,7 +227,7 @@ const SECTIONS: PolicySection[] = [
         "required access has been provided;",
         "and the agreed testing window has started."
       ),
-      p("The delivery period pauses while ThreatNest is waiting for client responses, access, clarification, third party approval, or resolution of an issue on the client side."),
+      p("The delivery period pauses while we are waiting for client responses, access, clarification, third party approval, or resolution of an issue on the client side."),
       p("Changes to the scope may change the delivery date."),
     ],
   },
@@ -271,7 +269,7 @@ const SECTIONS: PolicySection[] = [
   {
     title: "17. Confidentiality",
     blocks: [
-      p("ThreatNest treats the following as confidential:"),
+      p("We treat the following as confidential:"),
       bullets(
         "client identities not already public;",
         "application architecture and technical details;",
@@ -282,8 +280,8 @@ const SECTIONS: PolicySection[] = [
         "patient, customer, employee, or business information;",
         "and final reports."
       ),
-      p("Confidential information is shared only with approved personnel who require it to perform the engagement."),
-      p("ThreatNest will not publish a client’s name, logo, results, case study, testimonial, or report without permission."),
+      p("Confidential information is shared only with Omar Geylani and necessary service providers who require it to perform their stated function."),
+      p("We will not publish a client’s name, logo, results, case study, testimonial, or report without permission."),
       p("Confidentiality does not apply to information that:"),
       bullets(
         "was already lawfully known;",
@@ -302,7 +300,7 @@ const SECTIONS: PolicySection[] = [
       p("Synthetic data and dedicated test accounts should be used wherever possible."),
       p("The standard engagement is not designed to require intentional access to patient information."),
       p("If an assessment reasonably requires ThreatNest to receive, maintain, or access regulated healthcare information, the parties must determine and document the required safeguards before access occurs. This may include a data processing agreement, Business Associate Agreement, or other written terms."),
-      p("ThreatNest does not provide legal advice and does not determine the client’s legal status or compliance obligations."),
+      p("We do not provide legal advice and do not determine the client’s legal status or compliance obligations."),
     ],
   },
   {
@@ -331,8 +329,8 @@ const SECTIONS: PolicySection[] = [
   {
     title: "20. Third party services",
     blocks: [
-      p("ThreatNest may rely on service providers for hosting, analytics, email, communications, document exchange, and payment processing."),
-      p("ThreatNest is not responsible for the independent operation, availability, or policies of third party services outside its reasonable control."),
+      p("We may rely on service providers for hosting, analytics, email, communications, document exchange, and payment processing."),
+      p("We are not responsible for the independent operation, availability, or policies of third party services outside our reasonable control."),
       p("Links to third party websites do not constitute an endorsement or warranty."),
     ],
   },
@@ -340,8 +338,8 @@ const SECTIONS: PolicySection[] = [
     title: "21. No guarantee of complete security",
     blocks: [
       p("A penetration test is limited in time and covers an agreed scope."),
-      p("Security conditions may change after testing because of code changes, configuration changes, new vulnerabilities, third party updates, newly introduced features, or actions outside ThreatNest’s control."),
-      p("ThreatNest does not guarantee that:"),
+      p("Security conditions may change after testing because of code changes, configuration changes, new vulnerabilities, third party updates, newly introduced features, or actions outside our control."),
+      p("We do not guarantee that:"),
       bullets(
         "every vulnerability will be identified;",
         "the application cannot be compromised;",
@@ -355,14 +353,14 @@ const SECTIONS: PolicySection[] = [
   {
     title: "22. Professional standard",
     blocks: [
-      p("ThreatNest will perform services in a professional manner using reasonable care and methods appropriate to the agreed assessment."),
+      p("We will perform services in a professional manner using reasonable care and methods appropriate to the agreed assessment."),
       p("Except for commitments expressly stated in the Engagement Documents, services and website content are provided without additional warranties, to the maximum extent permitted by applicable law."),
     ],
   },
   {
     title: "23. Limitation of liability",
     blocks: [
-      p("To the maximum extent permitted by applicable law, ThreatNest and its assigned personnel will not be liable for indirect, incidental, special, exemplary, punitive, or consequential damages, including loss of revenue, business opportunity, goodwill, anticipated savings, or information."),
+      p("To the maximum extent permitted by applicable law, ThreatNest will not be liable for indirect, incidental, special, exemplary, punitive, or consequential damages, including loss of revenue, business opportunity, goodwill, anticipated savings, or information."),
       p("ThreatNest’s total aggregate liability arising from a specific engagement will not exceed the amount paid for that engagement."),
       p("These limitations do not apply to fraud, intentional misconduct, or liability that cannot legally be excluded or limited."),
     ],
@@ -383,7 +381,7 @@ const SECTIONS: PolicySection[] = [
   {
     title: "25. Suspension and termination",
     blocks: [
-      p("ThreatNest may immediately pause or terminate testing where:"),
+      p("We may immediately pause or terminate testing where:"),
       bullets(
         "authorization is withdrawn or disputed;",
         "a system owner or provider objects;",
@@ -407,7 +405,7 @@ const SECTIONS: PolicySection[] = [
   {
     title: "27. Changes to these Terms",
     blocks: [
-      p("ThreatNest may update these Terms for future website use or future engagements."),
+      p("We may update these Terms for future website use or future engagements."),
       p("Changes do not retroactively replace the signed terms of an existing engagement unless both parties agree in writing."),
       p("The effective date displayed at the top indicates the current version."),
     ],
@@ -426,6 +424,7 @@ export default function TermsPage() {
       title="Terms of Use and Service Conditions"
       effectiveDate="July 19, 2026"
       introduction={[
+        "ThreatNest is an independent cybersecurity service brand operated by Omar Geylani. In these Terms, “ThreatNest,” “we,” “us,” and “our” refer to Omar Geylani operating under the ThreatNest brand.",
         "These Terms of Use and Service Conditions govern access to threatnest.com and requests for services offered under the ThreatNest brand.",
       ]}
       sections={SECTIONS}

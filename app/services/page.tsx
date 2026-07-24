@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Application Security Audit Services",
-  description: "ThreatNest provides a fixed scope application penetration test and remediation blueprint for patient facing healthcare websites, designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
+  description: "We provide a fixed scope application penetration test and remediation blueprint for patient facing healthcare websites, designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
   alternates: {
     canonical: "/services",
   },

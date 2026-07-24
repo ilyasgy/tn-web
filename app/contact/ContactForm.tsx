@@ -273,11 +273,23 @@ export default function ContactForm() {
           <div className="pt-2">We usually reply within 1 business day.</div>
         </div>
 
-        <p className="tn-help mt-5">
-          Submitting this form does not authorize testing. See the{" "}
-          <Link href="/privacy" className="tn-inline-link">Privacy Notice</Link> and{" "}
-          <Link href="/authorized-testing" className="tn-inline-link">Authorized Testing Policy</Link>.
-        </p>
+        <div className="tn-stack-16 mt-5">
+          <p className="tn-help">
+            Information submitted through this form is handled according to the{" "}
+            <Link href="/privacy" className="tn-inline-link">
+              Privacy Notice
+            </Link>
+            . Do not submit patient information, medical records, passwords, API keys, private
+            keys, access tokens, confidential source code, or third party vulnerability evidence.
+          </p>
+          <p className="tn-help">
+            Submitting this form does not authorize testing. See the{" "}
+            <Link href="/authorized-testing" className="tn-inline-link">
+              Authorized Testing Policy
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </form>
   );
