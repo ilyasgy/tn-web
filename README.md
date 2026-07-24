@@ -12,6 +12,6 @@ Static Next.js frontend for ThreatNest. The API is maintained separately in
 
 ## Production
 
-`npm run build` creates the static site in `out`. Configure the public API base and optional Google Analytics measurement ID before building.
+`npm run build` creates the static site in `out`. Configure the public API base and optional Google Analytics measurement ID before building. The Google tag must remain behind the sitewide analytics consent control.
 
 Run `npm run check` before publishing.

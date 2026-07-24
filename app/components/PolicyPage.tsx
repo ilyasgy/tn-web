@@ -2,6 +2,12 @@ import Link from "next/link";
 
 export type PolicyBlock =
   | { type: "paragraph"; text: string }
+  | {
+      type: "linkedParagraph";
+      before: string;
+      link: { href: string; label: string };
+      after?: string;
+    }
   | { type: "bullets"; items: string[] }
   | { type: "numbered"; items: string[] }
   | { type: "subheading"; text: string };
@@ -88,6 +94,18 @@ export default function PolicyPage({
                             </li>
                           ))}
                         </ol>
+                      );
+                    }
+
+                    if (block.type === "linkedParagraph") {
+                      return (
+                        <p key={key} className="tn-body">
+                          {block.before}
+                          <Link href={block.link.href} className="tn-inline-link">
+                            {block.link.label}
+                          </Link>
+                          {block.after}
+                        </p>
                       );
                     }
 

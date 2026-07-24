@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SocialLinks from "./SocialLinks";
+import CookieSettingsButton from "./CookieSettingsButton";
 
 export default function Footer() {
   return (
@@ -18,8 +19,7 @@ export default function Footer() {
           </Link>
 
           <p className="mt-5 max-w-md text-lg font-medium leading-8 text-[#333333] dark:text-white/70">
-            Independent international cybersecurity services for businesses and organizations.
-            Security engagements are led by Omar Geylani, Lead Penetration Tester.
+            ThreatNest is an independent cybersecurity service brand led by Omar Geylani.
           </p>
         </div>
 
@@ -49,6 +49,10 @@ export default function Footer() {
             <Link href="/data-handling" className="tn-footer-link">
               Data Handling
             </Link>
+            <Link href="/cookies" className="tn-footer-link">
+              Cookies
+            </Link>
+            <CookieSettingsButton>Cookie Settings</CookieSettingsButton>
           </div>
 
           <SocialLinks className="pt-4" />

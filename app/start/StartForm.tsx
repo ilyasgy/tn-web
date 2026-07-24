@@ -232,6 +232,7 @@ export default function StartForm() {
               checked={form.authorization}
               onChange={(event) => setValue("authorization", event.target.checked)}
               className="mr-2 align-middle"
+              required
             />
             I am acting for a business or organization and confirm it owns the target or has
             authority to request an assessment. I understand this form does not authorize testing.
@@ -263,13 +264,29 @@ export default function StartForm() {
           </p>
         ) : null}
 
-        <p className="tn-help mt-5">
-          By submitting, you acknowledge the <Link href="/terms" className="tn-inline-link">Terms</Link>{" "}
-          and understand that information is handled under the{" "}
-          <Link href="/privacy" className="tn-inline-link">Privacy Notice</Link>. Sensitive
-          engagement material must use the approved secure exchange process described in the{" "}
-          <Link href="/data-handling" className="tn-inline-link">Data Handling Policy</Link>.
-        </p>
+        <div className="tn-stack-16 mt-5">
+          <p className="tn-help">
+            Information submitted through this form is handled according to the{" "}
+            <Link href="/privacy" className="tn-inline-link">
+              Privacy Notice
+            </Link>
+            . Do not submit patient information, medical records, passwords, API keys, private
+            keys, access tokens, confidential source code, or third party vulnerability evidence.
+          </p>
+          <p className="tn-help">
+            Submitting this form, emailing, calling, or paying does not authorize testing. Testing
+            begins only after the required written authorization, scope, Rules of Engagement,
+            testing window, cleared payment, access, and confirmation are complete. See the{" "}
+            <Link href="/terms" className="tn-inline-link">
+              Terms
+            </Link>{" "}
+            and{" "}
+            <Link href="/data-handling" className="tn-inline-link">
+              Data Handling Policy
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </form>
   );

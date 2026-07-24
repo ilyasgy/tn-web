@@ -5,7 +5,7 @@ import SocialLinks from "../components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "About ThreatNest",
-  description: "ThreatNest is an independent international cybersecurity agency led by Omar Geylani and operating through a distributed team.",
+  description: "ThreatNest is an independent cybersecurity service brand led by Omar Geylani.",
   alternates: {
     canonical: "/about",
   },
@@ -27,20 +27,16 @@ export default function AboutPage() {
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
             <h1>ThreatNest is led by Omar Geylani.</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest is a professional brand used by an independent international
-              cybersecurity agency operating through a distributed team.
+              ThreatNest is an independent cybersecurity service brand led by Omar Geylani.
             </p>
             <p className="tn-body">
-              Security engagements are led by Omar Geylani, Lead Penetration Tester. He is
-              responsible for technical oversight, scope control, findings validation, and final
-              reporting. Approved supporting team members may assist with research, testing,
-              verification, documentation, and client coordination under the engagement&apos;s
-              confidentiality, authorization, and data handling requirements.
+              Omar is responsible for technical oversight, scope control, testing, findings
+              validation, client coordination, and final reporting.
             </p>
             <p className="tn-body">
-              ThreatNest provides business to business services. The contracting service provider
-              for each engagement is identified in the applicable proposal, invoice, Service
-              Agreement, Statement of Work, or other engagement document.
+              We provide business to business services. The contracting service provider for each
+              engagement is identified in the applicable proposal, invoice, Service Agreement,
+              Statement of Work, or other engagement document.
             </p>
 
             <div className="tn-actions">

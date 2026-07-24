@@ -9,6 +9,7 @@ const routes = [
   "/about",
   "/authorized-testing",
   "/contact",
+  "/cookies",
   "/data-handling",
   "/privacy",
   "/services",

@@ -4,7 +4,7 @@ import PolicyPage, { type PolicySection } from "../components/PolicyPage";
 export const metadata: Metadata = {
   title: "Security Evidence and Data Handling Policy",
   description:
-    "How ThreatNest handles assessment credentials, evidence, reports, and sensitive client information.",
+    "How we handle assessment credentials, evidence, reports, and sensitive client information.",
   alternates: { canonical: "/data-handling" },
 };
 
@@ -15,7 +15,7 @@ const SECTIONS: PolicySection[] = [
   {
     title: "1. Data minimization",
     blocks: [
-      p("ThreatNest collects and retains only the information reasonably necessary to:"),
+      p("We collect and retain only the information reasonably necessary to:"),
       bullets(
         "perform the agreed assessment;",
         "validate findings;",
@@ -29,7 +29,7 @@ const SECTIONS: PolicySection[] = [
     title: "2. Secure exchange",
     blocks: [
       p("Credentials, access tokens, private repository invitations, and sensitive documents must not be submitted through the public website form."),
-      p("ThreatNest will provide an approved method for secure exchange after the engagement is confirmed."),
+      p("We will provide an approved method for secure exchange after the engagement is confirmed."),
       p("Clients should provide temporary, dedicated test accounts with the least privilege needed whenever possible."),
     ],
   },
@@ -37,7 +37,7 @@ const SECTIONS: PolicySection[] = [
     title: "3. Credentials",
     blocks: [
       p("Credentials are used only for the authorized engagement."),
-      p("ThreatNest will not intentionally reuse credentials for another purpose or share them with personnel who do not require access."),
+      p("We will not intentionally reuse credentials for another purpose or share them with anyone who does not require access."),
       p("Temporary credentials should be disabled, rotated, or deleted after testing."),
     ],
   },
@@ -54,13 +54,13 @@ const SECTIONS: PolicySection[] = [
         "proof of concept output;",
         "and notes necessary to reproduce or remediate a finding."
       ),
-      p("ThreatNest avoids collecting full records where a partial or redacted example is sufficient."),
+      p("We avoid collecting full records where a partial or redacted example is sufficient."),
     ],
   },
   {
     title: "5. Sensitive information encountered during testing",
     blocks: [
-      p("If patient information, credentials, personal information, or other sensitive records are unexpectedly exposed, ThreatNest will:"),
+      p("If patient information, credentials, personal information, or other sensitive records are unexpectedly exposed, we will:"),
       bullets(
         "stop unnecessary access;",
         "collect only the minimum evidence needed;",
@@ -68,7 +68,7 @@ const SECTIONS: PolicySection[] = [
         "notify the designated client contact where appropriate;",
         "and handle the evidence according to the engagement requirements."
       ),
-      p("ThreatNest does not determine whether the event legally constitutes a reportable breach."),
+      p("We do not determine whether the event legally constitutes a reportable breach."),
     ],
   },
   {
@@ -100,17 +100,17 @@ const SECTIONS: PolicySection[] = [
     ],
   },
   {
-    title: "9. Team members and service providers",
+    title: "9. Access and service providers",
     blocks: [
-      p("Approved team members must follow the same confidentiality and evidence handling requirements applicable to the engagement."),
+      p("Only Omar Geylani and service providers required for a stated function may access relevant information."),
       p("Third party service providers receive only the information reasonably necessary for their function."),
-      p("ThreatNest does not intentionally place client evidence into public artificial intelligence systems, public repositories, or unrestricted collaboration spaces."),
+      p("We do not intentionally place client evidence into public artificial intelligence systems, public repositories, or unrestricted collaboration spaces."),
     ],
   },
   {
     title: "10. Incidents",
     blocks: [
-      p("If ThreatNest becomes aware of unauthorized access to client evidence under its control, ThreatNest will investigate, contain the issue, preserve relevant information, and notify the affected client without unreasonable delay where notification is appropriate."),
+      p("If we become aware of unauthorized access to client evidence under our control, we will investigate, contain the issue, preserve relevant information, and notify the affected client without unreasonable delay where notification is appropriate."),
     ],
   },
   {
@@ -128,7 +128,8 @@ export default function DataHandlingPage() {
       title="Security Evidence and Data Handling Policy"
       effectiveDate="July 19, 2026"
       introduction={[
-        "This policy describes how ThreatNest handles credentials, assessment evidence, reports, and sensitive client information.",
+        "ThreatNest is an independent cybersecurity service brand operated by Omar Geylani. In this policy, “ThreatNest,” “we,” “us,” and “our” refer to Omar Geylani operating under the ThreatNest brand.",
+        "This policy describes how we handle credentials, assessment evidence, reports, and sensitive client information.",
         "Terms for a specific engagement may impose stricter requirements.",
       ]}
       sections={SECTIONS}

@@ -4,21 +4,27 @@ import PolicyPage, { type PolicySection } from "../components/PolicyPage";
 export const metadata: Metadata = {
   title: "Privacy Notice",
   description:
-    "How ThreatNest handles information from threatnest.com, business communications, outreach, and security service inquiries.",
+    "How we handle information from threatnest.com, business communications, outreach, and security service inquiries.",
   alternates: { canonical: "/privacy" },
 };
 
 const p = (text: string) => ({ type: "paragraph" as const, text });
 const bullets = (...items: string[]) => ({ type: "bullets" as const, items });
 const subheading = (text: string) => ({ type: "subheading" as const, text });
+const linkedParagraph = (
+  before: string,
+  href: string,
+  label: string,
+  after = ""
+) => ({ type: "linkedParagraph" as const, before, link: { href, label }, after });
 
 const SECTIONS: PolicySection[] = [
   {
     title: "1. Responsible privacy contact",
     blocks: [
-      p("For information handled through the ThreatNest brand, the primary person responsible for privacy decisions and requests is:"),
+      p("The primary person responsible for privacy decisions and requests is:"),
       p("Omar Geylani, Lead Penetration Tester. Contact: threatnest@threatnest.com"),
-      p("Approved ThreatNest team members may handle information where required for outreach, administration, assessment delivery, documentation, or client support."),
+      p("Omar Geylani handles information required for outreach, administration, assessment delivery, documentation, and client support. Service providers receive information only where required for their stated function."),
     ],
   },
   {
@@ -41,7 +47,7 @@ const SECTIONS: PolicySection[] = [
     title: "3. Information collected",
     blocks: [
       subheading("Information you provide"),
-      p("ThreatNest may collect:"),
+      p("We may collect:"),
       bullets(
         "your name;",
         "business email address;",
@@ -70,7 +76,7 @@ const SECTIONS: PolicySection[] = [
         "and information required to detect spam, attacks, or technical errors."
       ),
       subheading("Public business information"),
-      p("ThreatNest may obtain professional contact information from publicly available business websites, directories, professional profiles, and other public business sources."),
+      p("We may obtain professional contact information from publicly available business websites, directories, professional profiles, and other public business sources."),
       p("This may include an organization’s name, public business telephone number, public business email address, website, and the name or role of a relevant business contact."),
       p("This information may be used for targeted business outreach about services reasonably relevant to the organization."),
     ],
@@ -116,8 +122,8 @@ const SECTIONS: PolicySection[] = [
         "improve service processes;",
         "and honor requests not to receive further outreach."
       ),
-      p("ThreatNest does not sell personal information."),
-      p("ThreatNest does not use client security findings for advertising."),
+      p("We do not sell personal information."),
+      p("We do not use client security findings for advertising."),
     ],
   },
   {
@@ -138,17 +144,17 @@ const SECTIONS: PolicySection[] = [
   {
     title: "7. Business outreach and opt out requests",
     blocks: [
-      p("ThreatNest may contact publicly listed business addresses or telephone numbers regarding relevant cybersecurity services."),
+      p("We may contact publicly listed business addresses or telephone numbers regarding relevant cybersecurity services."),
       p("Outreach is directed at organizations and professional roles rather than personal or household activity."),
-      p("Recipients may ask ThreatNest to stop contacting them at any time."),
-      p("When an opt out or do not contact request is received, ThreatNest may retain the minimum information necessary to ensure that the request is honored."),
+      p("Recipients may ask us to stop contacting them at any time."),
+      p("When we receive an opt out or do not contact request, we may retain the minimum information necessary to ensure that the request is honored."),
     ],
   },
   {
     title: "8. Payment information",
     blocks: [
       p("Payments may be processed through the payment provider identified in the invoice or payment request."),
-      p("ThreatNest may receive transaction information such as:"),
+      p("We may receive transaction information such as:"),
       bullets(
         "payer name;",
         "organization;",
@@ -159,7 +165,7 @@ const SECTIONS: PolicySection[] = [
         "invoice or reference number;",
         "and limited payment method information."
       ),
-      p("ThreatNest does not intentionally collect or store complete payment card numbers through threatnest.com."),
+      p("We do not intentionally collect or store complete payment card numbers through threatnest.com."),
       p("Payment providers process payment information under their own privacy and security terms."),
     ],
   },
@@ -168,32 +174,31 @@ const SECTIONS: PolicySection[] = [
     blocks: [
       p("Information may be shared only where reasonably necessary with:"),
       bullets(
-        "approved ThreatNest team members;",
+        "Omar Geylani;",
         "website hosting and infrastructure providers;",
         "business email and document providers;",
-        "form delivery and abuse prevention providers;",
+        "form email delivery providers;",
         "communication platforms used with the client;",
         "payment processors identified in the Engagement Documents;",
         "professional advisers;",
         "and authorities where disclosure is legally required."
       ),
-      p("Providers used by the current website and inquiry workflow include Google Analytics for website analytics, Resend for email delivery, and Slack for internal inquiry notifications."),
+      p("Vercel hosts and delivers the public website. Resend is used for form email delivery. Google Analytics is used only when it is configured and a visitor accepts analytics. If the optional server side Slack webhook is enabled, Slack receives internal inquiry notifications."),
       p("A provider is not given access to security evidence merely because it supplies an unrelated business function."),
     ],
   },
   {
     title: "10. International processing",
     blocks: [
-      p("ThreatNest serves clients internationally and may work through a distributed team."),
-      p("Information may therefore be processed or stored in a country different from the country of the person or organization providing it."),
-      p("Where required, ThreatNest will use appropriate contractual, technical, or organizational protections for international transfers."),
+      p("We serve clients internationally. Service providers may process or store information in a country different from the country of the person or organization providing it."),
+      p("Where required, we will use appropriate contractual, technical, or organizational protections for international transfers."),
       p("Clients should identify transfer restrictions before sending regulated information or information restricted to a location."),
     ],
   },
   {
     title: "11. Security",
     blocks: [
-      p("ThreatNest uses reasonable technical and organizational safeguards appropriate to the sensitivity of the information."),
+      p("We use reasonable technical and organizational safeguards appropriate to the sensitivity of the information."),
       p("These may include:"),
       bullets(
         "access restrictions;",
@@ -213,7 +218,7 @@ const SECTIONS: PolicySection[] = [
   {
     title: "12. Retention",
     blocks: [
-      p("Unless an Engagement Document requires another period, ThreatNest applies the following general retention periods:"),
+      p("Unless an Engagement Document requires another period, we apply the following general retention periods:"),
       bullets(
         "ordinary inquiries and related communications: up to 12 months after the last meaningful contact;",
         "unsuccessful or abandoned assessment requests: up to 12 months;",
@@ -230,18 +235,25 @@ const SECTIONS: PolicySection[] = [
   {
     title: "13. Healthcare and regulated information",
     blocks: [
-      p("ThreatNest does not request patient information through its public website."),
+      p("We do not request patient information through the public website."),
       p("Clients should use synthetic records and dedicated test accounts wherever possible."),
       p("If an approved engagement requires access to protected health information or another regulated category of information, the parties must document the required handling conditions before access occurs."),
-      p("ThreatNest may refuse to receive regulated information where the necessary safeguards or agreements are not in place."),
+      p("We may refuse to receive regulated information where the necessary safeguards or agreements are not in place."),
     ],
   },
   {
     title: "14. Cookies and similar technologies",
     blocks: [
-      p("ThreatNest does not use the website to sell advertising profiles."),
-      p("The website uses Google Analytics when a measurement ID is configured. Google Analytics may process page paths, referring information, browser or device information, and related usage data. The website also uses essential technical mechanisms and server logs required to deliver, protect, and troubleshoot the service."),
-      p("If additional analytics, advertising, or behavior tracking technologies are introduced, this Notice and any required consent controls will be updated."),
+      p("Necessary technical mechanisms, security controls, form protections, and server logs may operate without optional analytics consent where required to deliver, protect, and troubleshoot the website."),
+      p("Google Analytics is disabled by default and loads only after a visitor accepts analytics. When enabled, it may process usage, device, referral, approximate location, and technical information. We do not describe all analytics information as anonymous."),
+      p("You can accept, reject, change, or withdraw your analytics choice. Rejecting analytics does not affect access to the website or forms."),
+      p("We remember the choice, policy version, and timestamp in a necessary first party consent cookie. It contains no advertising or analytics identifier."),
+      linkedParagraph(
+        "Complete details are available on the ",
+        "/cookies",
+        "Cookies page",
+        ". Cookie Settings can be reopened through the footer on every page."
+      ),
     ],
   },
   {
@@ -265,14 +277,14 @@ const SECTIONS: PolicySection[] = [
   {
     title: "16. Children",
     blocks: [
-      p("ThreatNest provides cybersecurity services to businesses."),
-      p("The website is not directed at children, and ThreatNest does not knowingly request personal information from children through the website."),
+      p("We provide cybersecurity services to businesses."),
+      p("The website is not directed at children, and we do not knowingly request personal information from children through the website."),
     ],
   },
   {
     title: "17. Changes to this Notice",
     blocks: [
-      p("This Notice may be updated when the website, service process, providers, or legal obligations change."),
+      p("We may update this Notice when the website, service process, providers, or legal obligations change."),
       p("The effective date at the top indicates the current version."),
       p("Material changes affecting an active engagement may also be communicated directly where appropriate."),
     ],
@@ -287,15 +299,17 @@ export default function PrivacyPage() {
   return (
     <PolicyPage
       title="Privacy Notice"
-      effectiveDate="July 19, 2026"
+      effectiveDate="July 24, 2026"
       introduction={[
-        "This Privacy Notice explains how information is collected and handled through threatnest.com, communications with ThreatNest, outreach activities, and security service inquiries.",
+        "ThreatNest is an independent cybersecurity service brand operated by Omar Geylani. In this policy, “ThreatNest,” “we,” “us,” and “our” refer to Omar Geylani operating under the ThreatNest brand.",
+        "This Privacy Notice explains how we collect and handle information through threatnest.com, business communications, outreach activities, and security service inquiries.",
       ]}
       sections={SECTIONS}
       relatedLinks={[
         { href: "/terms", label: "Terms" },
         { href: "/data-handling", label: "Data Handling" },
         { href: "/authorized-testing", label: "Authorized Testing" },
+        { href: "/cookies", label: "Cookies" },
       ]}
     />
   );

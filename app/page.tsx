@@ -130,7 +130,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Do you need authorization?",
-    a: "Yes. Every audit requires signed written authorization, an agreed scope, Rules of Engagement, a testing window, cleared payment, required access, and ThreatNest confirmation before testing begins. A form, call, or email is not authorization.",
+    a: "Yes. Every audit requires signed written authorization, an agreed scope, Rules of Engagement, a testing window, cleared payment, required access, and our confirmation before testing begins. A form, call, or email is not authorization.",
   },
 ];
 
@@ -155,7 +155,7 @@ function HeroSection() {
             data-tn-reveal-state="hidden"
           >
             <p className="tn-home-hero-lead">
-              ThreatNest manually tests patient facing applications for exploitable weaknesses,
+              We manually test patient facing applications for exploitable weaknesses,
               privacy exposure, and unsafe configuration. The report gives your developer clear
               evidence and practical fixes.
             </p>
@@ -344,7 +344,7 @@ function ProcessSection() {
           data-tn-reveal-state="hidden"
         >
           Every audit requires signed written authorization, an agreed scope and testing window,
-          cleared payment, required access, and ThreatNest confirmation before testing begins.
+          cleared payment, required access, and our confirmation before testing begins.
         </p>
       </div>
     </section>
