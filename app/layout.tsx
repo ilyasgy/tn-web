@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import ScrollRevealObserver from "./components/ScrollRevealObserver";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import ThemeToggle from "./components/ThemeToggle";
@@ -13,21 +14,6 @@ const siteUrl = "https://threatnest.com";
 const siteTitle = "ThreatNest | Healthcare Application Security Audits";
 const siteDescription =
   "Fixed scope application security audits for healthcare clinics, dental practices, and medical centers. Manual testing, PHI tracking exposure review, clear fixes, and one retest.";
-
-const providerJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Omar Geylani",
-  alternateName: "ThreatNest",
-  url: siteUrl,
-  logo: `${siteUrl}/icon1.png`,
-  sameAs: [
-    "https://www.instagram.com/threatnest/",
-    "https://tr.linkedin.com/company/threatnest/",
-  ],
-  jobTitle: "Lead Penetration Tester",
-  description: siteDescription,
-};
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -59,8 +45,6 @@ export const metadata: Metadata = {
     "security header assessment",
     "application penetration test",
   ],
-  authors: [{ name: "Omar Geylani" }],
-  creator: "Omar Geylani",
   publisher: "ThreatNest",
   category: "Cybersecurity",
   alternates: {
@@ -121,7 +105,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([providerJsonLd, websiteJsonLd]),
+            __html: JSON.stringify(websiteJsonLd),
           }}
         />
         <script
@@ -143,6 +127,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <Suspense fallback={null}>
           <ScrollToTopOnRouteChange />
+          <GoogleAnalytics />
         </Suspense>
         <ScrollRevealObserver />
         <Navbar />

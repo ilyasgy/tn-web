@@ -1,17 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { disableGoogleAnalytics } from "../lib/analytics";
 import {
   COOKIE_SETTINGS_EVENT,
   type ConsentPreference,
   readConsentPreference,
   saveConsentPreference,
 } from "../lib/consent";
-
-const GoogleAnalytics = dynamic(() => import("./GoogleAnalytics"), { ssr: false });
 
 type ConsentView = "checking" | "banner" | "preferences" | "hidden";
 
@@ -30,10 +26,6 @@ export default function CookieConsent() {
       setPreference(stored);
       setAnalyticsDraft(stored?.analytics ?? false);
       setView(stored ? "hidden" : "banner");
-
-      if (!stored?.analytics) {
-        disableGoogleAnalytics();
-      }
     }, 0);
 
     const openSettings = () => {
@@ -70,14 +62,15 @@ export default function CookieConsent() {
 
   function finishChoice(analytics: boolean) {
     const next = saveConsentPreference(analytics);
+    const focusTarget = returnFocusRef.current;
     setPreference(next);
     setAnalyticsDraft(analytics);
-
-    if (!analytics) {
-      disableGoogleAnalytics();
-    }
-
     setView("hidden");
+    window.setTimeout(() => {
+      if (focusTarget?.isConnected) {
+        focusTarget.focus();
+      }
+    }, 0);
   }
 
   function closePreferences() {
@@ -93,8 +86,6 @@ export default function CookieConsent() {
 
   return (
     <>
-      {preference?.analytics ? <GoogleAnalytics /> : null}
-
       {view === "banner" ? (
         <section
           className="tn-cookie-banner"
@@ -108,18 +99,17 @@ export default function CookieConsent() {
               We use necessary technology to operate this site. With your permission, we also use
               Google Analytics to understand website use. Read our{" "}
               <Link href="/privacy" className="tn-inline-link">
-                Privacy Notice
+                Privacy Policy
               </Link>{" "}
               and{" "}
               <Link href="/cookies" className="tn-inline-link">
-                Cookies Policy
+                Cookie Policy
               </Link>
               .
             </p>
           </div>
           <div className="tn-cookie-actions">
             <button
-              ref={bannerManageRef}
               type="button"
               className="tn-cookie-choice"
               onClick={() => finishChoice(true)}
@@ -134,6 +124,7 @@ export default function CookieConsent() {
               Reject analytics
             </button>
             <button
+              ref={bannerManageRef}
               type="button"
               className="tn-cookie-manage"
               onClick={(event) => {
@@ -207,10 +198,10 @@ export default function CookieConsent() {
 
           <div className="tn-cookie-dialog-links">
             <Link href="/privacy" className="tn-inline-link" onClick={closePreferences}>
-              Privacy Notice
+              Privacy Policy
             </Link>
             <Link href="/cookies" className="tn-inline-link" onClick={closePreferences}>
-              Cookies Policy
+              Cookie Policy
             </Link>
           </div>
 

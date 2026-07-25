@@ -5,14 +5,14 @@ import SocialLinks from "../components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "About ThreatNest",
-  description: "ThreatNest is an independent cybersecurity service brand led by Omar Geylani.",
+  description: "International application security work for businesses and professional practices.",
   alternates: {
     canonical: "/about",
   },
 };
 const ABOUT_POINTS = [
-  ["Technical lead", "Omar Geylani, Lead Penetration Tester."],
-  ["Who we help", "Businesses, organizations, and professional practices."],
+  ["Focus", "Web applications, authenticated workflows, APIs, and patient-facing surfaces."],
+  ["Who we help", "Businesses, healthcare organizations, and professional practices."],
   [
     "How we work",
     "Manual testing, evidence, and remediation guidance for developers.",
@@ -25,18 +25,15 @@ export default function AboutPage() {
       <section className="tn-page-hero">
         <div className="tn-container tn-section-stack">
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <h1>ThreatNest is led by Omar Geylani.</h1>
+            <h1>Focused application security work.</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest is an independent cybersecurity service brand led by Omar Geylani.
+              ThreatNest is an international cybersecurity agency led by Omar Geylani, Lead
+              Penetration Tester.
             </p>
             <p className="tn-body">
-              Omar is responsible for technical oversight, scope control, testing, findings
-              validation, client coordination, and final reporting.
-            </p>
-            <p className="tn-body">
-              We provide business to business services. The contracting service provider for each
-              engagement is identified in the applicable proposal, invoice, Service Agreement,
-              Statement of Work, or other engagement document.
+              We provide business-to-business assessments that combine manual testing, validated
+              evidence, and remediation guidance developers can act on. The contracting service
+              provider for each engagement is identified in its engagement documents.
             </p>
 
             <div className="tn-actions">

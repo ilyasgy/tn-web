@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import PolicyPage, { type PolicySection } from "../components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "Security Evidence and Data Handling Policy",
-  description:
-    "How we handle assessment credentials, evidence, reports, and sensitive client information.",
+  title: "Data Handling Policy",
+  description: "How we handle credentials, assessment evidence, reports, and sensitive client information.",
   alternates: { canonical: "/data-handling" },
 };
 
@@ -13,111 +12,101 @@ const bullets = (...items: string[]) => ({ type: "bullets" as const, items });
 
 const SECTIONS: PolicySection[] = [
   {
-    title: "1. Data minimization",
+    title: "1. Information we may receive",
     blocks: [
-      p("We collect and retain only the information reasonably necessary to:"),
-      bullets(
-        "perform the agreed assessment;",
-        "validate findings;",
-        "prepare the report;",
-        "complete the included retest;",
-        "and satisfy contractual or legal obligations."
+      p(
+        "An assessment may require temporary credentials, test accounts, access tokens, approved repository access, configuration details, architecture information, or other material identified in the Engagement Documents.",
+      ),
+      p(
+        "Evidence may include limited screenshots, HTTP requests and responses, affected URLs or parameters, version details, sanitized logs, proof-of-concept output, and notes needed to reproduce or remediate a finding.",
+      ),
+      p(
+        "We minimize collection and use partial, redacted, or synthetic examples when they provide enough evidence. We do not intentionally collect patient records or unrelated sensitive information.",
       ),
     ],
   },
   {
-    title: "2. Secure exchange",
+    title: "2. How information is used",
     blocks: [
-      p("Credentials, access tokens, private repository invitations, and sensitive documents must not be submitted through the public website form."),
-      p("We will provide an approved method for secure exchange after the engagement is confirmed."),
-      p("Clients should provide temporary, dedicated test accounts with the least privilege needed whenever possible."),
-    ],
-  },
-  {
-    title: "3. Credentials",
-    blocks: [
-      p("Credentials are used only for the authorized engagement."),
-      p("We will not intentionally reuse credentials for another purpose or share them with anyone who does not require access."),
-      p("Temporary credentials should be disabled, rotated, or deleted after testing."),
-    ],
-  },
-  {
-    title: "4. Evidence collection",
-    blocks: [
-      p("Evidence may include:"),
-      bullets(
-        "screenshots;",
-        "relevant HTTP requests and responses;",
-        "sanitized logs;",
-        "affected URLs or parameters;",
-        "version information;",
-        "proof of concept output;",
-        "and notes necessary to reproduce or remediate a finding."
+      p(
+        "We use engagement information to perform the authorized assessment, validate findings, communicate urgent issues, prepare and deliver the report, complete an agreed retest, administer the engagement, protect the service, and meet contractual or legal duties.",
       ),
-      p("We avoid collecting full records where a partial or redacted example is sufficient."),
-    ],
-  },
-  {
-    title: "5. Sensitive information encountered during testing",
-    blocks: [
-      p("If patient information, credentials, personal information, or other sensitive records are unexpectedly exposed, we will:"),
-      bullets(
-        "stop unnecessary access;",
-        "collect only the minimum evidence needed;",
-        "avoid further disclosure;",
-        "notify the designated client contact where appropriate;",
-        "and handle the evidence according to the engagement requirements."
+      p(
+        "If we unexpectedly encounter patient information, personal information, credentials, or confidential records, we stop unnecessary access, preserve only the minimum evidence needed, restrict further disclosure, and notify the designated client contact when appropriate.",
       ),
-      p("We do not determine whether the event legally constitutes a reportable breach."),
     ],
   },
   {
-    title: "6. Access control",
+    title: "3. Access and storage",
     blocks: [
-      p("Evidence and reports are available only to approved personnel who require access for testing, verification, reporting, delivery, retesting, or necessary administration."),
-      p("Access may be removed when a person’s role ends or the engagement no longer requires it."),
+      p(
+        "Credentials, private keys, access tokens, private repository invitations, confidential source code, and sensitive evidence must not be sent through public website forms. We provide an approved exchange method after an engagement is confirmed.",
+      ),
+      p(
+        "Access is limited to people and providers who need the information for testing, verification, reporting, delivery, retesting, security, or necessary administration. We use access controls and storage appropriate to the sensitivity and remove access when it is no longer needed.",
+      ),
+      p(
+        "Temporary credentials are used only for the authorized engagement. Reports are delivered through the agreed channel, and the client controls access to copies after delivery.",
+      ),
     ],
   },
   {
-    title: "7. Delivery",
+    title: "4. Sharing",
     blocks: [
-      p("Reports are delivered through an agreed channel."),
-      p("The client is responsible for protecting downloaded reports and controlling who receives them after delivery."),
-      p("Email delivery may be used for ordinary documents only where the parties consider it appropriate. More sensitive reports may require a restricted link or another approved secure method."),
+      p(
+        "We share engagement information only with the client's designated recipients, providers needed for an approved function, professional advisers under appropriate duties, or authorities when binding law requires it.",
+      ),
+      p(
+        "Providers receive only the information needed for their function. We do not place client evidence in public artificial intelligence systems, public repositories, or unrestricted collaboration spaces, and we do not publish findings without permission.",
+      ),
     ],
   },
   {
-    title: "8. Retention and deletion",
+    title: "5. Retention and deletion",
     blocks: [
-      p("Unless otherwise agreed:"),
+      p("Unless the Engagement Documents require a different period:"),
       bullets(
         "raw evidence is deleted within 30 days after the later of final report delivery or completion of the included retest;",
-        "temporary credentials and tokens are removed as soon as no longer required;",
-        "delivery copies of final reports are removed within 90 days after completion;",
-        "and signed agreements, authorizations, invoices, and legally relevant records may be retained for the required business or legal period."
+        "temporary credentials and tokens are removed as soon as they are no longer needed;",
+        "delivery copies of final reports are removed within 90 days after completion; and",
+        "signed agreements, testing authorizations, invoices, and records relevant to legal duties or disputes may be retained for the required period.",
       ),
-      p("Deletion from active storage may not immediately remove information from encrypted backups that are kept for a limited period. Backup copies expire according to the applicable backup cycle and are not restored for ordinary business use after deletion."),
+      p(
+        "Clients may request earlier deletion, subject to legal, contractual, payment, dispute, and backup limits. Deleted information may remain temporarily in protected backups until the applicable backup cycle expires and is not restored for ordinary use.",
+      ),
     ],
   },
   {
-    title: "9. Access and service providers",
+    title: "6. Client responsibilities",
     blocks: [
-      p("Only Omar Geylani and service providers required for a stated function may access relevant information."),
-      p("Third party service providers receive only the information reasonably necessary for their function."),
-      p("We do not intentionally place client evidence into public artificial intelligence systems, public repositories, or unrestricted collaboration spaces."),
+      p("The client is responsible for:"),
+      bullets(
+        "providing only systems and information it is authorized to share;",
+        "using synthetic data and dedicated least-privilege test accounts where practical;",
+        "using the approved secure exchange method for credentials and sensitive material;",
+        "rotating or disabling temporary credentials after testing;",
+        "telling us about handling, location, access, or deletion restrictions before work begins; and",
+        "protecting reports and evidence after delivery and limiting them to trusted recipients.",
+      ),
     ],
   },
   {
-    title: "10. Incidents",
+    title: "7. Security incidents",
     blocks: [
-      p("If we become aware of unauthorized access to client evidence under our control, we will investigate, contain the issue, preserve relevant information, and notify the affected client without unreasonable delay where notification is appropriate."),
+      p(
+        "If we become aware of unauthorized access to client evidence under our control, we will investigate, contain the issue, preserve relevant information, and notify the affected client without undue delay when notification is appropriate.",
+      ),
+      p(
+        "The client remains responsible for deciding whether an event requires notice to regulators, affected people, insurers, or other parties. We will provide information reasonably available to support that decision.",
+      ),
     ],
   },
   {
-    title: "11. Client deletion requests",
+    title: "8. Contact",
     blocks: [
-      p("Clients may request earlier deletion of report delivery copies or raw evidence, subject to legal, contractual, payment, dispute, and backup limitations."),
-      p("Requests may be sent to threatnest@threatnest.com."),
+      p(
+        "Questions or deletion requests concerning assessment information may be sent to threatnest@threatnest.com.",
+      ),
     ],
   },
 ];
@@ -125,17 +114,15 @@ const SECTIONS: PolicySection[] = [
 export default function DataHandlingPage() {
   return (
     <PolicyPage
-      title="Security Evidence and Data Handling Policy"
-      effectiveDate="July 19, 2026"
+      title="Data Handling Policy"
+      effectiveDate="July 25, 2026"
       introduction={[
-        "ThreatNest is an independent cybersecurity service brand operated by Omar Geylani. In this policy, “ThreatNest,” “we,” “us,” and “our” refer to Omar Geylani operating under the ThreatNest brand.",
-        "This policy describes how we handle credentials, assessment evidence, reports, and sensitive client information.",
-        "Terms for a specific engagement may impose stricter requirements.",
+        "This policy explains how we handle information received during security assessments. Terms for a specific engagement may require stricter controls.",
       ]}
       sections={SECTIONS}
       relatedLinks={[
         { href: "/authorized-testing", label: "Authorized Testing" },
-        { href: "/privacy", label: "Privacy Notice" },
+        { href: "/privacy", label: "Privacy Policy" },
         { href: "/terms", label: "Terms" },
       ]}
     />

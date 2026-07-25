@@ -100,7 +100,7 @@ export default function ContactPage() {
                 </div>
                 <div className="tn-actions pt-4">
                   <Link href="/privacy" className="tn-text-link">
-                    Privacy Notice
+                    Privacy Policy
                   </Link>
                   <Link href="/authorized-testing" className="tn-text-link">
                     Authorized Testing Policy

@@ -5,7 +5,7 @@ import SecurityImpactSection from "@/app/components/SecurityImpactSection";
 
 export const metadata: Metadata = {
   title: "Healthcare Application Security Audits",
-  description: "Business to business healthcare application security audits led by Omar Geylani. Manual testing, validated findings, clear remediation, and one retest.",
+  description: "Business-to-business healthcare application security audits with manual testing, validated findings, clear remediation, and one retest.",
   alternates: {
     canonical: "/",
   },
