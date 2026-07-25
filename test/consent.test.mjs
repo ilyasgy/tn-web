@@ -85,13 +85,28 @@ class CookieDocument {
 }
 
 function installBrowserGlobals(document, eventLog = []) {
+  const listeners = new Map();
   global.document = document;
   global.window = {
     location: {
       hostname: "www.threatnest.com",
       origin: "https://www.threatnest.com",
     },
-    dispatchEvent: (event) => eventLog.push(event),
+    addEventListener: (type, listener) => {
+      const callbacks = listeners.get(type) || new Set();
+      callbacks.add(listener);
+      listeners.set(type, callbacks);
+    },
+    removeEventListener: (type, listener) => {
+      listeners.get(type)?.delete(listener);
+    },
+    dispatchEvent: (event) => {
+      eventLog.push(event);
+      for (const listener of listeners.get(event.type) || []) {
+        listener(event);
+      }
+      return true;
+    },
     dataLayer: [],
   };
   global.CustomEvent = class CustomEvent {
@@ -124,7 +139,7 @@ test("consent is absent by default and saved with required attributes", () => {
 
   assert.equal(saved.status, "accepted");
   assert.equal(saved.analytics, true);
-  assert.equal(saved.policyVersion, "2026-07-24");
+  assert.equal(saved.policyVersion, "2026-07-25");
   assert.ok(Date.parse(saved.timestamp));
   assert.match(document.assignments[0], /Max-Age=15811200/);
   assert.match(document.assignments[0], /Path=\//);
@@ -179,6 +194,80 @@ test("analytics never loads before consent and loads only once after acceptance"
     "https://www.googletagmanager.com/gtag/js?id=G-TESTCONSENT1"
   );
   assert.equal(global.window.dataLayer.length, 2);
+});
+
+test("the consent change event activates and disables the persistent analytics controller", () => {
+  const document = new CookieDocument({
+    _ga: "GA1.1.123.456",
+    _ga_RWC6YMXS39: "GS1.1.123",
+  });
+  installBrowserGlobals(document);
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = "G-RWC6YMXS39";
+  const consent = loadTypeScriptModule("app/lib/consent.ts");
+  const analytics = loadTypeScriptModule("app/lib/analytics.ts", {
+    "./consent": {
+      CONSENT_CHANGE_EVENT: consent.CONSENT_CHANGE_EVENT,
+      hasAnalyticsConsent: consent.hasAnalyticsConsent,
+    },
+  });
+
+  const stopListening = analytics.listenForAnalyticsConsent(() => "/cookies");
+
+  consent.saveConsentPreference(true);
+  consent.saveConsentPreference(true);
+
+  assert.equal(document.scripts.length, 1);
+  assert.equal(
+    document.scripts[0].src,
+    "https://www.googletagmanager.com/gtag/js?id=G-RWC6YMXS39"
+  );
+  assert.equal(global.window.__tnGaInitialized, true);
+  assert.equal(global.window.__tnLastTrackedPath, "/cookies");
+  assert.equal(
+    global.window.dataLayer.filter(
+      (entry) => entry[0] === "event" && entry[1] === "page_view"
+    ).length,
+    1
+  );
+
+  consent.saveConsentPreference(false);
+
+  assert.equal(document.scripts.length, 0);
+  assert.equal(document.cookies.has("_ga"), false);
+  assert.equal(document.cookies.has("_ga_RWC6YMXS39"), false);
+  assert.equal(global.window.gtag, undefined);
+  analytics.syncGoogleAnalytics("/terms");
+  assert.equal(document.scripts.length, 0);
+
+  stopListening();
+  consent.saveConsentPreference(true);
+  assert.equal(document.scripts.length, 0);
+});
+
+test("persisted acceptance initializes after refresh and tracks later routes once", () => {
+  const document = new CookieDocument();
+  installBrowserGlobals(document);
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = "G-RWC6YMXS39";
+  const consent = loadTypeScriptModule("app/lib/consent.ts");
+  consent.saveConsentPreference(true);
+  const analytics = loadTypeScriptModule("app/lib/analytics.ts", {
+    "./consent": {
+      CONSENT_CHANGE_EVENT: consent.CONSENT_CHANGE_EVENT,
+      hasAnalyticsConsent: consent.hasAnalyticsConsent,
+    },
+  });
+
+  analytics.syncGoogleAnalytics("/");
+  analytics.syncGoogleAnalytics("/");
+  analytics.syncGoogleAnalytics("/privacy");
+
+  assert.equal(document.scripts.length, 1);
+  assert.deepEqual(
+    global.window.dataLayer
+      .filter((entry) => entry[0] === "event" && entry[1] === "page_view")
+      .map((entry) => entry[2].page_path),
+    ["/", "/privacy"]
+  );
 });
 
 test("page views follow route changes and duplicate paths are ignored", () => {

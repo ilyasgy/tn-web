@@ -1,6 +1,10 @@
-import { hasAnalyticsConsent } from "./consent";
+import { CONSENT_CHANGE_EVENT, hasAnalyticsConsent } from "./consent";
 
-const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+export const PRODUCTION_GA_MEASUREMENT_ID = "G-RWC6YMXS39";
+
+const configuredMeasurementId =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() ||
+  (process.env.NODE_ENV === "production" ? PRODUCTION_GA_MEASUREMENT_ID : "");
 
 export const GA_MEASUREMENT_ID = /^(G|AW)-[A-Z0-9-]+$/.test(configuredMeasurementId)
   ? configuredMeasurementId
@@ -146,6 +150,32 @@ export function trackPageView(path: string) {
     page_location: `${window.location.origin}${path}`,
     page_title: document.title,
   });
+}
+
+export function syncGoogleAnalytics(path: string) {
+  if (!hasAnalyticsConsent()) {
+    disableGoogleAnalytics();
+    return;
+  }
+
+  initializeGoogleAnalytics();
+  trackPageView(path);
+}
+
+export function listenForAnalyticsConsent(getCurrentPath: () => string) {
+  if (typeof window === "undefined") {
+    return () => undefined;
+  }
+
+  const handleConsentChange = () => {
+    syncGoogleAnalytics(getCurrentPath());
+  };
+
+  window.addEventListener(CONSENT_CHANGE_EVENT, handleConsentChange);
+
+  return () => {
+    window.removeEventListener(CONSENT_CHANGE_EVENT, handleConsentChange);
+  };
 }
 
 export function trackEvent(name: string, params: AnalyticsParams = {}) {

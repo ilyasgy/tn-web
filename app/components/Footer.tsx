@@ -19,7 +19,7 @@ export default function Footer() {
           </Link>
 
           <p className="mt-5 max-w-md text-lg font-medium leading-8 text-[#333333] dark:text-white/70">
-            ThreatNest is an independent cybersecurity service brand led by Omar Geylani.
+            International application security services.
           </p>
         </div>
 

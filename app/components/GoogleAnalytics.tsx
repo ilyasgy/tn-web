@@ -2,21 +2,23 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { initializeGoogleAnalytics, trackPageView } from "../lib/analytics";
+import {
+  listenForAnalyticsConsent,
+  syncGoogleAnalytics,
+} from "../lib/analytics";
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const search = searchParams.toString();
+  const path = search ? `${pathname}?${search}` : pathname || "/";
 
   useEffect(() => {
-    initializeGoogleAnalytics();
-  }, []);
+    const stopListening = listenForAnalyticsConsent(() => path);
+    syncGoogleAnalytics(path);
 
-  useEffect(() => {
-    const path = search ? `${pathname}?${search}` : pathname;
-    trackPageView(path || "/");
-  }, [pathname, search]);
+    return stopListening;
+  }, [path]);
 
   return null;
 }

@@ -268,7 +268,7 @@ export default function StartForm() {
           <p className="tn-help">
             Information submitted through this form is handled according to the{" "}
             <Link href="/privacy" className="tn-inline-link">
-              Privacy Notice
+              Privacy Policy
             </Link>
             . Do not submit patient information, medical records, passwords, API keys, private
             keys, access tokens, confidential source code, or third party vulnerability evidence.
