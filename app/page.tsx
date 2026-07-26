@@ -34,7 +34,7 @@ const HOW_WE_WORK_STEPS = [
   [
     "02",
     "Manual Assessment",
-    "Every reachable application component is manually tested for security weaknesses.",
+    "Every in-scope application component is manually tested for security weaknesses.",
   ],
   [
     "03",
@@ -46,17 +46,17 @@ const HOW_WE_WORK_STEPS = [
 const SERVICE_TRACKS: HomeService[] = [
   {
     label: "Fixed scope audit",
-    title: "Application Penetration Test & Remediation Blueprint",
+    title: "Website Security Audit",
     description:
       "For independent healthcare clinics, dental practices, and medical centers operating patient facing web applications.",
     bullets: [
-      "Manual application penetration test",
+      "OWASP-guided manual application testing",
       "PHI tracking exposure review",
       "Security header assessment",
-      "Screenshots that show the risk",
-      "Developer remediation blueprint",
-      "One complimentary retest after fixes",
-      "Designed for delivery within 7 calendar days",
+      "Full PDF report and plain-English executive summary",
+      "Prioritized developer remediation guidance",
+      "One included retest requested within 14 days",
+      "Seven-day testing window with report delivery within 48 hours afterward",
     ],
     href: SERVICE_ROUTES.websiteSecurity,
     cta: "View scope",
@@ -80,7 +80,7 @@ const PROCESS_STEPS = [
   [
     "04",
     "Delivery",
-    "You receive a remediation blueprint, technical evidence, and one complimentary retest after fixes.",
+    "You receive a full PDF report and plain-English executive summary within 48 hours after testing is completed, followed by one included retest after fixes.",
   ],
 ];
 
@@ -122,7 +122,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What do we actually get back?",
-    a: "You get technical findings with proof, severity, affected assets, business impact, and remediation guidance for your developer.",
+    a: "You get a full PDF report and plain-English executive summary. Each finding includes severity, affected assets, evidence, business impact, and remediation guidance for your developer.",
   },
   {
     q: "Is a retest included?",
@@ -130,7 +130,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Do you need authorization?",
-    a: "Yes. Every audit requires signed written authorization, an agreed scope, Rules of Engagement, a testing window, cleared payment, required access, and our confirmation before testing begins. A form, call, or email is not authorization.",
+    a: "Yes. Every audit requires a completed, signed Service Agreement containing the Authorization to Test, an agreed scope and testing window, the required deposit, access, an emergency contact, and our confirmation before testing begins. A form, call, email, or payment alone is not authorization.",
   },
 ];
 
@@ -161,8 +161,9 @@ function HeroSection() {
             </p>
             <p className="tn-home-hero-note">
               The standard scope includes manual application testing, PHI tracking review,
-              security configuration review, a repair blueprint, and one retest. Delivery is
-              designed for seven calendar days after engagement requirements are met.
+              security configuration review, a full PDF report, and one retest. Testing runs over
+              seven days after the engagement requirements are met, and the report is delivered
+              within 48 hours after testing is completed.
             </p>
 
             <div className="tn-actions">
@@ -288,8 +289,8 @@ function ServicesSystemSection() {
           </h2>
           <p className="mt-6 text-xl font-medium leading-8 text-neutral-700 dark:text-white/65">
             Manual application testing, PHI tracking exposure review, security header assessment,
-            and remediation guidance. The standard seven calendar day delivery period starts only
-            after the engagement prerequisites are complete.
+            and remediation guidance. The standard testing window runs for seven days after the
+            engagement prerequisites are complete, and the final report follows within 48 hours.
           </p>
         </div>
 
@@ -343,8 +344,9 @@ function ProcessSection() {
           data-tn-reveal="up"
           data-tn-reveal-state="hidden"
         >
-          Every audit requires signed written authorization, an agreed scope and testing window,
-          cleared payment, required access, and our confirmation before testing begins.
+          Every audit requires a completed, signed Service Agreement containing the Authorization
+          to Test, an agreed scope and testing window, the required deposit, access, an emergency
+          contact, and our confirmation before testing begins.
         </p>
       </div>
     </section>

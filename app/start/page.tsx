@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   },
 };
 const START_FACTS = [
-  ["Standard assessment", "USD 2,000 for the defined scope. Final scope and price are confirmed in writing."],
-  ["Seven calendar days", "The standard delivery period begins after scope, authorization, payment, access, and the testing window are complete."],
+  ["USD 2,000 fixed", "The standard scope has no hidden costs: 50% upon signing and 50% when the final report is delivered."],
+  ["Seven-day testing window", "Testing begins after the signed agreement, scope, required deposit, access, and testing window are confirmed."],
   ["Manual testing", "Every finding is verified by hand before it reaches your report."],
-  ["Included retest", "One retest of original findings, requested within 14 calendar days after the final report is delivered unless agreed otherwise."],
+  ["Report and retest", "The report follows within 48 hours after testing; one retest may be requested within 14 days after delivery."],
 ];
 
 export default function StartPage() {
@@ -31,9 +31,10 @@ export default function StartPage() {
             </p>
             <p className="tn-body">
               This business to business request does not authorize testing. Active testing begins
-              only after the parties and exact scope are identified, written authorization and
-              Rules of Engagement are signed, payment clears, access and emergency contacts are
-              provided, the testing window is agreed, and we confirm testing may begin.
+              only after the parties and exact scope are identified, the Service Agreement and
+              Authorization to Test are signed, the required deposit clears, access and emergency
+              contacts are provided, the testing window is agreed, and we confirm testing may
+              begin.
             </p>
           </div>
 
@@ -83,10 +84,9 @@ export default function StartPage() {
               <div className="tn-line-item">
                 <h2 className="text-2xl font-bold">Timing</h2>
                 <p className="tn-line-copy tn-body">
-                  We confirm scope, test the live application by hand, and deliver the remediation
-                  blueprint within the agreed period. The standard seven calendar day period starts
-                  only after all engagement prerequisites are complete and pauses while required
-                  client information, access, or approval is outstanding.
+                  The standard testing window runs for seven calendar days after all engagement
+                  prerequisites are complete. The full PDF report and plain-English executive
+                  summary are delivered within 48 hours after testing is completed.
                 </p>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function StartPage() {
                   </div>
                   <div>
                     <p className="tn-meta-label">2. Authorize</p>
-                    <p className="tn-body">We verify authority and complete written authorization and Rules of Engagement.</p>
+                    <p className="tn-body">We verify authority and complete the signed Service Agreement and Authorization to Test.</p>
                   </div>
                   <div>
                     <p className="tn-meta-label">3. Audit</p>

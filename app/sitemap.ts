@@ -11,6 +11,7 @@ const routes = [
   "/contact",
   "/cookies",
   "/data-handling",
+  "/legal",
   "/privacy",
   "/services",
   "/services/design-maintenance-pro",

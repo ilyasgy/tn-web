@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Application Security Audit Services",
-  description: "We provide a fixed scope application penetration test and remediation blueprint for patient facing healthcare websites, designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
+  description: "A fixed-scope Website Security Audit for patient-facing healthcare websites, with a seven-day testing window, a full PDF report, and one included retest.",
   alternates: {
     canonical: "/services",
   },
@@ -22,21 +22,21 @@ const SERVICE_ROUTES = {
 } as const;
 
 const AT_A_GLANCE = [
-  ["Standard assessment", "USD 2,000 for the defined scope. Final scope and price are confirmed in writing."],
-  ["Seven Calendar Days", "The standard period begins after scope, written authorization, cleared payment, the testing window, and required access are confirmed."],
-  ["Manual Testing", "Every finding is verified by hand before it reaches your report."],
-  ["Included Retest", "One retest of the original findings is included when requested within 14 calendar days after the final report is delivered, unless agreed otherwise."],
+  ["USD 2,000 fixed", "The standard scope has no hidden costs: 50% upon signing and 50% when the final report is delivered."],
+  ["Seven-day testing window", "Testing begins after the agreement, scope, required deposit, access, and testing window are confirmed."],
+  ["Report within 48 hours", "The full PDF report and plain-English executive summary are delivered within 48 hours after testing is completed."],
+  ["Included retest", "One retest of the original findings is included when requested within 14 calendar days after the final report is delivered."],
 ] as const;
 
 const CORE_SERVICES: ServiceRow[] = [
   {
-    title: "Application Penetration Test & Remediation Blueprint",
+    title: "Website Security Audit",
     price: "Standard assessment: USD 2,000",
     href: SERVICE_ROUTES.websiteSecurity,
     description:
       "For independent healthcare clinics, dental practices, and medical centers operating patient facing web applications.",
     features:
-      "Manual application penetration test / PHI tracking exposure review / Security header assessment / Screenshots that show the risk / Developer remediation blueprint / One complimentary retest of original findings / Designed for delivery within seven calendar days after all engagement prerequisites are confirmed.",
+      "OWASP-guided manual testing / PHI tracking exposure review / Security configuration review / Full PDF report / Plain-English executive summary / Prioritized remediation guidance / One included retest within 14 days.",
   },
 ];
 
@@ -57,23 +57,31 @@ const SECURITY_METHOD = [
     title: "Logic testing",
     text: "We look for access issues, forced browsing, workflow mistakes, and business logic problems scanners usually miss.",
   },
+  {
+    title: "Input validation",
+    text: "We review in-scope forms, APIs, and uploads for injection, cross-site scripting, request forgery, redirect, and file handling issues.",
+  },
+  {
+    title: "Manual verification",
+    text: "Every reported finding is reproduced by hand, false positives are removed, and the result is documented with evidence and remediation steps.",
+  },
 ] as const;
 
 const DELIVERABLES = [
-  "Manual application penetration test",
-  "PHI tracking exposure review",
-  "Security header assessment",
-  "Screenshots that show the risk",
-  "Developer remediation blueprint",
-  "One complimentary retest after fixes",
-  "Designed for delivery within seven calendar days after all engagement prerequisites are confirmed",
+  "Full PDF report with every verified finding",
+  "Plain-English executive summary",
+  "Severity using CVSS 3.1 and practical business impact",
+  "Affected component, technical evidence, and reproduction detail",
+  "Prioritized remediation guidance for the developer",
+  "Optional written Q&A within seven days of report delivery",
+  "One included retest requested within 14 days of report delivery",
 ] as const;
 
 const TERMS = [
   ["Scope", "Application, pages, and systems are defined before testing."],
-  ["Delivery", "The standard seven calendar day period begins only after scope, written authorization, cleared payment, the testing window, and required access are confirmed."],
-  ["Retest", "One complimentary retest of the original findings is included when requested within 14 calendar days after the final report is delivered, unless agreed otherwise."],
-  ["Authorization", "A request, call, email, or payment does not authorize testing. Signed written authorization and all other engagement prerequisites are required."],
+  ["Payment", "The standard USD 2,000 fee is split 50% upon signing and 50% when the final report is delivered."],
+  ["Timing", "Testing runs during the agreed seven-day window; the final report follows within 48 hours after testing is completed."],
+  ["Authorization", "A request, call, email, or payment does not authorize testing. A completed, signed Service Agreement containing the Authorization to Test is required."],
 ] as const;
 
 function HeroSection() {
@@ -205,7 +213,8 @@ function DeliverablesSection() {
         <div className="tn-section-copy" data-tn-reveal="left" data-tn-reveal-state="hidden">
           <h2>Report and retest.</h2>
           <p className="tn-body">
-            You get a short report, detailed findings, and one retest after fixes.
+            You receive a full PDF report, a plain-English executive summary, detailed findings,
+            and one included retest after fixes.
           </p>
 
           <div className="tn-plain-list">

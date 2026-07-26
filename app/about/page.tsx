@@ -27,7 +27,7 @@ export default function AboutPage() {
           <div className="tn-page-copy" data-tn-reveal="up" data-tn-reveal-state="hidden">
             <h1>Focused application security work.</h1>
             <p className="tn-body tn-page-summary">
-              ThreatNest is an international cybersecurity agency led by Omar Geylani, Lead
+              ThreatNest is an independent cybersecurity service brand led by Omar Geylani, Lead
               Penetration Tester.
             </p>
             <p className="tn-body">

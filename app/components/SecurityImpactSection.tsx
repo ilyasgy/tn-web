@@ -80,8 +80,8 @@ export default function SecurityImpactSection() {
               text="Every issue includes practical remediation guidance for your development team."
             />
             <ProtectionBlock
-              title="Fast Delivery"
-              text="Critical findings may be reported early. The standard assessment is designed for delivery within seven calendar days after all engagement prerequisites are complete."
+              title="Clear Delivery"
+              text="Critical findings may be reported early. The standard assessment uses a seven-day testing window, followed by the final report within 48 hours after testing is completed."
             />
           </div>
         </div>

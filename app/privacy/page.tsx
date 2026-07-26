@@ -4,7 +4,7 @@ import PolicyPage, { type PolicySection } from "../components/PolicyPage";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How we collect, use, disclose, and protect personal information through threatnest.com and our services.",
+    "Personal information collected through threatnest.com and security engagements.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -19,63 +19,66 @@ const linkedParagraph = (
 
 const SECTIONS: PolicySection[] = [
   {
-    title: "1. Information we collect",
+    title: "1. Information collected",
     blocks: [
+      p(
+        "ThreatNest is an independent international cybersecurity agency. In this policy, “ThreatNest,” “we,” “us,” and “our” refer to the ThreatNest agency. The contracting service provider and privacy roles for a paid engagement may be stated more specifically in its Engagement Documents."
+      ),
       p(
         "The Contact and Start forms may collect your name, business contact details, website or application URL, inquiry subject, requested scope, technology information, ownership or authority confirmation, message or assessment notes, and the page URL from which the form was submitted."
       ),
       p(
-        "Emails, calls, and other business communications may contain information about an inquiry, proposal, invoice, scope, authorization, or engagement. We may also collect professional contact details from public business sources when contacting organizations about relevant services."
+        "Emails, calls, and other business communications may include information about an inquiry, proposal, invoice, scope, authorization, or engagement. Professional contact details may also come from public business sources."
       ),
       p(
-        "Our website infrastructure creates technical logs that may record an IP address, browser and device information, requested page, referring page, request time, security events, abuse signals, and technical errors."
+        "Website infrastructure creates technical logs. These logs may record an IP address, browser and device information, requested page, referring page, request time, security events, abuse signals, and technical errors."
       ),
       p(
         "If you accept analytics cookies, Google Analytics may collect usage, device, referral, approximate-location, and technical information about visits to the website."
       ),
       p(
-        "Do not submit patient information, medical records, passwords, private keys, access tokens, confidential source code, or third-party vulnerability evidence through a public form. We provide secure exchange instructions for approved engagements."
+        "Do not submit patient information, medical records, passwords, private keys, access tokens, confidential source code, or third-party vulnerability evidence through a public form. Secure exchange instructions are provided for approved engagements."
       ),
     ],
   },
   {
-    title: "2. How we use information",
+    title: "2. How information is used",
     blocks: [
-      p("We use personal information to:"),
+      p("Personal information is used to:"),
       bullets(
         "respond to inquiries and determine whether a requested assessment is appropriate;",
         "prepare proposals, confirm scope and authorization, enter into agreements, administer invoices, and deliver services;",
         "communicate with clients, provide reports and retests, and maintain engagement records;",
         "operate, secure, troubleshoot, and prevent abuse of the website and communication systems;",
         "measure website use after analytics consent;",
-        "send relevant business communications and honor requests to stop them;",
-        "comply with legal obligations and establish, exercise, or defend legal claims."
+        "send service-related communications and honor applicable communication preferences;",
+        "maintain required business records and handle legal claims."
       ),
-      p("We do not sell personal information or use client security findings for advertising."),
+      p("Submitted information is not sold. Client security findings are not used for advertising."),
     ],
   },
   {
-    title: "3. Legal bases",
+    title: "3. Reasons and legal grounds for processing",
     blocks: [
       p(
-        "The legal basis depends on the information and the reason it is used. We process information when necessary to take steps requested before a contract, perform a contract, or meet a legal obligation."
+        "Information is processed only when there is a business or operational reason to do so. Depending on the activity and applicable law, the ground may be your consent, steps you request before entering into a contract, performance of an engagement, compliance with a legal obligation, or a legitimate interest in responding to business inquiries, delivering and protecting the service, preventing abuse, maintaining records, or handling legal claims."
       ),
       p(
-        "We may also process information to protect our legitimate business and security interests without overriding individual rights, or to establish, exercise, or defend legal rights."
+        "Google Analytics remains disabled until analytics cookies are accepted. Consent can be withdrawn at any time. Withdrawal stops future analytics."
       ),
       p(
-        "Optional analytics relies on consent. You may withdraw consent at any time without affecting processing that occurred before withdrawal."
+        "Where information is required to prepare or perform an engagement, choosing not to provide it may prevent a request from being evaluated or the service from being delivered."
       ),
     ],
   },
   {
-    title: "4. How we disclose information",
+    title: "4. Service providers and recipients",
     blocks: [
       p(
-        "We disclose information to providers that support the relevant function. Vercel hosts and delivers the website. Resend delivers form emails. Google Analytics processes website analytics only after consent. Slack receives internal inquiry notifications only when the optional server-side Slack integration is enabled."
+        "Vercel hosts and delivers the website. Resend delivers form submissions and related emails. Google Analytics processes website analytics only after consent. Slack receives internal inquiry notifications only when the optional server-side Slack integration is enabled."
       ),
       p(
-        "We may also disclose information to designated client contacts, professional advisers, or public authorities when needed for an engagement, to protect legal rights, or when required by law. A provider does not receive security evidence merely because it supplies an unrelated service."
+        "Information may also be sent to designated client contacts, professional advisers, or public authorities for an engagement or a binding legal request. Providers receive only information needed for their assigned function. Unrelated service providers do not receive security evidence."
       ),
     ],
   },
@@ -83,10 +86,10 @@ const SECTIONS: PolicySection[] = [
     title: "5. International processing",
     blocks: [
       p(
-        "We and our providers may process information in countries other than the country where it was collected. When applicable law requires a transfer mechanism or other safeguards, we use the measures available for that transfer."
+        "ThreatNest serves clients internationally, and its service providers may process information in more than one country. Information is not guaranteed to remain in the country from which it was submitted."
       ),
       p(
-        "Clients must tell us about applicable location or transfer restrictions before sending regulated information."
+        "Where applicable law places conditions on an international transfer, the transfer is handled subject to those requirements. Clients must identify contractual, regulatory, hosting, or transfer restrictions before sending regulated information."
       ),
     ],
   },
@@ -94,13 +97,13 @@ const SECTIONS: PolicySection[] = [
     title: "6. Retention",
     blocks: [
       p(
-        "We keep information only for operational, contractual, security, and legal needs. Ordinary inquiries and related communications are generally retained for up to 12 months after the last meaningful contact."
+        "Ordinary inquiries and related communications are generally retained for up to 12 months after the last meaningful contact."
       ),
       p(
-        "Unless an engagement document sets another period, raw assessment evidence is generally kept for up to 30 days after final report delivery or completion of an included retest, whichever is later. Temporary credentials and access tokens are removed when no longer needed. Final reports retained for delivery are generally removed within 90 days after completion."
+        "Unless an Engagement Document sets another period, raw assessment evidence is generally deleted within 30 days after final report delivery. Temporary credentials and access tokens are removed when no longer needed. Final reports retained for delivery are generally removed within 90 days after completion."
       ),
       p(
-        "Contracts, invoices, payment records, authorization documents, opt-out records, security logs, and legally relevant correspondence are retained for the period required by accounting, tax, contractual, security, dispute, or other legal needs. Information is deleted or de-identified when its retention purpose ends, unless law requires it to be kept."
+        "Contracts, invoices, payment records, authorization documents, opt-out records, security logs, and correspondence connected to a dispute are kept for their required recordkeeping or dispute period. Other information is deleted or de-identified when it is no longer needed."
       ),
     ],
   },
@@ -122,25 +125,25 @@ const SECTIONS: PolicySection[] = [
     title: "8. Security",
     blocks: [
       p(
-        "We use technical and organizational safeguards suited to the sensitivity of the information, including access controls, encrypted connections, evidence minimization, and retention controls."
+        "Access controls, encrypted connections, evidence minimization, and retention controls protect stored information."
       ),
       p("No internet transmission or storage system can be guaranteed completely secure."),
     ],
   },
   {
-    title: "9. Your rights",
+    title: "9. Your privacy rights",
     blocks: [
       p(
-        "Depending on applicable law, you may have rights to confirm whether we process your information, obtain access, correct inaccurate information, request deletion or restriction, object to processing, receive certain information in a portable form, withdraw consent, and complain to a data protection authority."
+        "Depending on applicable law, you may have rights to ask whether personal information is processed, obtain access or information about its use, correct inaccurate or incomplete information, request deletion or restriction, receive eligible information in a portable form, or object to certain processing."
       ),
       p(
-        "Under Turkey's Personal Data Protection Law (KVKK), data subjects may also ask whether personal data is processed, request information about processing, learn its purpose and use, and learn the recipients in Turkey or abroad."
+        "You may withdraw analytics consent at any time through Cookie Settings. Withdrawal does not affect processing that occurred before withdrawal."
       ),
       p(
-        "They may request correction, request deletion or destruction under applicable law and notice of those actions to recipients, object to a result produced solely through automated processing, and seek compensation for damage caused by unlawful processing."
+        "ThreatNest does not use personal information to make solely automated decisions that produce legal or similarly significant effects. Where applicable, you may also complain to the competent data protection authority."
       ),
       p(
-        "Submit a request using the email address in section 11. We may need to verify your identity, and legal exceptions may limit a request."
+        "Privacy requests can be sent to threatnest@threatnest.com. Identity verification may be required, and a request may be limited where applicable law permits or requires it. Not every right applies to every person or processing activity."
       ),
     ],
   },
@@ -148,15 +151,16 @@ const SECTIONS: PolicySection[] = [
     title: "10. Changes to this policy",
     blocks: [
       p(
-        "We may update this policy when our website, services, providers, or legal obligations change. The effective date identifies the current version. Material changes affecting an active engagement may also be communicated directly."
+        "Policy updates apply from the date shown at the top. Material changes affecting an active engagement may also be sent directly to the client."
       ),
     ],
   },
   {
-    title: "11. Data controller and contact",
+    title: "11. Agency and data controller",
     blocks: [
-      p("Data controller: Omar Geylani, Lead Penetration Tester at ThreatNest."),
-      p("Privacy questions and requests can be sent to threatnest@threatnest.com."),
+      p(
+        "The ThreatNest agency is responsible for personal information collected directly through threatnest.com and ordinary ThreatNest business communications. Engagement Documents may identify a different controller, processor, or contracting provider for specific engagement information."
+      ),
     ],
   },
 ];
@@ -165,17 +169,11 @@ export default function PrivacyPage() {
   return (
     <PolicyPage
       title="Privacy Policy"
-      effectiveDate="July 25, 2026"
-      introduction={[
-        "This Privacy Policy explains how we collect, use, disclose, and protect personal information when you visit threatnest.com, contact us, or request our services.",
-      ]}
+      summary="This Privacy Policy applies to people who visit threatnest.com, contact the ThreatNest agency, request services, or take part in an engagement. It explains how personal information is collected, used, shared, retained, and protected through the website, business communications, and security engagements."
+      currentPath="/privacy"
       sections={SECTIONS}
-      relatedLinks={[
-        { href: "/terms", label: "Terms" },
-        { href: "/data-handling", label: "Data Handling" },
-        { href: "/authorized-testing", label: "Authorized Testing" },
-        { href: "/cookies", label: "Cookies" },
-      ]}
+      contactText="Privacy questions and requests can be sent to threatnest@threatnest.com. Identity verification may be required before a request is completed."
+      showCookieSettings
     />
   );
 }
