@@ -14,8 +14,8 @@ export default function GoogleAnalytics() {
   const path = search ? `${pathname}?${search}` : pathname || "/";
 
   useEffect(() => {
-    const stopListening = listenForAnalyticsConsent(() => path);
-    syncGoogleAnalytics(path);
+    const stopListening = listenForAnalyticsConsent();
+    syncGoogleAnalytics();
 
     return stopListening;
   }, [path]);

@@ -1,5 +1,5 @@
 export const CONSENT_COOKIE_NAME = "threatnest_cookie_consent_v1";
-export const CONSENT_POLICY_VERSION = "2026-07-25";
+export const CONSENT_POLICY_VERSION = "2026-07-26";
 export const COOKIE_SETTINGS_EVENT = "threatnest:open-cookie-settings";
 export const CONSENT_CHANGE_EVENT = "threatnest:consent-change";
 

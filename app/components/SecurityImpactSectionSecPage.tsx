@@ -27,9 +27,10 @@ export default function SecurityImpactSectionSecPage() {
             <div className="tn-line-item">
               <h3>Report and retest</h3>
               <div className="tn-stack-16 pt-4">
+                <p className="tn-body tn-body-strong">Full PDF report and plain-English executive summary</p>
                 <p className="tn-body tn-body-strong">Findings with proof, severity, and business impact</p>
                 <p className="tn-body tn-body-strong">Remediation guidance for your developer</p>
-                <p className="tn-body tn-body-strong">One complimentary retest after fixes</p>
+                <p className="tn-body tn-body-strong">One included retest requested within 14 days</p>
               </div>
             </div>
           </div>

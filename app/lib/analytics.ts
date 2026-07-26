@@ -13,7 +13,6 @@ export const GA_MEASUREMENT_ID = /^(G|AW)-[A-Z0-9-]+$/.test(configuredMeasuremen
 declare global {
   interface Window {
     __tnGaInitialized?: boolean;
-    __tnLastTrackedPath?: string;
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
   }
@@ -92,11 +91,13 @@ export function initializeGoogleAnalytics() {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
-    function gtag(...args: unknown[]) {
-      window.dataLayer.push(args);
+    function gtag() {
+      // Google Analytics expects each command as the function's arguments object.
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer.push(arguments);
     };
   window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
+  window.gtag("config", GA_MEASUREMENT_ID);
 
   const script = document.createElement("script");
   script.id = "tn-google-analytics-script";
@@ -118,10 +119,8 @@ export function disableGoogleAnalytics() {
     return;
   }
 
-  if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", { analytics_storage: "denied" });
-  }
-
+  // Disable collection before removing the tag so withdrawal cannot trigger a
+  // final consent-mode ping or any later queued event.
   setGoogleDisableFlag(true);
   document
     .querySelectorAll<HTMLScriptElement>(
@@ -130,45 +129,29 @@ export function disableGoogleAnalytics() {
     .forEach((script) => script.remove());
   deleteGoogleAnalyticsCookies();
   window.__tnGaInitialized = false;
-  window.__tnLastTrackedPath = undefined;
   window.gtag = undefined;
   window.dataLayer = [];
 }
 
-export function trackPageView(path: string) {
-  if (!isAnalyticsReady()) {
-    return;
-  }
-
-  if (window.__tnLastTrackedPath === path) {
-    return;
-  }
-
-  window.__tnLastTrackedPath = path;
-  window.gtag?.("event", "page_view", {
-    page_path: path,
-    page_location: `${window.location.origin}${path}`,
-    page_title: document.title,
-  });
-}
-
-export function syncGoogleAnalytics(path: string) {
+export function syncGoogleAnalytics() {
   if (!hasAnalyticsConsent()) {
     disableGoogleAnalytics();
     return;
   }
 
+  // The GA4 config command records the initial page view. The Google tag also
+  // observes History API changes made by the Next.js App Router, so sending a
+  // second manual page_view here would double-count client-side navigation.
   initializeGoogleAnalytics();
-  trackPageView(path);
 }
 
-export function listenForAnalyticsConsent(getCurrentPath: () => string) {
+export function listenForAnalyticsConsent() {
   if (typeof window === "undefined") {
     return () => undefined;
   }
 
   const handleConsentChange = () => {
-    syncGoogleAnalytics(getCurrentPath());
+    syncGoogleAnalytics();
   };
 
   window.addEventListener(CONSENT_CHANGE_EVENT, handleConsentChange);

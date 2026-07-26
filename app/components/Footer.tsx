@@ -19,7 +19,7 @@ export default function Footer() {
           </Link>
 
           <p className="mt-5 max-w-md text-lg font-medium leading-8 text-[#333333] dark:text-white/70">
-            International application security services.
+            Independent application security services led by Omar Geylani.
           </p>
         </div>
 
@@ -37,20 +37,23 @@ export default function Footer() {
             <Link href="/start" className="tn-footer-link">
               Start
             </Link>
+            <Link href="/legal" className="tn-footer-link">
+              Legal
+            </Link>
             <Link href="/terms" className="tn-footer-link">
-              Terms
+              Terms of Use
             </Link>
             <Link href="/privacy" className="tn-footer-link">
-              Privacy
+              Privacy Policy
             </Link>
             <Link href="/authorized-testing" className="tn-footer-link">
-              Authorized Testing
+              Authorized Testing Policy
             </Link>
             <Link href="/data-handling" className="tn-footer-link">
-              Data Handling
+              Data Handling Policy
             </Link>
             <Link href="/cookies" className="tn-footer-link">
-              Cookies
+              Cookie Policy
             </Link>
             <CookieSettingsButton>Cookie Settings</CookieSettingsButton>
           </div>

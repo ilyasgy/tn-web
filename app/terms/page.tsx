@@ -3,22 +3,29 @@ import PolicyPage, { type PolicySection } from "../components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "Terms governing use of threatnest.com and requests for our security services.",
+  description: "Terms for using threatnest.com and requesting security services.",
   alternates: { canonical: "/terms" },
 };
 
 const p = (text: string) => ({ type: "paragraph" as const, text });
 const bullets = (...items: string[]) => ({ type: "bullets" as const, items });
+const warning = (text: string) => ({ type: "warning" as const, text });
 
 const SECTIONS: PolicySection[] = [
   {
     title: "1. Using the website",
     blocks: [
       p(
-        "The website provides general information about our services, approach, pricing, and engagement process. You may use it only for lawful business purposes and may not interfere with its operation, attempt unauthorized access, or misuse its content.",
+        "ThreatNest is an independent international cybersecurity agency. In these Terms, “ThreatNest,” “we,” “us,” and “our” refer to the ThreatNest agency, unless signed Engagement Documents identify another contracting service provider.",
       ),
       p(
-        "Website content is general information. It does not create a binding offer or authorize testing, and it is not legal, regulatory, or insurance advice, a security guarantee, or a certification of compliance with HIPAA or any other framework.",
+        "The website provides information about ThreatNest services, pricing, and the engagement process. It may be used only for lawful business purposes.",
+      ),
+      p(
+        "Do not interfere with the website, attempt unauthorized access, or misuse its content.",
+      ),
+      p(
+        "Website content is general information. It is not a binding offer, testing authorization, security guarantee, compliance certification, or legal, regulatory, or insurance advice.",
       ),
     ],
   },
@@ -26,27 +33,27 @@ const SECTIONS: PolicySection[] = [
     title: "2. Service requests",
     blocks: [
       p(
-        "Our services are offered to businesses, organizations, professional practices, and people acting for business purposes. By making a request, you confirm that you are authorized to act for the organization you identify.",
+        "Services are offered to businesses, organizations, professional practices, and people acting for business purposes. A person making a request must be authorized to act for the organization identified in the request.",
       ),
       p(
-        "A request does not create an engagement or require us to accept work. We may reject work that is unlawful, unsafe, outside our expertise, inadequately authorized, or inconsistent with these Terms.",
+        "A request does not create an engagement or require acceptance. Work may be rejected when it is unsafe, unlawful, outside the available expertise, inadequately authorized, or inconsistent with these Terms.",
       ),
       p(
-        "The contracting service provider for a paid engagement will be identified in the applicable proposal, invoice, Service Agreement, Statement of Work, or other engagement document.",
+        "The contracting service provider for paid work will be identified in the applicable proposal, invoice, Service Agreement, Statement of Work, or other Engagement Document.",
       ),
     ],
   },
   {
     title: "3. Authorization to test",
     blocks: [
-      p(
+      warning(
         "Submitting a form, sending an email, making a call, paying an invoice, identifying a URL, exposing a system publicly, or reporting a vulnerability does not authorize security testing.",
       ),
       p(
-        "Testing may begin only after we have written authorization from a person with authority over every system in scope. The signed documents must identify the exact systems, approved methods, testing dates, Rules of Engagement, emergency contacts, and any exclusions.",
+        "Security testing does not begin without a signed Service Agreement containing written authorization from a person with authority over every system in scope. It must identify the exact systems, approved methods, testing dates, emergency contacts, and exclusions.",
       ),
       p(
-        "Connected or embedded third party systems are excluded unless their owner or provider has granted the required permission. We may stop or refuse work whenever ownership, authority, scope, safety, or legality is uncertain.",
+        "Connected or embedded third party systems are excluded without permission from their owner or provider. Work may be refused or stopped whenever ownership, authority, scope, safety, or legality is unclear.",
       ),
     ],
   },
@@ -54,7 +61,7 @@ const SECTIONS: PolicySection[] = [
     title: "4. Engagement documents",
     blocks: [
       p(
-        "A paid assessment may be governed by a proposal, Service Agreement, Statement of Work, Rules of Engagement, Authorization to Test, confidentiality agreement, data processing terms, and invoice. Together, these are the Engagement Documents.",
+        "The standard Website Security Audit is governed by a signed Service Agreement that combines the service description, scope, methodology, payment terms, deliverables, confidentiality, liability, and Authorization to Test. A proposal, invoice, data processing terms, or other signed document may also apply. Together, these are the Engagement Documents.",
       ),
       p(
         "If documents conflict, signed engagement-specific terms control, followed by the accepted proposal or invoice, these Terms, and then general website descriptions. Engagement Documents may change these Terms only for the engagement they cover.",
@@ -65,13 +72,13 @@ const SECTIONS: PolicySection[] = [
     title: "5. Fees, cancellation, and refunds",
     blocks: [
       p(
-        "The final scope, price, payment method, testing window, delivery schedule, and any retest will be confirmed in the Engagement Documents. Unless those documents say otherwise, full cleared payment is required before testing begins.",
+        "The standard Website Security Audit fee is USD 2,000. Unless the Engagement Documents say otherwise, 50% is due upon signing and must clear before testing begins, and the remaining 50% is due when the final report is delivered. Payment instructions are provided by invoice.",
       ),
       p(
-        "Specific cancellation and refund terms in the Engagement Documents control. If they are silent, a client may cancel before testing starts and receive a refund less unrecoverable payment charges and approved preparatory work. Fees are not refundable after active testing begins.",
+        "Specific cancellation and refund terms in the Engagement Documents control. If they are silent, a client may cancel before testing starts and receive a refund less unrecoverable payment charges and approved preparatory work. Fees are not refundable after active testing begins, except where ThreatNest does not deliver the agreed final report.",
       ),
       p(
-        "We may reschedule, suspend, or cancel work when authorization, access, payment, safety, or legality becomes uncertain. If we cannot deliver an agreed part of the service for reasons within our control and cannot reasonably resolve or reschedule it, we will refund the undelivered portion.",
+        "The included retest may be withheld while the final balance remains unpaid, including when it is still unpaid 14 days after report delivery. Work may also be rescheduled, suspended, or cancelled when authorization, access, payment, safety, or legality becomes unclear.",
       ),
     ],
   },
@@ -84,13 +91,13 @@ const SECTIONS: PolicySection[] = [
         "obtaining required permission from system owners and third party providers;",
         "maintaining backups and recovery procedures;",
         "providing least-privilege test accounts, synthetic data where practical, and a reachable emergency contact;",
-        "identifying operationally sensitive systems and notifying us of material changes;",
+        "identifying operationally sensitive systems and reporting material changes;",
         "protecting credentials, reports, and evidence;",
         "reviewing and implementing remediation; and",
         "determining its own legal, regulatory, contractual, and insurance obligations.",
       ),
       p(
-        "Delivery dates may change when access, approvals, information, client personnel, or systems are not ready. The client is responsible for third party claims, losses, and costs caused by materially false authority statements, unauthorized scope, or misuse of a report, except to the extent caused by our intentional misconduct or material failure to follow the agreed scope.",
+        "Delivery dates may change when access, approvals, information, client personnel, or systems are not ready. The client is responsible for third party claims, losses, and costs caused by materially false authority statements, unauthorized scope, or misuse of a report. This does not cover loss caused by ThreatNest's intentional misconduct or material failure to follow the agreed scope.",
       ),
     ],
   },
@@ -98,13 +105,13 @@ const SECTIONS: PolicySection[] = [
     title: "7. Confidentiality",
     blocks: [
       p(
-        "We treat nonpublic client identities, system details, credentials, findings, evidence, source code, reports, business records, and communications as confidential. We use and disclose them only to perform the engagement, administer it, comply with law, or protect legal rights.",
+        "Nonpublic client identities, system details, credentials, findings, evidence, source code, reports, business records, and communications are treated as confidential. They are used only for the engagement, its administration, or a binding legal request.",
       ),
       p(
-        "Confidentiality does not cover information lawfully known without restriction, independently developed, received lawfully from another source, made public without a breach of duty, or required to be disclosed by binding law or legal process. Where legally permitted, we will notify the affected client before a required disclosure.",
+        "Confidentiality does not cover information already known without restriction, independently developed, received from another lawful source, made public without a breach of duty, or subject to a binding disclosure order. The affected client will be notified before a required disclosure unless the order prohibits notice.",
       ),
       p(
-        "We will not publish a client name, logo, testimonial, vulnerability, evidence, or report without permission.",
+        "Client names, logos, testimonials, vulnerabilities, evidence, and reports are not published without permission.",
       ),
     ],
   },
@@ -129,7 +136,7 @@ const SECTIONS: PolicySection[] = [
         "An assessment is limited to the agreed scope and testing period. It may use automated tools for coverage, but reportable findings are manually reviewed. Security conditions can change after testing.",
       ),
       p(
-        "We do not guarantee that every vulnerability will be found, that an application cannot be compromised, that remediation will be implemented correctly, or that future changes will remain secure. The client remains responsible for ongoing security, maintenance, monitoring, access control, patching, and risk management.",
+        "An assessment does not guarantee that every vulnerability will be found, that an application cannot be compromised, that remediation will be correct, or that future changes will remain secure. The client remains responsible for ongoing security, maintenance, monitoring, access control, patching, and risk management.",
       ),
       p(
         "An assessment is not legal or insurance advice, continuous monitoring, a regulatory determination, HIPAA validation, or a legal, regulatory, or compliance certification.",
@@ -140,10 +147,10 @@ const SECTIONS: PolicySection[] = [
     title: "10. Limitation of liability",
     blocks: [
       p(
-        "To the maximum extent permitted by applicable law, ThreatNest is not liable for indirect, incidental, special, exemplary, punitive, or consequential loss, including lost revenue, opportunity, goodwill, savings, or information.",
+        "To the fullest extent permitted by applicable law, ThreatNest is not liable for indirect, incidental, special, exemplary, punitive, or consequential loss, including lost revenue, opportunity, goodwill, savings, or information.",
       ),
       p(
-        "ThreatNest's total aggregate liability arising from a specific engagement will not exceed the amount paid for that engagement. These limits do not apply to fraud, intentional misconduct, or liability that applicable law does not allow to be excluded or limited.",
+        "To the fullest extent permitted by applicable law, the total aggregate liability arising from a specific engagement will not exceed the amount paid for that engagement. The limits do not cover fraud, intentional misconduct, or liability that applicable law does not allow to be excluded or limited.",
       ),
     ],
   },
@@ -151,10 +158,10 @@ const SECTIONS: PolicySection[] = [
     title: "11. Ending an engagement",
     blocks: [
       p(
-        "We may immediately pause or end testing if authorization is withdrawn or disputed, a system owner objects, unexpected operational risk appears, scope information is inaccurate, unlawful activity is suspected, payment is reversed, an emergency contact is unavailable, or continuing would be unsafe or professionally inappropriate.",
+        "Testing may be paused or ended immediately if authorization is withdrawn or disputed, a system owner objects, unexpected operational risk appears, scope information is inaccurate, unlawful activity is suspected, payment is reversed, an emergency contact is unavailable, or continuing would be unsafe or professionally inappropriate.",
       ),
       p(
-        "The client may request an immediate pause through the method stated in the Rules of Engagement. Work resumes only after the issue is resolved and authorization remains valid.",
+        "The client may request an immediate pause through the emergency contact method stated in the signed Service Agreement. Work resumes only after the issue is resolved and authorization remains valid.",
       ),
     ],
   },
@@ -165,7 +172,7 @@ const SECTIONS: PolicySection[] = [
         "The governing law, dispute process, and contracting provider for a paid engagement will be stated in the Service Agreement or Statement of Work.",
       ),
       p(
-        "If the Engagement Documents are silent, the parties will first try to resolve a dispute through written good-faith negotiation. Mandatory applicable law remains unaffected.",
+        "If the Engagement Documents are silent, the parties will first try to resolve a dispute through written good-faith negotiation. These Terms do not limit rights or remedies that applicable law does not allow the parties to limit.",
       ),
     ],
   },
@@ -173,13 +180,9 @@ const SECTIONS: PolicySection[] = [
     title: "13. Changes to these Terms",
     blocks: [
       p(
-        "We may update these Terms for future website use or future engagements. An update does not replace the signed terms of an existing engagement unless both parties agree in writing. The effective date identifies the current version.",
+        "Updated Terms apply to future website use and future engagements. An update does not replace signed terms for an existing engagement unless both parties agree in writing. The date at the top identifies the current version.",
       ),
     ],
-  },
-  {
-    title: "14. Contact",
-    blocks: [p("Questions about these Terms may be sent to threatnest@threatnest.com.")],
   },
 ];
 
@@ -187,17 +190,10 @@ export default function TermsPage() {
   return (
     <PolicyPage
       title="Terms of Use"
-      effectiveDate="July 25, 2026"
-      introduction={[
-        "These Terms govern your use of the ThreatNest website and any request for our services.",
-        "ThreatNest is an international cybersecurity agency led by Omar Geylani, Lead Penetration Tester.",
-      ]}
+      summary="These Terms of Use apply when you visit or use threatnest.com, contact the ThreatNest agency, or request or purchase its business services (together, the “Services”). They govern website use, service requests, written testing authorization, payment, reports, and Engagement Documents. By using the website or submitting a service request, you agree to these Terms."
+      currentPath="/terms"
       sections={SECTIONS}
-      relatedLinks={[
-        { href: "/privacy", label: "Privacy Policy" },
-        { href: "/authorized-testing", label: "Authorized Testing" },
-        { href: "/data-handling", label: "Data Handling" },
-      ]}
+      contactText="Questions about these Terms or a proposed engagement can be sent to threatnest@threatnest.com."
     />
   );
 }

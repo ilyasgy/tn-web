@@ -1,16 +1,28 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CookieSettingsButton from "../components/CookieSettingsButton";
+import {
+  LegalPageEnding,
+  LegalPageHeader,
+  LegalTableOfContents,
+} from "../components/LegalPageChrome";
+import { GA_MEASUREMENT_ID } from "../lib/analytics";
 import { CONSENT_COOKIE_NAME } from "../lib/consent";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
-    "How we use necessary cookies, optional Google Analytics cookies, and browser storage on threatnest.com.",
+    "Necessary browser storage and optional Google Analytics cookies on threatnest.com.",
   alternates: { canonical: "/cookies" },
 };
 
-const necessaryCookies = [
+type CookieRow = {
+  name: string;
+  provider: string;
+  category: string;
+  purpose: string;
+  duration: string;
+};
+
+const necessaryCookies: CookieRow[] = [
   {
     name: CONSENT_COOKIE_NAME,
     provider: "ThreatNest",
@@ -18,26 +30,35 @@ const necessaryCookies = [
     purpose: "Stores your analytics choice, the policy version, and the time of your choice.",
     duration: "Six months",
   },
-];
-
-const analyticsCookies = [
   {
-    name: "_ga",
-    provider: "Google Analytics",
-    category: "Analytics",
-    purpose: "Distinguishes visits for website usage measurement after analytics consent.",
-    duration: "Up to two years",
-  },
-  {
-    name: "_ga_RWC6YMXS39",
-    provider: "Google Analytics",
-    category: "Analytics",
-    purpose: "Maintains session state for the configured GA4 property after analytics consent.",
-    duration: "Up to two years",
+    name: "theme (local storage)",
+    provider: "ThreatNest",
+    category: "Necessary",
+    purpose: "Remembers the light or dark theme selected through the theme control.",
+    duration: "Until deleted in the browser",
   },
 ];
 
-type CookieRow = (typeof necessaryCookies)[number] | (typeof analyticsCookies)[number];
+const analyticsCookies: CookieRow[] = GA_MEASUREMENT_ID
+  ? [
+      {
+        name: "_ga",
+        provider: "Google Analytics",
+        category: "Analytics",
+        purpose: "Distinguishes visits for website usage measurement after analytics consent.",
+        duration: "Up to two years",
+      },
+      {
+        name: GA_MEASUREMENT_ID.startsWith("G-")
+          ? `_ga_${GA_MEASUREMENT_ID.slice(2)}`
+          : "_ga_<measurement-id>",
+        provider: "Google Analytics",
+        category: "Analytics",
+        purpose: "Maintains session state for the configured GA4 property after analytics consent.",
+        duration: "Up to two years",
+      },
+    ]
+  : [];
 
 function CookieTable({
   caption,
@@ -78,40 +99,45 @@ function CookieTable({
 export default function CookiesPage() {
   return (
     <main className="tn-page tn-blueprint-grid tn-main">
-      <section className="tn-page-hero">
-        <div className="tn-container">
-          <div
-            className="tn-page-copy tn-page-copy-centered"
-            data-tn-reveal="up"
-            data-tn-reveal-state="hidden"
-          >
-            <h1>Cookie Policy</h1>
-            <p className="tn-meta-label">Effective date: July 25, 2026</p>
-            <p className="tn-body tn-page-summary">
-              This Cookie Policy explains how we use cookies and similar technologies on
-              threatnest.com and how you can manage your preferences.
-            </p>
-          </div>
-        </div>
-      </section>
+      <LegalPageHeader
+        title="Cookie Policy"
+        summary="This Cookie Policy applies to people who visit threatnest.com or use its public forms. It explains the cookies and browser storage used by the website, including necessary technology, optional Google Analytics, and the controls available for accepting, rejecting, or withdrawing analytics consent."
+      />
 
-      <section className="pb-[128px]">
-        <div className="tn-container">
-          <div className="tn-line-list" data-tn-reveal="up" data-tn-reveal-state="hidden">
-            <section className="tn-line-item">
-              <h2 className="tn-line-title">1. Types of cookies</h2>
+      <section className="tn-legal-body">
+        <div className="tn-container tn-legal-layout">
+          <LegalTableOfContents
+            items={[
+              { id: "cookies-and-browser-storage", label: "Cookies and browser storage" },
+              { id: "necessary-technology", label: "Necessary technology" },
+              { id: "optional-analytics", label: "Optional analytics" },
+              { id: "managing-your-choice", label: "Managing your choice" },
+              { id: "server-and-security-logs", label: "Server and security logs" },
+              { id: "contact", label: "Questions or requests" },
+            ]}
+          />
+
+          <div className="tn-legal-main">
+            <div className="tn-legal-sections">
+            <section id="cookies-and-browser-storage" className="tn-legal-section">
+              <h2>Cookies and browser storage</h2>
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body">
                   Cookies are small text files stored by your browser. Similar technologies, such
                   as browser local storage, can remember a setting without creating a cookie. This
-                  website uses necessary technology and, only with your consent, analytics
-                  cookies.
+                  website uses necessary technology. Analytics cookies remain disabled until
+                  accepted.
+                </p>
+                <p className="tn-body">
+                  ThreatNest is the independent international cybersecurity agency identified in
+                  the Privacy Policy. This policy describes the browser technology used by the
+                  website and the controls available to visitors.
                 </p>
               </div>
             </section>
 
-            <section className="tn-line-item">
-              <h2 className="tn-line-title">2. Necessary cookies</h2>
+            <section id="necessary-technology" className="tn-legal-section">
+              <h2>Necessary technology</h2>
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body">
                   Necessary cookies operate without optional analytics consent. The consent cookie
@@ -122,20 +148,20 @@ export default function CookiesPage() {
                   rows={necessaryCookies}
                 />
                 <p className="tn-body">
-                  The theme control uses browser local storage under the name{" "}
-                  <code>theme</code> to remember a light or dark theme until you delete that
-                  browser storage. It does not track website activity.
+                  The theme setting does not track website activity. Rejecting analytics does not
+                  affect access to the website or its forms.
                 </p>
               </div>
             </section>
 
-            <section className="tn-line-item">
-              <h2 className="tn-line-title">3. Analytics cookies</h2>
+            <section id="optional-analytics" className="tn-legal-section">
+              <h2>Optional analytics</h2>
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body">
                   Google Analytics is disabled until you accept analytics cookies. Before
-                  acceptance, we do not load the Google Analytics script, send analytics requests
-                  or page views, or create Google Analytics cookies.
+                  acceptance, the Google Analytics script is not loaded or initialized. No
+                  analytics requests, page views, cookieless pings, cookies, or identifiers are
+                  created.
                 </p>
                 <p className="tn-body">
                   After acceptance, Google Analytics may process usage, device, referral,
@@ -148,8 +174,8 @@ export default function CookiesPage() {
               </div>
             </section>
 
-            <section className="tn-line-item">
-              <h2 className="tn-line-title">4. Managing cookies</h2>
+            <section id="managing-your-choice" className="tn-legal-section">
+              <h2>Managing your choice</h2>
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body">
                   Use Cookie Settings in the footer to accept, reject, change, or withdraw
@@ -162,39 +188,28 @@ export default function CookiesPage() {
                   settings. If you delete the consent cookie, the website will ask for your choice
                   again.
                 </p>
-                <CookieSettingsButton className="tn-button-secondary tn-cookie-page-settings">
-                  Open Cookie Settings
-                </CookieSettingsButton>
               </div>
             </section>
 
-            <section className="tn-line-item">
-              <h2 className="tn-line-title">5. Contact</h2>
+            <section id="server-and-security-logs" className="tn-legal-section">
+              <h2>Server and security logs</h2>
               <div className="tn-stack-16 pt-4">
                 <p className="tn-body">
-                  Questions about this Cookie Policy can be sent to{" "}
-                  <a className="tn-inline-link" href="mailto:threatnest@threatnest.com">
-                    threatnest@threatnest.com
-                  </a>
-                  .
+                  Vercel hosting logs, backend application logs, and security logs are separate
+                  from browser cookies. They may record technical request information needed to
+                  deliver the website, protect forms, prevent abuse, troubleshoot errors, and
+                  investigate security events.
                 </p>
               </div>
             </section>
           </div>
 
-          <nav
-            aria-label="Related policies"
-            className="tn-actions pt-16"
-            data-tn-reveal="up"
-            data-tn-reveal-state="hidden"
-          >
-            <Link href="/privacy" className="tn-button-primary">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="tn-button-secondary">
-              Terms
-            </Link>
-          </nav>
+            <LegalPageEnding
+              currentPath="/cookies"
+              contactText="Cookie and analytics questions can be sent to threatnest@threatnest.com."
+              showCookieSettings
+            />
+          </div>
         </div>
       </section>
     </main>

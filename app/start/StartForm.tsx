@@ -141,7 +141,7 @@ export default function StartForm() {
       <div className="tn-form-section">
         <p className="tn-label">Audit request</p>
         <p className="tn-body tn-body-strong pt-4">
-          Application Penetration Test & Remediation Blueprint
+          Website Security Audit
         </p>
       </div>
 
@@ -275,10 +275,11 @@ export default function StartForm() {
           </p>
           <p className="tn-help">
             Submitting this form, emailing, calling, or paying does not authorize testing. Testing
-            begins only after the required written authorization, scope, Rules of Engagement,
-            testing window, cleared payment, access, and confirmation are complete. See the{" "}
+            begins only after the signed Service Agreement and Authorization to Test, scope,
+            testing window, required deposit, access, emergency contact, and confirmation are
+            complete. See the{" "}
             <Link href="/terms" className="tn-inline-link">
-              Terms
+              Terms of Use
             </Link>{" "}
             and{" "}
             <Link href="/data-handling" className="tn-inline-link">

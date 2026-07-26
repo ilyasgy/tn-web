@@ -139,7 +139,7 @@ test("consent is absent by default and saved with required attributes", () => {
 
   assert.equal(saved.status, "accepted");
   assert.equal(saved.analytics, true);
-  assert.equal(saved.policyVersion, "2026-07-25");
+  assert.equal(saved.policyVersion, "2026-07-26");
   assert.ok(Date.parse(saved.timestamp));
   assert.match(document.assignments[0], /Max-Age=15811200/);
   assert.match(document.assignments[0], /Path=\//);
@@ -194,6 +194,12 @@ test("analytics never loads before consent and loads only once after acceptance"
     "https://www.googletagmanager.com/gtag/js?id=G-TESTCONSENT1"
   );
   assert.equal(global.window.dataLayer.length, 2);
+  assert.deepEqual(Array.from(global.window.dataLayer[0]), ["js", global.window.dataLayer[0][1]]);
+  assert.ok(global.window.dataLayer[0][1] instanceof Date);
+  assert.deepEqual(Array.from(global.window.dataLayer[1]), [
+    "config",
+    "G-TESTCONSENT1",
+  ]);
 });
 
 test("the consent change event activates and disables the persistent analytics controller", () => {
@@ -211,7 +217,7 @@ test("the consent change event activates and disables the persistent analytics c
     },
   });
 
-  const stopListening = analytics.listenForAnalyticsConsent(() => "/cookies");
+  const stopListening = analytics.listenForAnalyticsConsent();
 
   consent.saveConsentPreference(true);
   consent.saveConsentPreference(true);
@@ -222,10 +228,9 @@ test("the consent change event activates and disables the persistent analytics c
     "https://www.googletagmanager.com/gtag/js?id=G-RWC6YMXS39"
   );
   assert.equal(global.window.__tnGaInitialized, true);
-  assert.equal(global.window.__tnLastTrackedPath, "/cookies");
   assert.equal(
     global.window.dataLayer.filter(
-      (entry) => entry[0] === "event" && entry[1] === "page_view"
+      (entry) => entry[0] === "config" && entry[1] === "G-RWC6YMXS39"
     ).length,
     1
   );
@@ -244,7 +249,7 @@ test("the consent change event activates and disables the persistent analytics c
   assert.equal(document.scripts.length, 0);
 });
 
-test("persisted acceptance initializes after refresh and tracks later routes once", () => {
+test("persisted acceptance initializes once across later routes", () => {
   const document = new CookieDocument();
   installBrowserGlobals(document);
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = "G-RWC6YMXS39";
@@ -257,39 +262,16 @@ test("persisted acceptance initializes after refresh and tracks later routes onc
     },
   });
 
-  analytics.syncGoogleAnalytics("/");
-  analytics.syncGoogleAnalytics("/");
-  analytics.syncGoogleAnalytics("/privacy");
+  analytics.syncGoogleAnalytics();
+  analytics.syncGoogleAnalytics();
+  analytics.syncGoogleAnalytics();
 
   assert.equal(document.scripts.length, 1);
-  assert.deepEqual(
-    global.window.dataLayer
-      .filter((entry) => entry[0] === "event" && entry[1] === "page_view")
-      .map((entry) => entry[2].page_path),
-    ["/", "/privacy"]
-  );
-});
-
-test("page views follow route changes and duplicate paths are ignored", () => {
-  const document = new CookieDocument();
-  installBrowserGlobals(document);
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = "G-TESTCONSENT1";
-  const calls = [];
-  global.window.gtag = (...args) => calls.push(args);
-  const analytics = loadTypeScriptModule("app/lib/analytics.ts", {
-    "./consent": { hasAnalyticsConsent: () => true },
-  });
-
-  analytics.trackPageView("/");
-  analytics.trackPageView("/");
-  analytics.trackPageView("/cookies");
-
-  assert.deepEqual(
-    calls.map((call) => [call[0], call[1], call[2].page_path]),
-    [
-      ["event", "page_view", "/"],
-      ["event", "page_view", "/cookies"],
-    ]
+  assert.equal(
+    global.window.dataLayer.filter(
+      (entry) => entry[0] === "config" && entry[1] === "G-RWC6YMXS39"
+    ).length,
+    1
   );
 });
 
@@ -317,5 +299,5 @@ test("withdrawing consent disables analytics and removes available GA cookies", 
   assert.equal(document.cookies.has("_ga"), false);
   assert.equal(document.cookies.has("_ga_TESTCONSENT1"), false);
   assert.equal(document.cookies.get("unrelated"), "keep");
-  assert.deepEqual(calls[0], ["consent", "update", { analytics_storage: "denied" }]);
+  assert.deepEqual(calls, []);
 });
